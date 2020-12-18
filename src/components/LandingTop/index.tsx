@@ -1,4 +1,4 @@
-import welcome from '../../media/landing-img-1.svg';
+import welcome from '../../media/landing-img-1.svg'
 
 const LandingTop = () => (
 	<div className='landing-top-bg px-3'>
@@ -15,7 +15,7 @@ const LandingTop = () => (
 						</p>
 						<p className='card-text'>
 							<small className='font-weight-light'>
-								Project for both developers and employers
+								Application for both developers and employers
 							</small>
 						</p>
 					</div>
@@ -27,6 +27,6 @@ const LandingTop = () => (
 			</div>
 		</div>
 	</div>
-);
+)
 
-export default LandingTop;
+export default LandingTop

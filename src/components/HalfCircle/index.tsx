@@ -1,4 +1,4 @@
-type text = { inputText: string };
+type text = { inputText: string }
 
 const HalfCircle = ({ inputText }: text) => (
 	<div className='d-flex justify-content-center'>
@@ -6,6 +6,6 @@ const HalfCircle = ({ inputText }: text) => (
 			{inputText}
 		</h5>
 	</div>
-);
+)
 
-export default HalfCircle;
+export default HalfCircle
