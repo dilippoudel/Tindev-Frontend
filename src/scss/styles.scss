@@ -1,99 +1,55 @@
 // @import '../../node_modules/bootstrap/scss/bootstrap.scss';
 
-@import '~bootstrap/scss/bootstrap';
-@import '_mobile';
+@import "~bootstrap/scss/bootstrap";
+@import "_mobile";
 
 body {
-	padding: 0px;
-	margin: 0px auto;
-	color: #ddd;
+  padding: 0px;
+  margin: 0px auto;
+  color: #ddd;
+  font-family: "Poppins", sans-serif;
 }
 
 .landing-top-bg {
-	background: url(../media/header-img.svg);
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: cover;
-	height: 80vh;
-	width: 100%;
+  background: url(../media/header-img.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 80vh;
+  width: 100%;
 }
 
 .half-circle {
-	width: 200px;
-	height: 100px;
-	background: linear-gradient(#a24fae, #773bb7);
-	border-bottom-right-radius: 100px;
-	border-bottom-left-radius: 100px;
-	border: 0;
-	color: #fff;
-	text-align: center;
+  width: 200px;
+  height: 100px;
+  background: linear-gradient(#a24fae, #773bb7);
+  border-bottom-right-radius: 100px;
+  border-bottom-left-radius: 100px;
+  border: 0;
+  color: #fff;
+  text-align: center;
 }
 
 .svg-icon {
-	position: absolute;
-	bottom: 0;
-	right: 20px;
-	height: 25vh;
+  position: absolute;
+  bottom: 0;
+  right: 20px;
+  height: 25vh;
 }
 
-/** navbar */
-.navbar {
-	background: white;
-}
-
-a.nav-link {
-	margin-left: 2.3rem;
-}
-
-/** footer */ 
-.copyright {
-	color: #817a7a;
-}
-
-/** email verification page */
-.verification-code {
-	width: 2.5em;
-	height: 2.3em;
-	margin: 0.7em;
-	border: 1px solid rgb(119, 117, 117);
-	border-radius: 7%;
-}
-
+/** buttons on email verification page */
 .verification {
-	padding-bottom: 1em;
-	&__button {
-		margin-bottom: 1em;
-		background-color: #463547;
-	}
+  padding-bottom: 1em;
+  &__button {
+    margin-bottom: 0.8em;
+    background-color: #463547;
+  }
 }
 
 .btn-light {
-	font-size: 1.1em;
-	background-color: #a64fae;
-	color: white;
-	padding: 0.64em 1em;
-	margin-bottom: 2em;
-}
-
-.email {
-	font-size: 0.9em;
-	color: rgb(59, 57, 57);
-}
-
-.email-verify {
-	color: #322933;
-	padding: 1em 0;
-}
-
-.check-out {
-	color: #0a2346;
-}
-
-.new-code {
-	font-size: 0.9em;
-	color: rgb(59, 57, 57);
-}
-
-.bottom-section {
-	position: relative;
+  font-size: 1.1em;
+  background-color: #a64fae;
+  color: white;
+  padding: 0.64em 1em;
+  margin-bottom: 8em;
 }
