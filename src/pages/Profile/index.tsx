@@ -1,12 +1,13 @@
-import React from "react";
-import { Container, Row, Col, Image, Badge, Button } from "react-bootstrap";
+import React from 'react'
+import profile from './download.jpeg'
+import { Container, Row, Col, Image, Badge, Button } from 'react-bootstrap'
 const Profile = () => {
   return (
     <Container className="container">
       <h3>PROFILE</h3>
       <Row className="justify-content-md-center">
         <Col xs={12} md={4}>
-          <Image src="./download.jpeg" roundedCircle />
+          <Image src={profile} roundedCircle />
           <h4>Degree</h4>
           <div className="education">
             <p className="education__title">BSC in Nursing</p>
@@ -17,13 +18,13 @@ const Profile = () => {
             <h3>Skills</h3>
             <Badge pill variant="info">
               JavaScript
-            </Badge>{" "}
+            </Badge>{' '}
             <Badge pill variant="info">
               Java
-            </Badge>{" "}
+            </Badge>{' '}
             <Badge pill variant="info">
               NodeJS
-            </Badge>{" "}
+            </Badge>{' '}
           </div>
           <br />
           <div className="work-experience">
@@ -37,6 +38,6 @@ const Profile = () => {
         </Col>
       </Row>
     </Container>
-  );
-};
-export default Profile;
+  )
+}
+export default Profile

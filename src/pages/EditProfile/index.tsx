@@ -1,11 +1,20 @@
 import React from 'react';
-import { Form, Row, Col, Button } from 'react-bootstrap';
+import { Form, Row, Col } from 'react-bootstrap';
+import CustomButton from '../../components/CustomButton';
+
 import HalfCircle from '../../components/HalfCircle';
+
+import userImg from '../../media/user-img.svg';
 
 const EditProfile = () => {
 	return (
-		<>
-			<HalfCircle inputText='Education &  Experiences' />
+		<div className='position-relative'>
+			<HalfCircle inputText='Education & Experiences' />
+			<div className='position-absolute user-img hide-sm'>
+				<img src={userImg} alt='userImg-svg' />
+				<br />
+				<CustomButton text='Upload' className='my-2 py-2' />
+			</div>
 
 			<Form className='container my-5'>
 				<Form.Group as={Row} controlId='formHorizontalTitle'>
@@ -124,11 +133,10 @@ const EditProfile = () => {
 						<Form.Control placeholder='Duration' />
 					</Col>
 				</Form.Row>
-				<Button type='submit' variant='outline-success my-5 '>
-					Update
-				</Button>
+				<br />
+				<CustomButton text='Update' className='my-2 py-2 btn-lg' />
 			</Form>
-		</>
+		</div>
 	);
 };
 

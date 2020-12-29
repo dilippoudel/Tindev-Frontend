@@ -1,21 +1,21 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
-import { LinkContainer } from "react-router-bootstrap";
-import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+import { LinkContainer } from 'react-router-bootstrap'
+import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap'
 
-import "./NavBar.scss";
+import './NavBar.scss'
 
 const NavBar = () => {
-  const history = useHistory();
+  const history = useHistory()
   // useSelector to get user info
   // this is hard coded data for testing title on the navbar
-  const userInfo = { userName: "Dilippo" };
+  const userInfo = { userName: 'Dilippo' }
 
   const handleLogout = () => {
     // dispatch logout
-    history.push("/");
-  };
+    history.push('/')
+  }
 
   return (
     <Navbar expand="lg" collapseOnSelect className="navbar">
@@ -49,7 +49,7 @@ const NavBar = () => {
         </Nav>
       </Navbar.Collapse>
     </Navbar>
-  );
-};
+  )
+}
 
-export default NavBar;
+export default NavBar

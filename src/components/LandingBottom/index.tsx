@@ -1,4 +1,4 @@
-import team from "../../media/team-dev.svg";
+import team from '../../media/team-dev.svg'
 
 const LandingBottom = () => {
   return (
@@ -13,7 +13,7 @@ const LandingBottom = () => {
 
       <div
         className="border border-primary rounded mx-auto d-block my-5 p-5"
-        style={{ width: "80%" }}
+        style={{ width: '80%' }}
       >
         <img className="mx-auto d-block" src={team} alt="team-svg" />
 
@@ -44,7 +44,7 @@ const LandingBottom = () => {
         />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default LandingBottom;
+export default LandingBottom
