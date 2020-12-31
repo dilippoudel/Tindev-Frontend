@@ -1,5 +1,6 @@
 @import '~bootstrap/scss/bootstrap';
 @import '_mobile';
+@import '_utilities';
 
 body {
   padding: 0px;
@@ -14,6 +15,14 @@ body {
 .card-title,
 .card-text {
   color: #ddd;
+}
+
+.container {
+  height: 95vh;
+}
+
+.purple-text {
+  color: var(--purple);
 }
 
 Button {
@@ -53,9 +62,11 @@ a:hover {
   text-decoration: none;
 }
 
-.user-img {
-  right: 20%;
+// job seeker profile
+.personal-form {
+  width: 60%;
 }
+
 // Customized and used on Job-Seeker
 .company-icon {
   max-width: 60px;

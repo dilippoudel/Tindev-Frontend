@@ -8,82 +8,70 @@ import userImg from '../../media/user-img.svg'
 
 const EditProfile = () => {
   return (
-    <div className="position-relative">
+    <>
       <HalfCircle inputText="Education & Experiences" />
-      <div className="position-absolute user-img hide-sm">
-        <img src={userImg} alt="userImg-svg" />
-        <br />
-        <CustomButton text="Upload" className="my-2 py-2" />
-      </div>
 
       <Form className="container my-5">
-        <Form.Group as={Row} controlId="formHorizontalTitle">
-          <Form.Label column sm="2">
-            Title
-          </Form.Label>
-          <Col sm="4">
-            <Form.Control type="text" placeholder="Title" />
-          </Col>
-        </Form.Group>
+        <div className="d-flex">
+          <div className="personal-form">
+            <Form.Group as={Row} controlId="formHorizontalTitle">
+              <Col sm="10">
+                <Form.Control type="text" placeholder="Title" />
+              </Col>
+            </Form.Group>
 
-        <Form.Group as={Row} controlId="formHorizontalFName">
-          <Form.Label column sm="2">
-            First Name
-          </Form.Label>
-          <Col sm="4">
-            <Form.Control type="text" placeholder="First name" />
-          </Col>
-        </Form.Group>
+            <Form.Group as={Row} controlId="formHorizontalFName">
+              <Col sm="10">
+                <Form.Control type="text" placeholder="First name" />
+              </Col>
+            </Form.Group>
 
-        <Form.Group as={Row} controlId="formHorizontalLName">
-          <Form.Label column sm="2">
-            Last Name
-          </Form.Label>
-          <Col sm="4">
-            <Form.Control type="text" placeholder="Last name" />
-          </Col>
-        </Form.Group>
+            <Form.Group as={Row} controlId="formHorizontalLName">
+              <Col sm="10">
+                <Form.Control type="text" placeholder="Last name" />
+              </Col>
+            </Form.Group>
 
-        <Form.Group as={Row} controlId="formHorizontalCountry">
-          <Form.Label column sm="2">
-            Country
-          </Form.Label>
-          <Col sm="4">
-            <Form.Control type="text" placeholder="Country" />
-          </Col>
-        </Form.Group>
+            <Form.Group as={Row} controlId="formHorizontalCountry">
+              <Col sm="10">
+                <Form.Control type="text" placeholder="Country" />
+              </Col>
+            </Form.Group>
 
-        <Form.Group as={Row} controlId="formHorizontalCity">
-          <Form.Label column sm="2">
-            City
-          </Form.Label>
-          <Col sm="4">
-            <Form.Control type="text" placeholder="City" />
-          </Col>
-        </Form.Group>
+            <Form.Group as={Row} controlId="formHorizontalCity">
+              <Col sm="10">
+                <Form.Control type="text" placeholder="City" />
+              </Col>
+            </Form.Group>
 
-        <Form.Group as={Row}>
-          <Form.Label as="legend" column sm={2}>
-            Relocate?
-          </Form.Label>
-          <Col as={Row} sm={10} className="mt-2">
-            <Form.Check
-              type="radio"
-              label="Yes"
-              name="formVerticalRadios"
-              id="formVerticalRadios1"
-              checked
-              className="pr-4"
-            />
-            <Form.Check
-              type="radio"
-              label="No"
-              name="formVerticalRadios"
-              id="formVerticalRadios2"
-            />
-          </Col>
-        </Form.Group>
-
+            <Form.Group as={Row}>
+              <Form.Label as="legend" column className="pl-4">
+                Open to Relocate?
+              </Form.Label>
+              <Col as={Row} className="mt-2">
+                <Form.Check
+                  type="radio"
+                  label="Yes"
+                  name="formVerticalRadios"
+                  id="formVerticalRadios1"
+                  checked
+                  className="pr-4"
+                />
+                <Form.Check
+                  type="radio"
+                  label="No"
+                  name="formVerticalRadios"
+                  id="formVerticalRadios2"
+                />
+              </Col>
+            </Form.Group>
+          </div>
+          <div className="m-auto hide-sm">
+            <img src={userImg} alt="userImg-svg" />
+            <br />
+            <CustomButton text="Upload" className="my-2 py-2" />
+          </div>
+        </div>
         <Form.Label as="legend" column sm={2} className="ml-n3">
           Education
         </Form.Label>
@@ -136,7 +124,7 @@ const EditProfile = () => {
         <br />
         <CustomButton text="Update" className="my-2 py-2 btn-lg" />
       </Form>
-    </div>
+    </>
   )
 }
 
