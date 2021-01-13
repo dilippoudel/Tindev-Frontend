@@ -2,6 +2,8 @@ import React from 'react'
 import { Form, Col, Row, Container, Button /*Image*/ } from 'react-bootstrap'
 import DateSelector from '../DateSelector'
 
+import './CompanyProfileForm.scss'
+
 //import uploadImage from '../../media/upload-Image.png'
 
 const CompanyProfileForm = () => {

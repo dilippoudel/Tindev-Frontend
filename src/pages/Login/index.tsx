@@ -13,6 +13,7 @@ import CustomButton from '../../components/CustomButton'
 import Footer from '../../components/Footer'
 import { loginUserRequest } from '../../redux/actions/user'
 import { AppState } from '../../redux/types'
+import './Login.scss'
 
 const Login = () => {
   const [email, setEmail] = useState('')

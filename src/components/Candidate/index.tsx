@@ -1,6 +1,8 @@
 import React from 'react'
 import { Badge } from 'react-bootstrap'
 
+import './Candidate.scss'
+
 type CandidateProps = {
   firstName: string
   lastName: string

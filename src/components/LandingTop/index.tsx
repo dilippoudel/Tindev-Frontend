@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { useSpring, animated } from 'react-spring'
 
 import welcome from '../../media/landing-img-1.svg'
+import './LandingTop.scss'
 
 const LandingTop = () => {
   const scrollIn = useSpring({
@@ -26,31 +27,29 @@ const LandingTop = () => {
         <div className="row m-auto">
           <div className="col-md-8 align-items-center d-flex justify-content-center">
             <div className="card-body">
-              <h1 className="heading">TINDEV</h1>
+              <h1 className="heading">Tindev</h1>
               <animated.h2 style={scrollIn} className="card-title">
-                Connection between employees and employers
+                Connection between companies and applicants
               </animated.h2>
 
               <animated.p style={showIn} className="card-text">
-                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
-                scelerisque ante sollicitudin commodo. Cras purus odio,
-                vestibulum.
+                Get your real match without hatch.
               </animated.p>
-              <p className="card-text">
+              {/* <p className="card-text">
                 <small className="font-weight-light">
                   Application for both developers and employers
                 </small>
-              </p>
+              </p> */}
               <animated.div style={showIn} className="pt-1">
                 <Link
                   to="/register"
-                  className="landBtn btn btn-outline-light btn-lg mr-4 w-25 py-2 p-0" // width & padding is improvised to avoid text breakage in btn.
+                  className="land-btn btn btn-outline-light btn-lg mr-4 w-25 py-2 p-0" // width & padding is improvised to avoid text breakage in btn.
                 >
                   Register
                 </Link>
                 <Link
                   to="/login"
-                  className="landBtn btn btn-outline-light btn-lg w-25"
+                  className="land-btn btn btn-outline-light btn-lg w-25"
                 >
                   Login
                 </Link>

@@ -1,0 +1,11 @@
+@import '../../scss/config';
+
+.tag-btn {
+  border: 2px solid $off-white;
+  color: $purple-color;
+}
+
+.tag-btn:hover {
+  background-color: $purple-color;
+  border-color: $white;
+}

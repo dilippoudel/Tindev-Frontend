@@ -3,8 +3,9 @@ import Image from 'react-bootstrap/Image'
 import { useHistory } from 'react-router-dom'
 import CustomSkill from '../../components/CustomSkill'
 import profileImg from '../../media/profile-img.svg'
+import './ViewJobseeker.scss'
 
-const Profile = () => {
+const ViewJobseeker = () => {
   const history = useHistory()
   return (
     <div className="profile-page page p-5">
@@ -54,4 +55,4 @@ const Profile = () => {
     </div>
   )
 }
-export default Profile
+export default ViewJobseeker

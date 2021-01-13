@@ -1,3 +1,5 @@
+import './CompanyIcon.scss'
+
 type Icon = {
   icon: string
 }

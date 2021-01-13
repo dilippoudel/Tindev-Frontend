@@ -1,3 +1,5 @@
+import './CustomSvgIcon.scss'
+
 type svg = {
   img: string
 }

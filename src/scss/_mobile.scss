@@ -1,26 +1,52 @@
 @media screen and (max-width: 767px) {
-  .hide-md {
-    display: none !important;
-  }
   .custom-skill {
     min-width: unset;
+  }
+
+  .hide-md {
+    display: none;
   }
 }
 
 @media screen and (max-width: 576px) {
-  .hide-sm {
-    display: none !important;
-  }
-
   .card-container {
     margin: 1rem;
-    width: unset !important;
-    right: unset !important;
+    right: unset;
+    width: unset;
+  }
+
+  .hide-sm {
+    display: none;
   }
 }
 
 @media screen and (max-width: 412px) {
   .hide-xs {
-    display: none !important;
+    display: none;
+  }
+}
+
+//datepicker
+@media (max-width: 1500px) {
+  .responsive-calendar {
+    font-size: 8px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .responsive-calendar {
+    font-size: 7px;
+  }
+}
+
+@media (max-width: 768px) {
+  .responsive-calendar {
+    font-size: 6px;
+  }
+}
+
+@media (min-width: 2500px) {
+  .responsive-calendar {
+    font-size: 12px;
   }
 }

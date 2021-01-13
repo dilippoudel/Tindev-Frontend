@@ -1,6 +1,7 @@
 import React from 'react'
 
 import CustomCard from '../CustomCard'
+import './MatchCardJobseeker.scss'
 
 const MatchCardJobseeker = () => {
   return (

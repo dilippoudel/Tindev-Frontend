@@ -1,0 +1,12 @@
+@import '../../scss/config';
+
+.half-circle {
+  background: var(--purple-gradient);
+  border: 0;
+  border-bottom-left-radius: 100px;
+  border-bottom-right-radius: 100px;
+  color: var(--white);
+  height: 100px;
+  text-align: center;
+  width: 200px;
+}

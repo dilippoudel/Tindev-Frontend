@@ -8,15 +8,28 @@
   color: $white;
 }
 
+q {
+  color: #ce1370;
+}
+
 .heading {
-  font-family: 'Merriweather Sans', sans-serif;
-  letter-spacing: 1rem;
+  // font-family: 'Merriweather Sans', sans-serif;
+  letter-spacing: 0.01rem;
+  padding-bottom: 1rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.77rem;
+  font-weight: bold;
+}
+
+.card-title {
+  font-size: 1.8rem;
 }
 
 .profile-page {
   margin: auto;
   width: 60%;
 }
+
 .container {
   height: 95vh;
 }
@@ -41,138 +54,15 @@
   }
 }
 
-.landing-top-bg {
-  background: url(../media/header-img.svg);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 90vh;
-  width: 100%;
-}
-
-.landBtn {
-  min-width: 90px;
-  transition: all 0.5s linear;
-}
-.half-circle {
-  width: 200px;
-  height: 100px;
-  background: var(--purple-gradient);
-  border-bottom-right-radius: 100px;
-  border-bottom-left-radius: 100px;
-  border: 0;
-  color: var(--white);
-  text-align: center;
-}
-
-.svg-icon {
-  position: absolute;
-  bottom: 0;
-  right: 20px;
-  height: 25vh;
-}
-
-a:hover {
-  text-decoration: none;
-}
-
-// Customized and used on Job-Seeker
-.company-icon {
-  max-width: 60px;
-}
-
-.card-container {
-  height: 60vh;
-  width: 60vw;
-  position: absolute;
-  bottom: 20%;
-  right: 5%;
-  overflow-y: auto;
-}
-
-.custom-skill {
-  font-size: small;
-  width: fit-content;
-  min-width: 100px;
-}
-
-/** signin page */
-.signin {
-  padding-top: 3rem;
-  padding-bottom: 1.5em;
-}
-
-.login-button,
-.profile-button {
-  background: var(--purple-gradient);
-  border: none;
-  min-width: 100%;
-  margin-top: 0.6rem;
-}
-
-.alert {
-  margin-left: 1rem;
-  margin-right: 1rem;
-  text-align: center;
-}
-
-.DatePicker__input {
-  font-size: 16px;
-  border: solid #4c3168 1px;
-  border-radius: 4px;
-  width: 100%;
-}
-
-.DatePicker__input:hover {
-  background-color: rgb(24, 21, 21);
-}
-
-/** datepicker */
-.responsive-calendar {
-  font-size: 9px !important;
-}
-
-@media (max-width: 1500px) {
-  .responsive-calendar {
-    font-size: 8px !important;
-  }
-}
-
-@media (max-width: 1200px) {
-  .responsive-calendar {
-    font-size: 7px !important;
-  }
-}
-
-@media (max-width: 768px) {
-  .responsive-calendar {
-    font-size: 6px !important;
-  }
-}
-
-/* Large screens */
-@media (min-width: 2500px) {
-  .responsive-calendar {
-    font-size: 12px !important;
-  }
-}
-
-/** footer */
-.footer {
-  bottom: 0;
-  position: fixed;
-  width: 100%;
-}
-
 // Route Navigation Animation
 .app {
   position: relative;
 }
 
 .page {
+  left: 0;
   position: absolute;
   right: 0;
-  left: 0;
 }
 
 .fade-appear,
