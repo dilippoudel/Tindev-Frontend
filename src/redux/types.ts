@@ -359,8 +359,22 @@ export type CreatingJobActionType = {
   type: typeof JOB_POST_REQUEST
   payload: JobPost
 }
+type Employer = {
+  id: number
+  companyName: string
+  companyInfo: string
+  address: string
+  role: string
+}
 type data = {
-  data: any
+  title: string
+  jobDescription: string
+  seniority: string
+  skills: any[]
+  employer: Employer
+  startingDate: string
+  id: number
+  createdAt: string
 }
 export type JobSuccessActionType = {
   type: typeof JOB_POST_SUCCESS

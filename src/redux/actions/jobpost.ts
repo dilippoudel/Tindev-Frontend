@@ -15,10 +15,10 @@ export const creatingJobPostRequest = (
     payload: jobForm,
   }
 }
-export const registerJobPostSuccess = (data: any): JobSuccessActionType => {
+export const registerJobPostSuccess = (jobPost: any): JobSuccessActionType => {
   return {
     type: 'JOB_POST_SUCCESS',
-    payload: data,
+    payload: jobPost,
   }
 }
 export const registerJobPostFail = (error: {
