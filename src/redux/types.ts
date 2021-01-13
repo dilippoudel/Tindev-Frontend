@@ -290,6 +290,8 @@ export type CredentialStateEmployer = {
     seniority: string
     skills: any[]
   }
+  jobLists: []
+  postedJobInfo: {}
 }
 
 export type CredentialStateJobseeker = {
@@ -353,13 +355,16 @@ export type JobPost = {
   seniority: string
   skills: any[]
 }
-
 export type CreatingJobActionType = {
   type: typeof JOB_POST_REQUEST
   payload: JobPost
 }
+type data = {
+  data: any
+}
 export type JobSuccessActionType = {
   type: typeof JOB_POST_SUCCESS
+  payload: data
 }
 export type JobFailActionType = {
   type: typeof JOB_POST_FAIL

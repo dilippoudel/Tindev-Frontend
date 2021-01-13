@@ -23,6 +23,8 @@ const initialState = {
     seniority: '',
     skills: [],
   },
+  jobLists: [], // this is store to list of all job poste created by the logged in employer
+  postedJobInfo: {}, // this is to get the posted job from backend immidiately
 }
 
 const employer = (state = initialState, action: EmployerActions) => {
@@ -36,7 +38,12 @@ const employer = (state = initialState, action: EmployerActions) => {
     case JOB_POST_REQUEST:
       return { ...state, loading: true, jobPost: action.payload }
     case JOB_POST_SUCCESS:
-      return { ...state, loading: false, jobPost: {} }
+      return {
+        ...state,
+        loading: false,
+        jobList: [...state.jobLists, action.payload],
+        postedJobInfo: action.payload,
+      }
     case JOB_POST_FAIL:
       return { ...state, loading: false, error: action.payload }
     case JOB_DELETE_REQUEST:

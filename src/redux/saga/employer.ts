@@ -38,7 +38,7 @@ function* creatingJobPostSaga() {
     const job = yield select(jobPostFormData)
     const res = yield axios.post('/employer/jobs', job)
     console.log(res)
-    yield put(registerJobPostSuccess())
+    yield put(registerJobPostSuccess(res.data))
   } catch (e) {
     yield put(registerJobPostFail(e))
   }

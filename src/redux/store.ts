@@ -26,6 +26,8 @@ export const initState: AppState = {
       seniority: '',
       skills: [],
     },
+    jobLists: [],
+    postedJobInfo: {},
   },
   jobseeker: {
     credential: { email: '', password: '' },
