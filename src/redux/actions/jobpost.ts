@@ -6,6 +6,7 @@ import {
   DeletingRequestActionType,
   DeletingSuccessActionType,
   DeletingFailActionType,
+  dataJobPostType,
 } from '../types'
 export const creatingJobPostRequest = (
   jobForm: JobPost
@@ -15,7 +16,9 @@ export const creatingJobPostRequest = (
     payload: jobForm,
   }
 }
-export const registerJobPostSuccess = (jobPost: any): JobSuccessActionType => {
+export const registerJobPostSuccess = (
+  jobPost: dataJobPostType
+): JobSuccessActionType => {
   return {
     type: 'JOB_POST_SUCCESS',
     payload: jobPost,

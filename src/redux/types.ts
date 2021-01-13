@@ -366,7 +366,7 @@ type Employer = {
   address: string
   role: string
 }
-type data = {
+export type dataJobPostType = {
   title: string
   jobDescription: string
   seniority: string
@@ -378,7 +378,7 @@ type data = {
 }
 export type JobSuccessActionType = {
   type: typeof JOB_POST_SUCCESS
-  payload: data
+  payload: dataJobPostType
 }
 export type JobFailActionType = {
   type: typeof JOB_POST_FAIL
