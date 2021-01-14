@@ -9,19 +9,11 @@ const ProfileUpload = () => {
   const onDrop = (image: any) => {
     setState({ images: image })
   }
-  console.log(state.images)
   //uploads images to backend
-  const uploadImages = () => {
-    let uploadPromise = state.images.map((image: any) => {
-      let data = new FormData()
-      data.append('image', image.name)
-      return axios.post('/upload/image', data)
-    })
-    axios
-      .all(uploadPromise)
-      .then(results => console.log(results))
-      .catch(e => console.log(e))
-    console.log(state.images)
+  const onClickHandler = () => {
+    const data = new FormData()
+    data.append('file', state.images[0])
+    axios.post('/upload/image', data, {})
   }
   return (
     <>
@@ -34,7 +26,7 @@ const ProfileUpload = () => {
         imgExtension={['.jpg', '.gif', '.png', '.gif']}
         maxFileSize={5242880}
       />
-      <button onClick={() => uploadImages()}>upload</button>
+      <button onClick={() => onClickHandler()}>upload</button>
     </>
   )
 }
