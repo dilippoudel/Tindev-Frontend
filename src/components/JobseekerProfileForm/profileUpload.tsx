@@ -13,7 +13,7 @@ const ProfileUpload = () => {
   const onClickHandler = () => {
     const data = new FormData()
     data.append('file', state.images[0])
-    axios.post('/upload/image', data, {})
+    axios.post('/s3/image', data, {})
   }
   return (
     <>
