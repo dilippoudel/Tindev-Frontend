@@ -3,17 +3,19 @@ import ImageUploader from 'react-images-upload'
 import axios from 'axios'
 
 const ProfileUpload = () => {
-  const [state, setState] = React.useState({
+  const [state, setState]: any = React.useState({
     images: [],
   })
   const onDrop = (image: any) => {
     setState({ images: image })
   }
   //uploads images to backend
-  const onClickHandler = () => {
+
+  const onClickHandler = async () => {
     const data = new FormData()
-    data.append('file', state.images[0])
-    axios.post('/s3/image', data, {})
+    console.log(state.images[0].name)
+    data.append('pic', state.images[0])
+    await axios.post('/s3/image', data)
   }
   return (
     <>
