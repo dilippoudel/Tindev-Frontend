@@ -1,12 +1,17 @@
 import React from 'react'
 import ImageUploader from 'react-images-upload'
 import axios from 'axios'
-
+import { useSelector } from 'react-redux'
+import { AppState } from '../../redux/types'
 const ProfileUpload = () => {
   const [state, setState]: any = React.useState({
     images: [],
     url: '',
   })
+  // @ts-ignore
+  const userId = useSelector((state: AppState) => state.user.userInfo.id)
+  console.log('user is ', userId)
+  console.log(typeof userId)
   const onDrop = (image: any) => {
     setState({ images: image })
   }
@@ -16,11 +21,10 @@ const ProfileUpload = () => {
     console.log(state.images[0])
     let file = state.images[0]
     let fileParts = state.images[0].name.split('.')
-    let fileName = fileParts[0]
+    let fileName = userId.toString()
     let fileType = fileParts[1]
-    console.log('fileType', fileType)
-    console.log('fileName', fileName)
     const data = new FormData()
+
     console.log(state.images[0].name)
     data.append('pic', state.images[0])
 
@@ -43,6 +47,7 @@ const ProfileUpload = () => {
         axios
           .put(signedRequest, file, options)
           .then(result => {
+            console.log('result is ...', result)
             console.log('response from s3')
           })
           .catch(e => {
