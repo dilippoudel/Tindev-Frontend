@@ -13,18 +13,19 @@ const ProfileUpload = () => {
   //uploads images to backend
 
   const onClickHandler = async () => {
+    console.log(state.images[0])
     let file = state.images[0]
     let fileParts = state.images[0].name.split('.')
     let fileName = fileParts[0]
     let fileType = fileParts[1]
     console.log('fileType', fileType)
     console.log('fileName', fileName)
-    // const data = new FormData()
-    // console.log(state.images[0].name)
-    // data.append('pic', state.images[0])
-    // await axios.post('/s3/image', data)
-    await axios
-      .post('/s3/image', {
+    const data = new FormData()
+    console.log(state.images[0].name)
+    data.append('pic', state.images[0])
+
+    axios
+      .post('http://localhost:3000/s3/image', {
         fileName: fileName,
         fileType: fileType,
       })
@@ -33,7 +34,7 @@ const ProfileUpload = () => {
         let signedRequest = returnedData.signedRequest
         let url = returnedData.url
         setState({ url: url })
-        console.log(signedRequest)
+
         let options = {
           headers: {
             'Content-Type': fileType,
