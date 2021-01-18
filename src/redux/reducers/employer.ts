@@ -1,9 +1,11 @@
-//import { employerInfoFromStorage } from '../saga/employer'
 import {
   EmployerActions,
   REGISTER_EMPLOYER_REQUEST,
   REGISTER_EMPLOYER_SUCCESS,
   REGISTER_EMPLOYER_FAIL,
+  UPDATE_EMPLOYER_REQUEST,
+  UPDATE_EMPLOYER_SUCCESS,
+  UPDATE_EMPLOYER_FAIL,
   JOB_POST_SUCCESS,
   JOB_POST_REQUEST,
   JOB_POST_FAIL,
@@ -14,7 +16,7 @@ import {
 
 const initialState = {
   credential: { email: '', password: '' },
-  employerInfo: {},
+  info: {},
   loading: false,
   error: null,
   jobPost: {
@@ -30,13 +32,25 @@ const employer = (state = initialState, action: EmployerActions) => {
     case REGISTER_EMPLOYER_REQUEST:
       return { ...state, loading: true, credential: action.payload }
     case REGISTER_EMPLOYER_SUCCESS:
-      return { ...state, loading: false, employerInfo: action.payload }
+      return { ...state, loading: false, info: action.payload }
     case REGISTER_EMPLOYER_FAIL:
+      return { ...state, loading: false, error: action.payload }
+    case UPDATE_EMPLOYER_REQUEST:
+      return { ...state, loading: true }
+    case UPDATE_EMPLOYER_SUCCESS:
+      console.log(action.payload)
+      return {
+        ...state,
+        loading: false,
+        success: true,
+        employer: action.payload,
+      }
+    case UPDATE_EMPLOYER_FAIL:
       return { ...state, loading: false, error: action.payload }
     case JOB_POST_REQUEST:
       return { ...state, loading: true, jobPost: action.payload }
     case JOB_POST_SUCCESS:
-      return { ...state, loading: false, jobPost: {} }
+      return { ...state, loading: false, jobPost: action.payload }
     case JOB_POST_FAIL:
       return { ...state, loading: false, error: action.payload }
     case JOB_DELETE_REQUEST:

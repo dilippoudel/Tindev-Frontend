@@ -7,6 +7,8 @@ import Landing from './pages/Landing'
 import Register from './pages/Register'
 import AuthApp from './components/AuthApp'
 import ViewJobseeker from './pages/ViewJobseeker'
+import EditJobPost from './pages/EditJobPost'
+import AddJobPost from './components/AddJobPost'
 
 const Routes = () => (
   <Route
@@ -24,6 +26,8 @@ const Routes = () => (
               component={ViewJobseeker}
             />
             <Route exact path="/user/profile" component={AuthApp} />
+            <Route exact path="/company/jobpost/:id" component={EditJobPost} />
+            <Route exact path="/company/jobpost" component={AddJobPost} />
           </Switch>
         </CSSTransition>
       </TransitionGroup>

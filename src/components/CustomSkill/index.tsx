@@ -1,3 +1,5 @@
+import './CustomSkill.scss'
+
 export type CustomSkillTypes = {
   skill: string
   className?: string

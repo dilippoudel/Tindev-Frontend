@@ -1,135 +1,120 @@
-import React from 'react'
-import { Form, Col, Row, Container, Button /*Image*/ } from 'react-bootstrap'
-import DateSelector from '../DateSelector'
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { Form, Col, Row, Container, Button } from 'react-bootstrap'
+import 'react-modern-calendar-datepicker/lib/DatePicker.css'
 
-import './CompanyProfileForm.scss'
-
-//import uploadImage from '../../media/upload-Image.png'
+import Message from '../Message'
+import Loader from '../Loader'
+import { updateEmployerRequest } from '../../redux/actions/employer'
+import { AppState } from '../../redux/types'
 
 const CompanyProfileForm = () => {
+  const [formData, setFormData] = useState({
+    companyName: '',
+    companyInfo: '',
+    address: '',
+  })
+
+  const dispatch = useDispatch()
+
+  const user = useSelector((state: AppState) => state.user)
+  const { loading, error } = user
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value, name } = e.target
+
+    setFormData((prevValue: any) => {
+      return {
+        ...prevValue,
+        [name]: value,
+      }
+    })
+  }
+
+  const submitHandler = (e: React.FormEvent) => {
+    e.preventDefault()
+    dispatch(
+      updateEmployerRequest({
+        companyName: formData.companyName,
+        companyInfo: formData.companyInfo,
+        address: formData.address,
+      })
+    )
+  }
+
   return (
     <Container fluid="md">
-      <h2 className="purple-text">Company Profile</h2>
+      <Link to="/company/jobpost/">+ Job Post</Link>
+      {error && <Message variant="danger">{error}</Message>}
+      {loading && <Loader />}
       <Row>
         <Col xs>
-          <Form>
+          <Form onSubmit={submitHandler}>
             <Form.Group
               className="form-group-set"
               as={Row}
               controlId="formElement"
             >
               <Form.Label column sm="4">
-                Job Title
+                Company Name
               </Form.Label>
               <Col sm="8">
                 <Form.Control
                   className="text-field"
                   type="text"
-                  placeholder="Company Name"
+                  name="companyName"
+                  placeholder="Company name"
+                  value={formData.companyName}
+                  onChange={handleChange}
                 />
               </Col>
             </Form.Group>
-
             <Form.Group
               className="form-group-set"
               as={Row}
               controlId="formElement"
             >
               <Form.Label column sm="4">
-                Job Description
+                Address
               </Form.Label>
               <Col sm="8">
-                <Form.Control as="textarea" rows={4} />
+                <Form.Control
+                  className="text-field"
+                  type="text"
+                  name="address"
+                  placeholder="Address"
+                  value={formData.address}
+                  onChange={handleChange}
+                />
               </Col>
             </Form.Group>
-
             <Form.Group
               className="form-group-set"
               as={Row}
               controlId="formElement"
             >
               <Form.Label column sm="4">
-                Required Skills
+                Company Info
               </Form.Label>
               <Col sm="8">
                 <Form.Control
-                  className="text-field"
-                  type="text"
-                  placeholder="Typescript"
+                  as="textarea"
+                  name="companyInfo"
+                  value={formData.companyInfo}
+                  onChange={handleChange}
+                  rows={4}
                 />
               </Col>
             </Form.Group>
-
-            <Form.Group
-              className="form-group-set"
-              as={Row}
-              controlId="formElement"
-            >
-              <Form.Label column sm="4">
-                Nice to have skills
-              </Form.Label>
-              <Col sm="8">
-                <Form.Control
-                  className="text-field"
-                  type="text"
-                  placeholder="JavaScript"
-                />
-              </Col>
-            </Form.Group>
-
-            <Form.Group
-              as={Row}
-              className="form-group-set"
-              controlId="formPlaintextPassword"
-            >
-              <Form.Label column sm="4">
-                Country
-              </Form.Label>
-              <Col sm="8">
-                <Form.Control
-                  className="text-field"
-                  type="text"
-                  placeholder="Country"
-                />
-              </Col>
-            </Form.Group>
-            <Form.Group
-              as={Row}
-              className="form-group-set"
-              controlId="formPlaintextPassword"
-            >
-              <Form.Label column sm="4">
-                City
-              </Form.Label>
-              <Col sm="8">
-                <Form.Control
-                  className="text-field"
-                  type="text"
-                  placeholder="City"
-                />
-              </Col>
-            </Form.Group>
-            <Form.Group
-              as={Row}
-              className="form-group-set"
-              controlId="formPlaintextPassword"
-            >
-              <Form.Label column sm="4">
-                Starting At
-              </Form.Label>
-              <Col sm="8">
-                <DateSelector />
-              </Col>
-            </Form.Group>
-
-            <Form.Group
-              as={Row}
-              className="form-group-set"
-              controlId="formPlaintextPassword"
-            >
+            <Form.Group as={Row} className="form-group-set" controlId="button">
               <Form.Label column sm="4"></Form.Label>
               <Col sm="8">
-                <Button className="purple-btn w-50 mt-5" size="lg">
+                <Button
+                  type="submit"
+                  className="purple-btn w-50 mt-5"
+                  size="lg"
+                >
                   Save
                 </Button>
               </Col>

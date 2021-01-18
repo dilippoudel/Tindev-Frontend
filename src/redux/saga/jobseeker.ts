@@ -1,7 +1,7 @@
 import { put, takeLatest, select } from 'redux-saga/effects'
 import axios from 'axios'
-import { AppState, RegisterJobseekerRequestAction } from '../types'
 
+import { AppState, RegisterJobseekerRequestAction } from '../types'
 import {
   updateJobseekerFail,
   updateJobseekerSuccess,
