@@ -3,14 +3,15 @@ import ImageUploader from 'react-images-upload'
 import axios from 'axios'
 import { useSelector } from 'react-redux'
 import { AppState } from '../../redux/types'
+import { Alert } from 'react-bootstrap'
 const ProfileUpload = () => {
   const [state, setState]: any = React.useState({
     images: [],
     url: '',
+    message: '',
   })
   // @ts-ignore
   const userId = useSelector((state: AppState) => state.user.userInfo.id)
-  console.log('user is ', userId)
   console.log(typeof userId)
   const onDrop = (image: any) => {
     setState({ images: image })
@@ -24,8 +25,6 @@ const ProfileUpload = () => {
     let fileName = userId.toString()
     let fileType = fileParts[1]
     const data = new FormData()
-
-    console.log(state.images[0].name)
     data.append('pic', state.images[0])
 
     axios
@@ -47,14 +46,20 @@ const ProfileUpload = () => {
         axios
           .put(signedRequest, file, options)
           .then(result => {
-            console.log('result is ...', result)
-            console.log('response from s3')
+            state.message = 'Succeesfully uploaded'
           })
           .catch(e => {
-            console.log(e)
+            state.message = 'Upload Fail'
           })
       })
-      .catch(e => console.log(e))
+      .catch(e => (state.message = 'Upload Fail'))
+  }
+  const alertMessage = () => {
+    return state.message === '' ? null : 'Succeesfully uploaded' ? (
+      <Alert variant="success" />
+    ) : (
+      <Alert variant="warning" />
+    )
   }
   return (
     <>
@@ -67,6 +72,7 @@ const ProfileUpload = () => {
         imgExtension={['.jpg', '.gif', '.png', '.gif']}
         maxFileSize={5242880}
       />
+      {alertMessage()}
       <button onClick={() => onClickHandler()}>upload</button>
     </>
   )
