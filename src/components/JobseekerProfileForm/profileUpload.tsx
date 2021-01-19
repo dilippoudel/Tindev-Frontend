@@ -16,7 +16,6 @@ const ProfileUpload = () => {
   const onDrop = (image: any) => {
     setState({ images: image })
   }
-  //uploads images to backend
 
   const onClickHandler = async () => {
     console.log(state.images[0])
@@ -54,13 +53,13 @@ const ProfileUpload = () => {
       })
       .catch(e => (state.message = 'Upload Fail'))
   }
-  const alertMessage = () => {
-    return state.message === '' ? null : 'Succeesfully uploaded' ? (
+  const alertMessage = () =>
+    state.message === '' ? null : 'Succeesfully uploaded' ? (
       <Alert variant="success" />
     ) : (
       <Alert variant="warning" />
     )
-  }
+
   return (
     <>
       <ImageUploader
