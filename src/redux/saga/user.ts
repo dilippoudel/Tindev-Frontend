@@ -4,7 +4,7 @@ import axios from 'axios'
 import LocalStorage from '../../local-storage'
 import { LoginUserRequestAction } from '../types'
 
-import { loginUserSuccess, loginUserFail } from '../actions/user'
+import { loginUserSuccess, loginUserFail, setLoggedIn } from '../actions/user'
 
 function* loginUserSaga(action: LoginUserRequestAction) {
   const email = action.payload.credential.email
@@ -17,6 +17,7 @@ function* loginUserSaga(action: LoginUserRequestAction) {
     if (res.data.status === 200) {
       yield put(loginUserSuccess(res.data.payload))
       yield LocalStorage.saveToken(res.data.payload.token)
+      yield put(setLoggedIn())
       history.push('/user/profile')
     }
   } catch (error) {

@@ -3,6 +3,7 @@ import {
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAIL,
   LOGOUT_USER,
+  SET_LOGGED_IN,
 } from '../types'
 
 export const loginUserRequest = (
@@ -38,5 +39,11 @@ export const loginUserFail = () => {
 export const logoutUser = () => {
   return {
     type: LOGOUT_USER,
+  }
+}
+
+export const setLoggedIn = () => {
+  return {
+    type: SET_LOGGED_IN,
   }
 }

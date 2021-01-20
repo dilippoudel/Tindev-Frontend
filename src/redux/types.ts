@@ -37,13 +37,14 @@ export const GET_SKILLS_FAIL = 'GET_SKILLS_FAIL'
 export const ADD_SKILL = 'ADD_SKILL'
 export const REMOVE_SKILL = 'REMOVE_SKILL'
 export const REDIRECT_PAGE = 'REDIRECT_PAGE'
-
+export const SET_LOGGED_IN = 'SET_LOGGED_IN'
 // User
 export type UserActions =
   | LoginUserRequestAction
   | LoginUserSuccessAction
   | LoginUserFailAction
   | LogoutUserAction
+  | SetLoggedInAction
 
 export type LoginUserRequestAction = {
   type: typeof LOGIN_USER_REQUEST
@@ -432,6 +433,7 @@ export type CredentialStateUser = {
   userInfo: {
     role: string
   }
+  isLoggedIn: Boolean
   loading: Boolean
   error: any
   skills: any[]
@@ -491,4 +493,8 @@ export type AppState = {
   jobseeker: CredentialStateJobseeker
   resources: ResourcesState
   skill: SkillState
+}
+
+export type SetLoggedInAction = {
+  type: typeof SET_LOGGED_IN
 }

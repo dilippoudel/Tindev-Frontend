@@ -4,6 +4,7 @@ import {
   LOGIN_USER_FAIL,
   LOGOUT_USER,
   UserActions,
+  SET_LOGGED_IN,
 } from '../types'
 
 const initialState = {
@@ -22,6 +23,7 @@ const initialState = {
       degree: '',
     },
   },
+  isLoggedIn: false,
   loading: false,
   error: null,
   jobPost: {
@@ -45,11 +47,18 @@ const user = (state = initialState, action: UserActions) => {
         history: action.payload.history,
       }
     case LOGIN_USER_SUCCESS:
-      return { ...state, loading: false, userInfo: action.payload }
+      return {
+        ...state,
+        loading: false,
+        userInfo: action.payload,
+        isLoggedIn: true,
+      }
     case LOGIN_USER_FAIL:
       return { ...state, loading: false, error: action.payload }
     case LOGOUT_USER:
       return {}
+    case SET_LOGGED_IN:
+      return { ...state, loading: false, isLoggedIn: true }
     default:
       return state
   }
