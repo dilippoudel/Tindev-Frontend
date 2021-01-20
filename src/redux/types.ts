@@ -1,9 +1,14 @@
+import { DayValue } from 'react-modern-calendar-datepicker'
+
 export const REGISTER_EMPLOYER_REQUEST = 'REGISTER_EMPLOYER_REQUEST'
 export const REGISTER_EMPLOYER_SUCCESS = 'REGISTER_EMPLOYER_SUCCESS'
 export const REGISTER_EMPLOYER_FAIL = 'REGISTER_EMPLOYER_FAIL'
 export const UPDATE_EMPLOYER_REQUEST = 'UPDATE_EMPLOYER_REQUEST'
 export const UPDATE_EMPLOYER_SUCCESS = 'UPDATE_EMPLOYER_SUCCESS'
 export const UPDATE_EMPLOYER_FAIL = 'UPDATE_EMPLOYER_FAIL'
+export const GET_EMPLOYER_REQUEST = 'GET_EMPLOYER_REQUEST'
+export const GET_EMPLOYER_SUCCESS = 'GET_EMPLOYER_SUCCESS'
+export const GET_EMPLOYER_FAIL = 'GET_EMPLOYER_FAIL'
 export const UPDATE_JOBSEEKER_REQUEST = 'UPDATE_JOBSEEKER_REQUEST'
 export const UPDATE_JOBSEEKER_SUCCESS = 'UPDATE_JOBSEEKER_SUCCESS'
 export const UPDATE_JOBSEEKER_FAIL = 'UPDATE_JOBSEEKER_FAIL'
@@ -14,12 +19,12 @@ export const LOGIN_USER_REQUEST = 'LOGIN_USER_REQUEST'
 export const LOGIN_USER_SUCCESS = 'LOGIN_USER_SUCCESS'
 export const LOGIN_USER_FAIL = 'LOGIN_USER_FAIL'
 export const LOGOUT_USER = 'LOGOUT_USER'
-export const JOB_POST_REQUEST = 'JOB_POST_REQUEST'
-export const JOB_POST_SUCCESS = 'JOB_POST_SUCCESS'
-export const JOB_POST_FAIL = 'JOB_POST_FAIL'
-export const UPDATE_JOBPOST_REQUEST = 'UPDATE_JOBPOST_REQUEST'
-export const UPDATE_JOBPOST_SUCCESS = 'UPDATE_JOBPOST_SUCCESS'
-export const UPDATE_JOBPOST_FAIL = 'UPDATE_JOBPOST_FAIL'
+export const CREATE_JOB_POST_REQUEST = 'CREATE_JOB_POST_REQUEST'
+export const CREATE_JOB_POST_SUCCESS = 'CREATE_JOB_POST_SUCCESS'
+export const CREATE_JOB_POST_FAIL = 'CREATE_JOB_POST_FAIL'
+export const UPDATE_JOB_POST_REQUEST = 'UPDATE_JOB_POST_REQUEST'
+export const UPDATE_JOB_POST_SUCCESS = 'UPDATE_JOB_POST_SUCCESS'
+export const UPDATE_JOB_POST_FAIL = 'UPDATE_JOB_POST_FAIL'
 export const JOB_DELETE_REQUEST = 'JOB_DELETE_REQUEST'
 export const JOB_DELETE_SUCCESS = 'JOB_DELETE_SUCCESS'
 export const JOB_DELETE_FAIL = 'JOB_DELETE_FAIL'
@@ -101,12 +106,9 @@ export type EmployerActions =
   | UpdateEmployerRequestAction
   | UpdateEmployerSuccessAction
   | UpdateEmployerFailAction
-  | CreatingJobActionType
-  | JobFailActionType
-  | JobSuccessActionType
-  | DeletingRequestActionType
-  | DeletingSuccessActionType
-  | DeletingFailActionType
+  | GetEmployerRequestAction
+  | GetEmployerSuccessAction
+  | GetEmployerFailAction
 
 export type RegisterEmployerRequestAction = {
   type: typeof REGISTER_EMPLOYER_REQUEST
@@ -161,6 +163,28 @@ export type UpdateEmployerSuccessAction = {
 
 export type UpdateEmployerFailAction = {
   type: typeof UPDATE_EMPLOYER_FAIL
+  payload: {
+    error: any
+  }
+}
+
+export type GetEmployerRequestAction = {
+  type: typeof GET_EMPLOYER_REQUEST
+}
+
+export type GetEmployerSuccessAction = {
+  type: typeof GET_EMPLOYER_SUCCESS
+  payload: {
+    companyName: string
+    companyInfo: string
+    address: string
+    role: string
+    jobPosts: []
+  }
+}
+
+export type GetEmployerFailAction = {
+  type: typeof GET_EMPLOYER_FAIL
   payload: {
     error: any
   }
@@ -227,10 +251,19 @@ export type updateJobseekerFailAction = {
 }
 
 // Skills
-export type SkillsActions =
+export type ResourcesActions =
   | GetSkillsRequestAction
   | GetSkillsSuccessAction
   | GetSkillsFailAction
+  | CreatingJobPostRequestAction
+  | CreatingJobPostFailAction
+  | CreatingJobPostSuccessAction
+  | DeletingRequestActionType
+  | DeletingSuccessActionType
+  | DeletingFailActionType
+  | UpdateJobPostRequestAction
+  | UpdateJobPostSuccessAction
+  | UpdateJobPostFailAction
 
 export type SkillActions =
   | CreateSkillRequestAction
@@ -301,26 +334,44 @@ export type RemoveSkillAction = {
 }
 
 //  for job post ==> redux stuff
+
 export type JobPost = {
   title: string
   jobDescription: string
   seniority: string
   skills: any[]
-  startingDate: string
+  startingDate: DayValue | string
 }
 
-export type CreatingJobActionType = {
-  type: typeof JOB_POST_REQUEST
+export type CreatingJobPostRequestAction = {
+  type: typeof CREATE_JOB_POST_REQUEST
   payload: JobPost
 }
 
-export type JobSuccessActionType = {
-  type: typeof JOB_POST_SUCCESS
+export type CreatingJobPostSuccessAction = {
+  type: typeof CREATE_JOB_POST_SUCCESS
   payload: JobPost
 }
 
-export type JobFailActionType = {
-  type: typeof JOB_POST_FAIL
+export type CreatingJobPostFailAction = {
+  type: typeof CREATE_JOB_POST_FAIL
+  payload: {
+    error: any
+  }
+}
+
+export type UpdateJobPostRequestAction = {
+  type: typeof UPDATE_JOB_POST_REQUEST
+  payload: Partial<JobPost>
+}
+
+export type UpdateJobPostSuccessAction = {
+  type: typeof UPDATE_JOB_POST_SUCCESS
+  payload: JobPost
+}
+
+export type UpdateJobPostFailAction = {
+  type: typeof UPDATE_JOB_POST_FAIL
   payload: {
     error: any
   }
@@ -355,6 +406,7 @@ export type Credential = {
   skillLevel?: string
   duration?: string
   startingDate?: string
+  requiredSkills?: any[]
   created?: Date
   education?: {
     institute?: string
@@ -363,7 +415,7 @@ export type Credential = {
   companyName?: string
   companyInfo?: string
   address?: any
-  jobPost?: any[]
+  jobPost?: any
   role?: string
 }
 
@@ -390,21 +442,15 @@ export type CredentialStateEmployer = {
     email: string
     password: string
   }
-  info: {
+  employerInfo: {
     companyName: string
     companyInfo: string
     address: any
     role: string
+    jobPosts: any[]
   }
   loading: Boolean
   error: any
-  jobPost: {
-    title: string
-    jobDescription: string
-    seniority: string
-    skills: any[]
-    startingDate: string
-  }
 }
 
 export type CredentialStateJobseeker = {
@@ -418,10 +464,11 @@ export type CredentialStateJobseeker = {
   skills: any[]
 }
 
-export type SkillsState = {
+export type ResourcesState = {
   skills: any[]
   loading: boolean
   error: any
+  jobPost: JobPost
 }
 
 export type SkillState = {
@@ -442,6 +489,6 @@ export type AppState = {
   user: CredentialStateUser
   employer: CredentialStateEmployer
   jobseeker: CredentialStateJobseeker
-  resources: SkillsState
+  resources: ResourcesState
   skill: SkillState
 }

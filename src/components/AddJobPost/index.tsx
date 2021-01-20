@@ -1,9 +1,14 @@
 import React from 'react'
 
 import JobPostForm from '../JobPostForm'
+import './AddJobPost.scss'
 
 const AddJobPost = () => {
-  return <JobPostForm header={'Add Job Post'} />
+  return (
+    <div className="add-jobpost">
+      <JobPostForm header={'New Job Post'} />
+    </div>
+  )
 }
 
 export default AddJobPost

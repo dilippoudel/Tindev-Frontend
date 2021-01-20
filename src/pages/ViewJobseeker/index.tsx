@@ -27,9 +27,9 @@ const ViewJobseeker = () => {
 
       <span className="lead">Skills</span>
       <div className="d-flex">
-        <CustomSkill skill="JavaScript" />
-        <CustomSkill skill="Redux" />
-        <CustomSkill skill="NodeJs" />
+        <CustomSkill skills={[]} />
+        <CustomSkill skills={[]} />
+        <CustomSkill skills={[]} />
       </div>
       <br />
       <br />

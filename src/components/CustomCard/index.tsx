@@ -20,7 +20,7 @@ const CustomCard = ({ title, skill, message }: Info) => {
       <div>
         <CustomInfo
           title={title}
-          skill={skill} // for each displays lists of arrays here
+          skills={skill} // for each displays lists of arrays here
           message={message}
         />
       </div>

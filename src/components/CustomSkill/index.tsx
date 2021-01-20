@@ -1,21 +1,25 @@
+import { Badge } from 'react-bootstrap'
 import './CustomSkill.scss'
 
 export type CustomSkillTypes = {
-  skill: string
   className?: string
+  skills: any[]
 }
 
-const CustomSkill = ({ skill, ...otherProps }: CustomSkillTypes) => {
+const CustomSkill = ({ skills, ...otherProps }: CustomSkillTypes) => {
   return (
-    <div
-      className="rounded-pill border border-info mx-2 text-center p-1 custom-skill"
-      {...otherProps}
-    >
-      <span className="m-auto">{skill}</span>
-
-      {/* <span className="m-auto">
-        {skills.map(skill => console.log('Skills', skill))}
-      </span> */}
+    <div className="custom-skill" {...otherProps}>
+      {skills.map((skill, index) => {
+        return (
+          <Badge
+            pill
+            key={index}
+            className="tag-btn btn btn-pill btn-outline-primary ml-2"
+          >
+            <span className="m-auto">{skill}</span>
+          </Badge>
+        )
+      })}
     </div>
   )
 }

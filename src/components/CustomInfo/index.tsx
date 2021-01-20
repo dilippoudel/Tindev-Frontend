@@ -4,17 +4,17 @@ import CustomSkill from '../CustomSkill'
 
 type Info = {
   title: string
-  skill: any
+  skills: any[]
   message: string
 }
 
-const CustomInfo = ({ title, skill, message }: Info) => {
+const CustomInfo = ({ title, skills, message }: Info) => {
   return (
     <>
       <Card className="d-flex align-items-center border-0 py-1 text-dark">
         <div>{title}</div>
         <div className="skill-container d-flex ">
-          <CustomSkill skill={skill} />
+          <CustomSkill skills={[]} />
         </div>
       </Card>
       <Card.Text className="message">{message}</Card.Text>

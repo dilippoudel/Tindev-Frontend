@@ -2,8 +2,14 @@ import {
   GET_SKILLS_REQUEST,
   GET_SKILLS_SUCCESS,
   GET_SKILLS_FAIL,
-  SkillsState,
-  SkillsActions,
+  ResourcesState,
+  ResourcesActions,
+  CREATE_JOB_POST_SUCCESS,
+  CREATE_JOB_POST_REQUEST,
+  CREATE_JOB_POST_FAIL,
+  JOB_DELETE_REQUEST,
+  JOB_DELETE_SUCCESS,
+  JOB_DELETE_FAIL,
 } from '../types'
 
 export const resources = (
@@ -12,8 +18,8 @@ export const resources = (
     loading: false,
     error: null,
   },
-  action: SkillsActions
-): SkillsState => {
+  action: ResourcesActions
+): ResourcesState => {
   switch (action.type) {
     case GET_SKILLS_REQUEST:
       return {
@@ -33,6 +39,18 @@ export const resources = (
         loading: false,
         error: action.payload,
       }
+    case CREATE_JOB_POST_REQUEST:
+      return { ...state, loading: true, jobPost: action.payload }
+    case CREATE_JOB_POST_SUCCESS:
+      return { ...state, loading: false, jobPost: action.payload }
+    case CREATE_JOB_POST_FAIL:
+      return { ...state, loading: false, error: action.payload }
+    case JOB_DELETE_REQUEST:
+      return { ...state, loading: true }
+    case JOB_DELETE_SUCCESS:
+      return { ...state, loading: false }
+    case JOB_DELETE_FAIL:
+      return { ...state, error: action.payload }
     default:
       return state
   }

@@ -1,8 +1,13 @@
 import React, { useState } from 'react'
-//import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Form, Col, Row, Container, Button } from 'react-bootstrap'
 import DatePicker, { DayValue } from 'react-modern-calendar-datepicker'
 import 'react-modern-calendar-datepicker/lib/DatePicker.css'
+
+import Message from '../Message'
+import Loader from '../Loader'
+import { creatingJobPostRequest } from '../../redux/actions/resources'
+import { AppState } from '../../redux/types'
 
 type HeaderProps = {
   header: string
@@ -14,9 +19,10 @@ const JobPostForm = ({ header }: HeaderProps) => {
     jobDescription: '',
     requiredSkills: [],
     seniority: '',
-    startingDate: startingAt,
+    startingDate: '',
   })
 
+  // TODO: date format
   const year = new Date().getFullYear.toString().substr(-2)
   const range = parseInt(year)
 
@@ -25,6 +31,11 @@ const JobPostForm = ({ header }: HeaderProps) => {
     month: 12,
     day: 31,
   }
+
+  const user = useSelector((state: AppState) => state.user)
+  const { loading, error } = user
+
+  const dispatch = useDispatch()
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target
@@ -35,16 +46,27 @@ const JobPostForm = ({ header }: HeaderProps) => {
         [name]: value,
       }
     })
+    setStartingAt(startingAt)
   }
 
+  // TODO: Add condition for edit job post
   const submitHandler = (e: React.FormEvent) => {
     e.preventDefault()
+    dispatch(
+      creatingJobPostRequest({
+        title: formData.title,
+        jobDescription: formData.jobDescription,
+        skills: formData.requiredSkills,
+        seniority: formData.seniority,
+        startingDate: startingAt,
+      })
+    )
   }
 
   return (
     <Container fluid="md">
-      {/* {error && <Message variant="danger">{error}</Message>}
-      {loading && <Loader />} */}
+      {error && <Message variant="danger">{error}</Message>}
+      {loading && <Loader />}
       <h2>{header}</h2>
       <Row>
         <Col xs>

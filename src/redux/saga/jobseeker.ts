@@ -30,7 +30,6 @@ function* registerJobseekerSaga(action: RegisterJobseekerRequestAction) {
 function* updateJobseekerSaga(credential: Credential) {
   try {
     const response = yield axios.patch('/jobSeeker', { credential })
-    console.log('response::: >', response)
     yield put(updateJobseekerSuccess(response.data))
   } catch (error) {
     yield put(updateJobseekerFail(error.message))

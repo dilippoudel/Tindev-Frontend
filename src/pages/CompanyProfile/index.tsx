@@ -4,7 +4,7 @@ import React /*, { useState } */ from 'react'
 import Tabs from '../../components/Tabs'
 import MatchCardCompany from '../../components/MatchCardCompany'
 import CompanyProfileForm from '../../components/CompanyProfileForm'
-import JobPost from '../JobPost'
+import JobPostList from '../JobPostList'
 import './CompanyProfile.scss'
 
 const CompanyProfile = () => {
@@ -20,7 +20,7 @@ const CompanyProfile = () => {
       <Tabs
         formComponent={<CompanyProfileForm />}
         matchComponent={<MatchCardCompany match={match} />}
-        jobPostPage={<JobPost />}
+        jobPostListPage={<JobPostList />}
       />
     </div>
   )

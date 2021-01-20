@@ -1,6 +1,6 @@
 import React from 'react'
-import { Badge } from 'react-bootstrap'
 
+import CustomSkill from '../CustomSkill'
 import './Candidate.scss'
 
 type CandidateProps = {
@@ -15,17 +15,7 @@ const Candidate = ({ firstName, lastName, skills }: CandidateProps) => {
       <h5>
         {firstName} {lastName}
       </h5>
-      {skills.map((skill, index) => {
-        return (
-          <Badge
-            pill
-            key={index}
-            className="tag-btn btn btn-pill btn-outline-primary ml-2"
-          >
-            {skill}
-          </Badge>
-        )
-      })}
+      <CustomSkill skills={skills} />
     </div>
   )
 }

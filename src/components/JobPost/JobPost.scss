@@ -1,0 +1,41 @@
+@import '../../scss/config';
+
+button.edit-button a {
+  background: $purple-color;
+  color: $white;
+}
+
+button.edit-button {
+  background: $purple-color;
+  border: 0;
+  min-width: 5rem;
+}
+
+button.edit-button:hover {
+  background: $purple-color;
+}
+
+button.edit-button a:active {
+  background: $purple-color;
+}
+
+button.delete-button {
+  background: $dark-purple;
+  margin-top: 1rem;
+  min-width: 5rem;
+}
+
+.job-post-card {
+  border: 1px solid $black;
+  border-radius: 4px;
+  margin: 0.5rem 1rem;
+  padding: 1rem;
+}
+
+.buttons {
+  margin-left: 0;
+  @media (max-width: 767px) {
+    margin-left: 1rem;
+    min-width: 3rem;
+  }
+}
