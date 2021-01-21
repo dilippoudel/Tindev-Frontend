@@ -15,7 +15,6 @@ const App = () => {
       if (token && isMatch.length === 0) {
         config.headers['Authorization'] = `Bearer ${token}`
       }
-      console.log(config)
       return config
     })
   }, [])

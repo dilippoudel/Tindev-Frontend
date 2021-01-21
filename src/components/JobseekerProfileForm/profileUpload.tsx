@@ -12,7 +12,6 @@ const ProfileUpload = () => {
   })
   // @ts-ignore
   const userId = useSelector((state: AppState) => state.user.userInfo.id)
-  console.log(typeof userId)
   const onDrop = (image: any) => {
     setState({ images: image })
   }
