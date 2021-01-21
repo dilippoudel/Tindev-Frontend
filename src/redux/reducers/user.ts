@@ -5,6 +5,7 @@ import {
   LOGOUT_USER,
   UserActions,
   SET_LOGGED_IN,
+  SET_LOADING,
 } from '../types'
 
 const initialState = {
@@ -59,6 +60,8 @@ const user = (state = initialState, action: UserActions) => {
       return {}
     case SET_LOGGED_IN:
       return { ...state, loading: false, isLoggedIn: true }
+    case SET_LOADING:
+      return { ...state }
     default:
       return state
   }

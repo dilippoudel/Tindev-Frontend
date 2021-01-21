@@ -38,6 +38,7 @@ export const ADD_SKILL = 'ADD_SKILL'
 export const REMOVE_SKILL = 'REMOVE_SKILL'
 export const REDIRECT_PAGE = 'REDIRECT_PAGE'
 export const SET_LOGGED_IN = 'SET_LOGGED_IN'
+export const SET_LOADING = 'SET_LOADING'
 // User
 export type UserActions =
   | LoginUserRequestAction
@@ -45,6 +46,7 @@ export type UserActions =
   | LoginUserFailAction
   | LogoutUserAction
   | SetLoggedInAction
+  | SetLoadingAction
 
 export type LoginUserRequestAction = {
   type: typeof LOGIN_USER_REQUEST
@@ -497,4 +499,8 @@ export type AppState = {
 
 export type SetLoggedInAction = {
   type: typeof SET_LOGGED_IN
+}
+
+export type SetLoadingAction = {
+  type: typeof SET_LOADING
 }
