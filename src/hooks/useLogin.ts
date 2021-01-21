@@ -19,7 +19,7 @@ const useLogin = () => {
 
   useEffect(() => {
     getUser()
-  })
+  }, [])
 }
 
 export default useLogin
