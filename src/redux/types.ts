@@ -6,9 +6,9 @@ export const REGISTER_EMPLOYER_FAIL = 'REGISTER_EMPLOYER_FAIL'
 export const UPDATE_EMPLOYER_REQUEST = 'UPDATE_EMPLOYER_REQUEST'
 export const UPDATE_EMPLOYER_SUCCESS = 'UPDATE_EMPLOYER_SUCCESS'
 export const UPDATE_EMPLOYER_FAIL = 'UPDATE_EMPLOYER_FAIL'
-export const GET_EMPLOYER_REQUEST = 'GET_EMPLOYER_REQUEST'
-export const GET_EMPLOYER_SUCCESS = 'GET_EMPLOYER_SUCCESS'
-export const GET_EMPLOYER_FAIL = 'GET_EMPLOYER_FAIL'
+export const GET_USER_REQUEST = 'GET_USER_REQUEST'
+export const GET_USER_SUCCESS = 'GET_USER_SUCCESS'
+export const GET_USER_FAIL = 'GET_USER_FAIL'
 export const UPDATE_JOBSEEKER_REQUEST = 'UPDATE_JOBSEEKER_REQUEST'
 export const UPDATE_JOBSEEKER_SUCCESS = 'UPDATE_JOBSEEKER_SUCCESS'
 export const UPDATE_JOBSEEKER_FAIL = 'UPDATE_JOBSEEKER_FAIL'
@@ -109,9 +109,9 @@ export type EmployerActions =
   | UpdateEmployerRequestAction
   | UpdateEmployerSuccessAction
   | UpdateEmployerFailAction
-  | GetEmployerRequestAction
-  | GetEmployerSuccessAction
-  | GetEmployerFailAction
+  | GetUserRequestAction
+  | GetUserSuccessAction
+  | GetUserFailAction
 
 export type RegisterEmployerRequestAction = {
   type: typeof REGISTER_EMPLOYER_REQUEST
@@ -171,12 +171,12 @@ export type UpdateEmployerFailAction = {
   }
 }
 
-export type GetEmployerRequestAction = {
-  type: typeof GET_EMPLOYER_REQUEST
+export type GetUserRequestAction = {
+  type: typeof GET_USER_REQUEST
 }
 
-export type GetEmployerSuccessAction = {
-  type: typeof GET_EMPLOYER_SUCCESS
+export type GetUserSuccessAction = {
+  type: typeof GET_USER_SUCCESS
   payload: {
     companyName: string
     companyInfo: string
@@ -186,8 +186,8 @@ export type GetEmployerSuccessAction = {
   }
 }
 
-export type GetEmployerFailAction = {
-  type: typeof GET_EMPLOYER_FAIL
+export type GetUserFailAction = {
+  type: typeof GET_USER_FAIL
   payload: {
     error: any
   }

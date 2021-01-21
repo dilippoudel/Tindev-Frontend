@@ -5,9 +5,9 @@ import {
   UPDATE_EMPLOYER_REQUEST,
   UPDATE_EMPLOYER_SUCCESS,
   UPDATE_EMPLOYER_FAIL,
-  GET_EMPLOYER_REQUEST,
-  GET_EMPLOYER_SUCCESS,
-  GET_EMPLOYER_FAIL,
+  GET_USER_REQUEST,
+  GET_USER_SUCCESS,
+  GET_USER_FAIL,
   CredentialStateEmployer,
   EmployerUpdate,
 } from '../types'
@@ -75,20 +75,20 @@ export type GetEmployer = {
 
 export const getEmployerRequest = () => {
   return {
-    type: GET_EMPLOYER_REQUEST,
+    type: GET_USER_REQUEST,
   }
 }
 
 export const getEmployerSuccess = (employerInfo: GetEmployer) => {
   return {
-    type: GET_EMPLOYER_SUCCESS,
+    type: GET_USER_SUCCESS,
     payload: employerInfo,
   }
 }
 
 export const getEmployerFail = (error: string) => {
   return {
-    type: GET_EMPLOYER_FAIL,
+    type: GET_USER_FAIL,
     payload: error,
   }
 }

@@ -5,6 +5,7 @@ import LocalStorage from '../../local-storage'
 import { LoginUserRequestAction } from '../types'
 
 import { loginUserSuccess, loginUserFail, setLoggedIn } from '../actions/user'
+import { getEmployerFail, getEmployerSuccess } from '../actions'
 
 function* loginUserSaga(action: LoginUserRequestAction) {
   const email = action.payload.credential.email
@@ -26,6 +27,17 @@ function* loginUserSaga(action: LoginUserRequestAction) {
   }
 }
 
-const sagaWatcher = [takeLatest('LOGIN_USER_REQUEST', loginUserSaga)]
+function* getUserSaga() {
+  try {
+    const res = yield axios.get('/user')
+    yield put(getEmployerSuccess(res.data.payload))
+  } catch (error) {
+    yield put(getEmployerFail(error))
+  }
+}
+const sagaWatcher = [
+  takeLatest('LOGIN_USER_REQUEST', loginUserSaga),
+  takeLatest('GET_EMPLOYER_REQUEST', getUserSaga),
+]
 
 export default sagaWatcher
