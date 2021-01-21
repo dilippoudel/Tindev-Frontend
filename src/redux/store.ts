@@ -12,7 +12,7 @@ export const initState: AppState = {
     userInfo: {
       role: '',
     },
-    loading: false,
+    loading: true,
     error: null,
     skills: [],
   },
@@ -25,7 +25,7 @@ export const initState: AppState = {
       role: '',
       jobPosts: [],
     },
-    loading: false,
+    loading: true,
     error: null,
   },
   jobseeker: {

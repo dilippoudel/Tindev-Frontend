@@ -9,7 +9,8 @@ import { AppState } from '../../redux/types'
 const AuthApp = () => {
   const role = useSelector((state: AppState) => state.user.userInfo.role)
   const { isLoggedIn } = useSelector((state: AppState) => state.user)
-  if (!isLoggedIn) <Redirect to="/login" />
+
+  if (!isLoggedIn) return <Redirect to="/login" />
 
   return <>{role === 'employer' ? <CompanyProfile /> : <JobseekerProfile />}</>
 }
