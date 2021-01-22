@@ -7,8 +7,6 @@ import { Alert } from 'react-bootstrap'
 const ProfileUpload = () => {
   const [state, setState]: any = React.useState({
     images: [],
-    url: '',
-    message: '',
   })
   // @ts-ignore
   const userId = useSelector((state: AppState) => state.user.userInfo.id)
@@ -17,7 +15,6 @@ const ProfileUpload = () => {
   }
 
   const onClickHandler = async () => {
-    console.log(state.images[0])
     let file = state.images[0]
     let fileParts = state.images[0].name.split('.')
     let fileName = userId.toString()
