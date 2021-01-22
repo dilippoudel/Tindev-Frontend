@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ImageUploader from 'react-images-upload'
 import axios from 'axios'
 import { useSelector } from 'react-redux'
@@ -8,6 +8,7 @@ const ProfileUpload = () => {
   const [state, setState]: any = React.useState({
     images: [],
   })
+  const [message, setMessage] = useState('')
   // @ts-ignore
   const userId = useSelector((state: AppState) => state.user.userInfo.id)
   const onDrop = (image: any) => {
@@ -41,19 +42,19 @@ const ProfileUpload = () => {
         axios
           .put(signedRequest, file, options)
           .then(result => {
-            state.message = 'Succeesfully uploaded'
+            setMessage('Successfully uploaded')
           })
           .catch(e => {
-            state.message = 'Upload Fail'
+            setMessage('Upload Fail')
           })
       })
-      .catch(e => (state.message = 'Upload Fail'))
+      .catch(e => setMessage('Upload Fail'))
   }
   const alertMessage = () =>
-    state.message === '' ? null : 'Succeesfully uploaded' ? (
-      <Alert variant="success" />
+    message === '' ? null : 'Successfully uploaded' ? (
+      <Alert variant="success">{message}</Alert>
     ) : (
-      <Alert variant="warning" />
+      <Alert variant="warning">{message}</Alert>
     )
 
   return (
