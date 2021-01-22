@@ -24,7 +24,7 @@ const ProfileUpload = () => {
     data.append('pic', state.images[0])
 
     axios
-      .post('http://localhost:3000/s3/image', {
+      .post('/s3/image', {
         fileName: fileName,
         fileType: fileType,
       })
