@@ -11,9 +11,9 @@ export const initState: AppState = {
     userInfo: {
       role: '',
       id: 0,
+      address: '',
       companyName: '',
       companyInfo: '',
-      address: '',
     },
     info: {
       jobPosts: [],

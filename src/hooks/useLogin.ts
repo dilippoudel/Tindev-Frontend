@@ -1,14 +1,13 @@
 import { useEffect } from 'react'
-import { useHistory } from 'react-router'
 import { useDispatch } from 'react-redux'
 import axios from 'axios'
 
 import { logoutUser, loginUserSuccess } from '../redux/actions'
+import { useHistory } from 'react-router-dom'
 
 const useLogin = () => {
-  const history = useHistory()
   const dispatch = useDispatch()
-
+  const history = useHistory()
   const getUser = async () => {
     const res = await axios.get('/user')
     const status = res.data.status
