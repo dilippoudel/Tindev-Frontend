@@ -431,6 +431,7 @@ export type CredentialStateUser = {
   }
   userInfo: {
     role: string
+    id: number
   }
   loading: Boolean
   error: any

@@ -9,7 +9,6 @@ const ProfileUpload = () => {
     images: [],
   })
   const [message, setMessage] = useState('')
-  // @ts-ignore
   const userId = useSelector((state: AppState) => state.user.userInfo.id)
   const onDrop = (image: any) => {
     setState({ images: image })
