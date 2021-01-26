@@ -10,6 +10,7 @@ export const initState: AppState = {
     credential: { email: '', password: '' },
     userInfo: {
       role: '',
+      id: 0,
     },
     loading: false,
     error: null,
