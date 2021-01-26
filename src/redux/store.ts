@@ -11,14 +11,20 @@ export const initState: AppState = {
     userInfo: {
       role: '',
       id: 0,
+      companyName: '',
+      companyInfo: '',
+      address: '',
+    },
+    info: {
+      jobPosts: [],
+      skills: [],
     },
     loading: false,
     error: null,
-    skills: [],
   },
   employer: {
     credential: { email: '', password: '' },
-    employerInfo: {
+    info: {
       companyName: '',
       companyInfo: '',
       address: '',
@@ -45,6 +51,8 @@ export const initState: AppState = {
       seniority: '',
       skills: [],
       startingDate: '',
+      loading: false,
+      error: null,
     },
   },
   skill: {
