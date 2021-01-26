@@ -1,18 +1,32 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Form, Col, Row, Container, Button } from 'react-bootstrap'
+import { WithContext as ReactTags } from 'react-tag-input'
 import DatePicker, { DayValue } from 'react-modern-calendar-datepicker'
 import 'react-modern-calendar-datepicker/lib/DatePicker.css'
 
 import Message from '../Message'
 import Loader from '../Loader'
-import { creatingJobPostRequest } from '../../redux/actions/resources'
+import {
+  creatingJobPostRequest,
+  getSkillsRequest,
+} from '../../redux/actions/resources'
 import { AppState } from '../../redux/types'
+import './JobPostForm.scss'
 
-type HeaderProps = {
+const KeyCodes = {
+  comma: 188,
+  enter: 13,
+}
+
+const delimiters = [KeyCodes.comma, KeyCodes.enter]
+
+type JobPostFormProps = {
   header: string
 }
-const JobPostForm = ({ header }: HeaderProps) => {
+
+const JobPostForm = ({ header }: JobPostFormProps) => {
+  const [tags, setTags] = useState<any[]>([])
   const [startingAt, setStartingAt] = useState<DayValue>(null)
   const [formData, setFormData] = useState({
     title: '',
@@ -22,15 +36,17 @@ const JobPostForm = ({ header }: HeaderProps) => {
     startingDate: '',
   })
 
-  // TODO: date format
-  const year = new Date().getFullYear.toString().substr(-2)
-  const range = parseInt(year)
+  const skills = useSelector((state: AppState) => state.resources.skills)
+  const suggestions = skills.map(skill => {
+    return {
+      id: String(skill.id),
+      text: skill.name,
+    }
+  })
 
-  const maximumDate = {
-    year: range + 1,
-    month: 12,
-    day: 31,
-  }
+  useEffect(() => {}, [suggestions, skills])
+
+  // TODO: date format
 
   const user = useSelector((state: AppState) => state.user)
   const { loading, error } = user
@@ -52,15 +68,38 @@ const JobPostForm = ({ header }: HeaderProps) => {
   // TODO: Add condition for edit job post
   const submitHandler = (e: React.FormEvent) => {
     e.preventDefault()
+    const postSkills = tags.map(tag => {
+      return {
+        id: parseInt(tag.id),
+      }
+    })
     dispatch(
       creatingJobPostRequest({
         title: formData.title,
         jobDescription: formData.jobDescription,
-        skills: formData.requiredSkills,
+        skills: postSkills,
         seniority: formData.seniority,
         startingDate: startingAt,
       })
     )
+    setFormData({
+      title: '',
+      jobDescription: '',
+      requiredSkills: [],
+      seniority: '',
+      startingDate: '',
+    })
+    // skills ready for next jobpost
+    dispatch(getSkillsRequest())
+  }
+
+  const handleDelete = (i: any) => {
+    const filteredTags = tags.filter((tag, index) => index !== i)
+    setTags(filteredTags)
+  }
+
+  const handleAddition = (tag: any) => {
+    setTags([...tags, tag])
   }
 
   return (
@@ -74,7 +113,7 @@ const JobPostForm = ({ header }: HeaderProps) => {
             <Form.Group
               className="form-group-set"
               as={Row}
-              controlId="formElement"
+              controlId="formElementJobTitle"
             >
               <Form.Label column sm="4">
                 Job Title
@@ -93,7 +132,7 @@ const JobPostForm = ({ header }: HeaderProps) => {
             <Form.Group
               className="form-group-set"
               as={Row}
-              controlId="formElement"
+              controlId="formElementJobDescription"
             >
               <Form.Label column sm="4">
                 Job Description
@@ -111,26 +150,25 @@ const JobPostForm = ({ header }: HeaderProps) => {
             <Form.Group
               className="form-group-set"
               as={Row}
-              controlId="formElement"
+              controlId="formElementRequiredSkills"
             >
               <Form.Label column sm="4">
                 Required Skills
               </Form.Label>
               <Col sm="8">
-                <Form.Control
-                  className="text-field"
-                  type="text"
-                  name="requiredSkills"
-                  placeholder="Typescript"
-                  value={formData.requiredSkills}
-                  onChange={handleChange}
+                <ReactTags
+                  tags={tags}
+                  suggestions={suggestions}
+                  handleDelete={handleDelete}
+                  handleAddition={handleAddition}
+                  delimiters={delimiters}
                 />
               </Col>
             </Form.Group>
             <Form.Group
               className="form-group-set"
               as={Row}
-              controlId="formElement"
+              controlId="formElementSeniority"
             >
               <Form.Label column sm="4">
                 Seniority
@@ -149,7 +187,7 @@ const JobPostForm = ({ header }: HeaderProps) => {
             <Form.Group
               as={Row}
               className="form-group-set"
-              controlId="formPlaintextPassword"
+              controlId="formElementStartingAt"
             >
               <Form.Label column sm="4">
                 Starting At
@@ -159,12 +197,15 @@ const JobPostForm = ({ header }: HeaderProps) => {
                   value={startingAt}
                   onChange={setStartingAt}
                   inputPlaceholder="Select starting day"
-                  maximumDate={maximumDate}
                   colorPrimary="#000"
                 />
               </Col>
             </Form.Group>
-            <Form.Group as={Row} className="form-group-set" controlId="button">
+            <Form.Group
+              as={Row}
+              className="form-group-set"
+              controlId="savButton"
+            >
               <Form.Label column sm="4"></Form.Label>
               <Col sm="8">
                 <Button

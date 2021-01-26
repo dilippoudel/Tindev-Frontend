@@ -3,6 +3,9 @@ import {
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAIL,
   LOGOUT_USER,
+  GET_USER_REQUEST,
+  GET_USER_SUCCESS,
+  GET_USER_FAIL,
   UserActions,
 } from '../types'
 
@@ -50,6 +53,16 @@ const user = (state = initialState, action: UserActions) => {
       return { ...state, loading: false, error: action.payload }
     case LOGOUT_USER:
       return {}
+    case GET_USER_REQUEST:
+      return { ...state, loading: true }
+    case GET_USER_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        info: action.payload,
+      }
+    case GET_USER_FAIL:
+      return { ...state, loading: false, error: action.payload }
     default:
       return state
   }

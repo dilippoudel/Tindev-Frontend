@@ -5,10 +5,10 @@ export const REGISTER_EMPLOYER_SUCCESS = 'REGISTER_EMPLOYER_SUCCESS'
 export const REGISTER_EMPLOYER_FAIL = 'REGISTER_EMPLOYER_FAIL'
 export const UPDATE_EMPLOYER_REQUEST = 'UPDATE_EMPLOYER_REQUEST'
 export const UPDATE_EMPLOYER_SUCCESS = 'UPDATE_EMPLOYER_SUCCESS'
-export const UPDATE_EMPLOYER_FAIL = 'UPDATE_EMPLOYER_FAIL'
-export const GET_EMPLOYER_REQUEST = 'GET_EMPLOYER_REQUEST'
-export const GET_EMPLOYER_SUCCESS = 'GET_EMPLOYER_SUCCESS'
-export const GET_EMPLOYER_FAIL = 'GET_EMPLOYER_FAIL'
+export const UPDATE_EMPLOYER_FAIL = 'UPDATE_USER_FAIL'
+export const GET_USER_REQUEST = 'GET_USER_REQUEST'
+export const GET_USER_SUCCESS = 'GET_USER_SUCCESS'
+export const GET_USER_FAIL = 'GET_EMPLOYER_FAIL'
 export const UPDATE_JOBSEEKER_REQUEST = 'UPDATE_JOBSEEKER_REQUEST'
 export const UPDATE_JOBSEEKER_SUCCESS = 'UPDATE_JOBSEEKER_SUCCESS'
 export const UPDATE_JOBSEEKER_FAIL = 'UPDATE_JOBSEEKER_FAIL'
@@ -44,6 +44,9 @@ export type UserActions =
   | LoginUserSuccessAction
   | LoginUserFailAction
   | LogoutUserAction
+  | GetUserRequestAction
+  | GetUserSuccessAction
+  | GetUserFailAction
 
 export type LoginUserRequestAction = {
   type: typeof LOGIN_USER_REQUEST
@@ -82,7 +85,7 @@ export type LoginUserSuccessAction = {
       companyName?: string
       companyInfo?: string
       address?: string
-      jobPost?: any[]
+      jobPosts?: any[]
     }
   }
 }
@@ -96,6 +99,7 @@ export type LoginUserFailAction = {
 
 export type LogoutUserAction = {
   type: typeof LOGOUT_USER
+  payload: any
 }
 
 // Employer
@@ -106,9 +110,6 @@ export type EmployerActions =
   | UpdateEmployerRequestAction
   | UpdateEmployerSuccessAction
   | UpdateEmployerFailAction
-  | GetEmployerRequestAction
-  | GetEmployerSuccessAction
-  | GetEmployerFailAction
 
 export type RegisterEmployerRequestAction = {
   type: typeof REGISTER_EMPLOYER_REQUEST
@@ -168,23 +169,23 @@ export type UpdateEmployerFailAction = {
   }
 }
 
-export type GetEmployerRequestAction = {
-  type: typeof GET_EMPLOYER_REQUEST
+export type GetUserRequestAction = {
+  type: typeof GET_USER_REQUEST
 }
 
-export type GetEmployerSuccessAction = {
-  type: typeof GET_EMPLOYER_SUCCESS
+export type GetUserSuccessAction = {
+  type: typeof GET_USER_SUCCESS
   payload: {
     companyName: string
     companyInfo: string
     address: string
     role: string
-    jobPosts: []
+    jobPosts: any[]
   }
 }
 
-export type GetEmployerFailAction = {
-  type: typeof GET_EMPLOYER_FAIL
+export type GetUserFailAction = {
+  type: typeof GET_USER_FAIL
   payload: {
     error: any
   }
@@ -322,14 +323,14 @@ export type GetSkillsFailAction = {
 export type AddSkillAction = {
   type: typeof ADD_SKILL
   payload: {
-    skill: Skill
+    id: Skill
   }
 }
 
 export type RemoveSkillAction = {
   type: typeof REMOVE_SKILL
   payload: {
-    skill: Skill
+    id: Skill
   }
 }
 
@@ -379,7 +380,7 @@ export type UpdateJobPostFailAction = {
 
 export type DeletingRequestActionType = {
   type: typeof JOB_DELETE_REQUEST
-  payload: number
+  payload: JobPost
 }
 
 export type DeletingSuccessActionType = {
@@ -415,7 +416,7 @@ export type Credential = {
   companyName?: string
   companyInfo?: string
   address?: any
-  jobPost?: any
+  jobPosts?: any[]
   role?: string
 }
 
@@ -430,12 +431,18 @@ export type CredentialStateUser = {
     password: string
   }
   userInfo: {
+    companyName: string
+    companyInfo: string
+    address: any
     role: string
     id: number
   }
+  info: {
+    jobPosts: any[]
+    skills: any[]
+  }
   loading: Boolean
   error: any
-  skills: any[]
 }
 
 export type CredentialStateEmployer = {
@@ -443,7 +450,7 @@ export type CredentialStateEmployer = {
     email: string
     password: string
   }
-  employerInfo: {
+  info: {
     companyName: string
     companyInfo: string
     address: any
@@ -469,7 +476,7 @@ export type ResourcesState = {
   skills: any[]
   loading: boolean
   error: any
-  jobPost: JobPost
+  jobPost: JobPostState
 }
 
 export type SkillState = {
@@ -481,7 +488,11 @@ export type SkillState = {
 export type IdToDelete = string
 
 export type JobPostState = {
-  jobPost: any
+  title: string
+  jobDescription: string
+  seniority: string
+  skills: any[]
+  startingDate: DayValue | string
   loading: boolean
   error: any
 }

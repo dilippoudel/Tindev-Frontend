@@ -29,10 +29,12 @@ export const createSkillFail = (error: string) => {
   }
 }
 
-export const addSkill = (skill: {}) => {
+export const addSkill = ({ id }: any) => {
   return {
     type: ADD_SKILL,
-    payload: skill,
+    payload: {
+      id,
+    },
   }
 }
 

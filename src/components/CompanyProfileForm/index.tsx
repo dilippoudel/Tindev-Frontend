@@ -7,6 +7,7 @@ import 'react-modern-calendar-datepicker/lib/DatePicker.css'
 import Message from '../Message'
 import Loader from '../Loader'
 import { updateEmployerRequest } from '../../redux/actions/employer'
+import { getSkillsRequest } from '../../redux/actions/resources'
 import { AppState } from '../../redux/types'
 
 const CompanyProfileForm = () => {
@@ -20,6 +21,11 @@ const CompanyProfileForm = () => {
 
   const user = useSelector((state: AppState) => state.user)
   const { loading, error } = user
+
+  // click on + job post link
+  const handleClick = () => {
+    dispatch(getSkillsRequest())
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target
@@ -41,11 +47,18 @@ const CompanyProfileForm = () => {
         address: formData.address,
       })
     )
+    setFormData({
+      companyName: '',
+      companyInfo: '',
+      address: '',
+    })
   }
 
   return (
     <Container fluid="md">
-      <Link to="/company/jobpost/">+ Job Post</Link>
+      <Link onClick={handleClick} to="/company/jobpost/">
+        + Job Post
+      </Link>
       {error && <Message variant="danger">{error}</Message>}
       {loading && <Loader />}
       <Row>
@@ -54,7 +67,7 @@ const CompanyProfileForm = () => {
             <Form.Group
               className="form-group-set"
               as={Row}
-              controlId="formElement"
+              controlId="formElementCompanyName"
             >
               <Form.Label column sm="4">
                 Company Name
@@ -73,7 +86,7 @@ const CompanyProfileForm = () => {
             <Form.Group
               className="form-group-set"
               as={Row}
-              controlId="formElement"
+              controlId="formElementAddress"
             >
               <Form.Label column sm="4">
                 Address
@@ -92,7 +105,7 @@ const CompanyProfileForm = () => {
             <Form.Group
               className="form-group-set"
               as={Row}
-              controlId="formElement"
+              controlId="formElementCompanyInfo"
             >
               <Form.Label column sm="4">
                 Company Info
@@ -107,7 +120,11 @@ const CompanyProfileForm = () => {
                 />
               </Col>
             </Form.Group>
-            <Form.Group as={Row} className="form-group-set" controlId="button">
+            <Form.Group
+              as={Row}
+              className="form-group-set"
+              controlId="saveButton"
+            >
               <Form.Label column sm="4"></Form.Label>
               <Col sm="8">
                 <Button

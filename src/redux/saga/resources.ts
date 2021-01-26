@@ -17,7 +17,7 @@ const jobPostFormData = (state: AppState) => state.resources.jobPost
 function* getSkillsSaga() {
   try {
     const res = yield axios.get('/skills')
-    yield put(getSkillsSuccess(res.data))
+    yield put(getSkillsSuccess(res.data.skills))
   } catch (error) {
     yield put(getSkillsFail(error))
   }
@@ -46,18 +46,19 @@ function* creatingJobPostSaga() {
 function* deletingJobPostSaga(action: DeletingRequestActionType) {
   try {
     const jobPostId = yield action.payload
-    yield axios.delete(`/employer/jobs/${jobPostId}`)
-    yield put(deleteJobPostSuccess())
+    const res = yield axios.delete(`/employer/jobs/${jobPostId}`)
+    if (res.status === 200) {
+      yield put(deleteJobPostSuccess())
+    }
+    throw new Error()
   } catch (e) {
     yield put(deleteJobPostFail(e))
   }
 }
 
 const sagaWatcher = [
-  takeLatest('GET_SKILLS_SUCCESS', getSkillsSaga),
-  takeLatest('GET_SKILLS_FAIL', getSkillsSaga),
-  takeLatest('CREATE_SKILL_SUCCESS', createSkillSaga),
-  takeLatest('CREATE_SKILL_FAIL', createSkillSaga),
+  takeLatest('GET_SKILLS_REQUEST', getSkillsSaga),
+  takeLatest('CREATE_SKILL_REQUEST', createSkillSaga),
   takeLatest('CREATE_JOB_POST_REQUEST', creatingJobPostSaga),
   takeLatest('JOB_DELETE_REQUEST', deletingJobPostSaga),
 ]

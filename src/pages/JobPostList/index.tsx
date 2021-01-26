@@ -6,10 +6,7 @@ import './JobPostList.scss'
 import { AppState } from '../../redux/types'
 
 const JobPostList = () => {
-  //@ts-ignore
-  const jobPosts = useSelector(
-    (state: AppState) => state.employer.employerInfo?.jobPosts
-  )
+  const jobPosts = useSelector((state: AppState) => state.user.info.jobPosts)
 
   return (
     <>
@@ -19,11 +16,12 @@ const JobPostList = () => {
             return (
               <JobPost
                 key={jp.id}
+                jobPostId={jp.id}
                 title={jp.title}
                 jobDescription={jp.jobDescription}
                 seniority={jp.seniority}
                 startingDate={jp.startingDate}
-                // skills={jp.skills}
+                skills={jp.skills.map((s: any) => s.name)}
               />
             )
           })}
