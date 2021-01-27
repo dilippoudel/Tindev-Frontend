@@ -19,7 +19,7 @@ export const registerEmployerRequest = (
     payload: {
       email,
       password,
-      history: history,
+      history,
     },
   }
 }

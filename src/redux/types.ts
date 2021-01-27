@@ -229,26 +229,36 @@ export type RegisterJobseekerFailAction = {
   }
 }
 
+export type JobseekerUpdate = {
+  firstName: string
+  lastName: string
+  seniority: string
+  role: string
+  skills: any[]
+  relocate: boolean
+  startingDate: DayValue | string
+  institute: string
+  degree: string
+  contact: string
+  workExperience: any
+  image: string
+}
+
 export type updateJobseekerRequestAction = {
   type: typeof UPDATE_JOBSEEKER_REQUEST
-  payload: {
-    jobSeekerId: string
-  }
+  payload: Partial<JobseekerUpdate>
 }
 
 export type updateJobseekerSuccessAction = {
   type: typeof UPDATE_JOBSEEKER_SUCCESS
-  payload: {
-    firstName: string
-    lastName: string
-    contact: string
-    seniority: string
-  }
+  payload: JobseekerUpdate
 }
 
 export type updateJobseekerFailAction = {
   type: typeof UPDATE_JOBSEEKER_FAIL
-  payload: string
+  payload: {
+    error: any
+  }
 }
 
 // Skills

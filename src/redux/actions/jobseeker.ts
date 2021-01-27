@@ -6,19 +6,20 @@ import {
   UPDATE_JOBSEEKER_REQUEST,
   UPDATE_JOBSEEKER_SUCCESS,
   UPDATE_JOBSEEKER_FAIL,
+  JobseekerUpdate,
 } from '../types'
 
-export const updateJobseekerRequest = (data: Credential) => {
+export const updateJobseekerRequest = (jobseeker: JobseekerUpdate) => {
   return {
     type: UPDATE_JOBSEEKER_REQUEST,
-    payload: data,
+    payload: jobseeker,
   }
 }
 
-export const updateJobseekerSuccess = (data: Credential) => {
+export const updateJobseekerSuccess = (jobseeker: JobseekerUpdate) => {
   return {
     type: UPDATE_JOBSEEKER_SUCCESS,
-    payload: data,
+    payload: jobseeker,
   }
 }
 

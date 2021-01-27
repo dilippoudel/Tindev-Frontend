@@ -31,6 +31,24 @@ function* registerEmployerSaga(action: RegisterEmployerRequestAction) {
   }
 }
 
+// Doesn't work
+// function* registerEmployerSaga(action: RegisterEmployerRequestAction) {
+//   const email = action.payload.credential.email
+//   const password = action.payload.credential.password
+
+//   try {
+//     const res = yield axios.post('/employer', { email, password })
+//     console.log('res', res)
+//     yield put(registerEmployerSuccess(res.data))
+//     const history = action.payload.history
+//     if (res.data.status === 201) {
+//       yield history.push('/login')
+//     }
+//   } catch (error) {
+//     yield put(registerEmployerFail())
+//   }
+// }
+
 function* updateEmployerSaga(action: UpdateEmployerRequestAction) {
   const employerInfo = action.payload
   try {
