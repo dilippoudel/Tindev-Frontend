@@ -4,6 +4,7 @@ import { Tab, Row, Col, Nav } from 'react-bootstrap'
 
 import Navbar from '../Navbar-logout'
 import { getUserRequest } from '../../redux/actions/user'
+import { getSkillsRequest } from '../../redux/actions/resources'
 import { AppState } from '../../redux/types'
 import './Tabs.scss'
 
@@ -15,6 +16,10 @@ const Tabs = ({ formComponent, matchComponent, jobPostListPage }: any) => {
     dispatch(getUserRequest())
   }
 
+  const handleSkills = () => {
+    dispatch(getSkillsRequest())
+  }
+
   return (
     <div>
       <Navbar />
@@ -23,7 +28,9 @@ const Tabs = ({ formComponent, matchComponent, jobPostListPage }: any) => {
           <Col className="tabs" sm={3}>
             <Nav className="flex-column nav-bar">
               <Nav.Item>
-                <Nav.Link eventKey="first">Profile</Nav.Link>
+                <Nav.Link onClick={handleSkills} eventKey="first">
+                  Profile
+                </Nav.Link>
               </Nav.Item>
               <Nav.Item>
                 <Nav.Link eventKey="second">Match</Nav.Link>

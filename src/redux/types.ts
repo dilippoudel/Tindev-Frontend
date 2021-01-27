@@ -233,7 +233,7 @@ export type JobseekerUpdate = {
   firstName: string
   lastName: string
   seniority: string
-  role: string
+  //role: string
   skills: any[]
   relocate: boolean
   startingDate: DayValue | string
