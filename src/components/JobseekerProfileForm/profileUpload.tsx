@@ -4,6 +4,7 @@ import axios from 'axios'
 import { useSelector } from 'react-redux'
 import { AppState } from '../../redux/types'
 import { Alert } from 'react-bootstrap'
+
 const ProfileUpload = () => {
   const [state, setState]: any = React.useState({
     images: [],

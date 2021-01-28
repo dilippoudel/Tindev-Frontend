@@ -6,6 +6,7 @@ import { updateJobseekerRequest } from '../../redux/actions/jobseeker'
 import HalfCircle from '../../components/HalfCircle'
 import CustomButton from '../../components/CustomButton'
 import ProfileUpload from './profileUpload'
+
 const JobseekerProfileForm = () => {
   const [state, setState] = React.useState({
     id: '',
