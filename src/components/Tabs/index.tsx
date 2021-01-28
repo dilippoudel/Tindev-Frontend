@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Tab, Row, Col, Nav } from 'react-bootstrap'
 
 import Navbar from '../Navbar-logout'
-import { getEmployerRequest } from '../../redux/actions/employer'
+import { getUserRequest } from '../../redux/actions/user'
 import { AppState } from '../../redux/types'
 import './Tabs.scss'
 
@@ -12,7 +12,7 @@ const Tabs = ({ formComponent, matchComponent, jobPostListPage }: any) => {
   const dispatch = useDispatch()
 
   const handleClick = () => {
-    dispatch(getEmployerRequest())
+    dispatch(getUserRequest())
   }
 
   return (

@@ -11,14 +11,21 @@ export const initState: AppState = {
     isLoggedIn: false,
     userInfo: {
       role: '',
+      id: 0,
+      address: '',
+      companyName: '',
+      companyInfo: '',
+    },
+    info: {
+      jobPosts: [],
+      skills: [],
     },
     loading: true,
     error: null,
-    skills: [],
   },
   employer: {
     credential: { email: '', password: '' },
-    employerInfo: {
+    info: {
       companyName: '',
       companyInfo: '',
       address: '',
@@ -37,7 +44,7 @@ export const initState: AppState = {
   },
   resources: {
     skills: [],
-    loading: false,
+    loading: true,
     error: null,
     jobPost: {
       title: '',
@@ -45,6 +52,8 @@ export const initState: AppState = {
       seniority: '',
       skills: [],
       startingDate: '',
+      loading: false,
+      error: null,
     },
   },
   skill: {

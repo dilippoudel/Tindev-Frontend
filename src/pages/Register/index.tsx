@@ -7,7 +7,6 @@ import { Form, Col } from 'react-bootstrap'
 import HalfCircle from '../../components/HalfCircle'
 import CustomSvgIcon from '../../components/CustomSvgIcon'
 import starsLady from '../../media/star-lady.svg'
-import Loader from '../../components/Loader'
 import Message from '../../components/Message'
 import { registerEmployerRequest } from '../../redux/actions/employer'
 import { registerJobseekerRequest } from '../../redux/actions/jobseeker'
@@ -24,16 +23,10 @@ const Register = () => {
   const employer = useSelector((state: AppState) => state.employer)
   const jobseeker = useSelector((state: AppState) => state.jobseeker)
   const jobseekerError = useSelector((state: AppState) => state.jobseeker.error)
-  const jobseekerLoader = useSelector(
-    (state: AppState) => state.jobseeker.loading
-  )
+
   const employerError = useSelector((state: AppState) => state.employer.error)
-  const employerLoader = useSelector(
-    (state: AppState) => state.employer.loading
-  )
 
   const dispatch = useDispatch()
-
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault()
     if (password !== confirmPassword) {
@@ -47,8 +40,6 @@ const Register = () => {
       if (role === employer) {
         dispatch(registerEmployerRequest(email, password, history))
       }
-      // setMessage('Registered successfully')
-      // setTimeout(() => history.push('/login'), 2000)
     }
   }
 
@@ -65,9 +56,7 @@ const Register = () => {
         <HalfCircle inputText="Welcome" />
         <h3 className="text-center my-5 purple-text">Sign up</h3>
         {jobseekerError && <Message variant="danger">{jobseekerError}</Message>}
-        {jobseekerLoader && <Loader />}
         {employerError && <Message variant="danger">{employerError}</Message>}
-        {employerLoader && <Loader />}
         {!jobseekerError && !employerError && message && (
           <Message variant={variant}>{message}</Message>
         )}

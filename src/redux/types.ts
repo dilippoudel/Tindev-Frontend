@@ -8,7 +8,7 @@ export const UPDATE_EMPLOYER_SUCCESS = 'UPDATE_EMPLOYER_SUCCESS'
 export const UPDATE_EMPLOYER_FAIL = 'UPDATE_EMPLOYER_FAIL'
 export const GET_USER_REQUEST = 'GET_USER_REQUEST'
 export const GET_USER_SUCCESS = 'GET_USER_SUCCESS'
-export const GET_USER_FAIL = 'GET_USER_FAIL'
+export const GET_USER_FAIL = 'GET_EMPLOYER_FAIL'
 export const UPDATE_JOBSEEKER_REQUEST = 'UPDATE_JOBSEEKER_REQUEST'
 export const UPDATE_JOBSEEKER_SUCCESS = 'UPDATE_JOBSEEKER_SUCCESS'
 export const UPDATE_JOBSEEKER_FAIL = 'UPDATE_JOBSEEKER_FAIL'
@@ -47,6 +47,9 @@ export type UserActions =
   | LogoutUserAction
   | SetLoggedInAction
   | SetLoadingAction
+  | GetUserRequestAction
+  | GetUserSuccessAction
+  | GetUserFailAction
 
 export type LoginUserRequestAction = {
   type: typeof LOGIN_USER_REQUEST
@@ -85,7 +88,7 @@ export type LoginUserSuccessAction = {
       companyName?: string
       companyInfo?: string
       address?: string
-      jobPost?: any[]
+      jobPosts?: any[]
     }
   }
 }
@@ -182,7 +185,7 @@ export type GetUserSuccessAction = {
     companyInfo: string
     address: string
     role: string
-    jobPosts: []
+    jobPosts: any[]
   }
 }
 
@@ -325,14 +328,14 @@ export type GetSkillsFailAction = {
 export type AddSkillAction = {
   type: typeof ADD_SKILL
   payload: {
-    skill: Skill
+    id: Skill
   }
 }
 
 export type RemoveSkillAction = {
   type: typeof REMOVE_SKILL
   payload: {
-    skill: Skill
+    id: Skill
   }
 }
 
@@ -382,7 +385,7 @@ export type UpdateJobPostFailAction = {
 
 export type DeletingRequestActionType = {
   type: typeof JOB_DELETE_REQUEST
-  payload: number
+  payload: JobPost
 }
 
 export type DeletingSuccessActionType = {
@@ -418,7 +421,7 @@ export type Credential = {
   companyName?: string
   companyInfo?: string
   address?: any
-  jobPost?: any
+  jobPosts?: any[]
   role?: string
 }
 
@@ -433,12 +436,19 @@ export type CredentialStateUser = {
     password: string
   }
   userInfo: {
+    companyName: string
+    companyInfo: string
+    address: any
     role: string
+    id: number
+  }
+  info: {
+    jobPosts: any[]
+    skills: any[]
   }
   isLoggedIn: Boolean
   loading: Boolean
   error: any
-  skills: any[]
 }
 
 export type CredentialStateEmployer = {
@@ -446,7 +456,7 @@ export type CredentialStateEmployer = {
     email: string
     password: string
   }
-  employerInfo: {
+  info: {
     companyName: string
     companyInfo: string
     address: any
@@ -472,7 +482,7 @@ export type ResourcesState = {
   skills: any[]
   loading: boolean
   error: any
-  jobPost: JobPost
+  jobPost: JobPostState
 }
 
 export type SkillState = {
@@ -484,7 +494,11 @@ export type SkillState = {
 export type IdToDelete = string
 
 export type JobPostState = {
-  jobPost: any
+  title: string
+  jobDescription: string
+  seniority: string
+  skills: any[]
+  startingDate: DayValue | string
   loading: boolean
   error: any
 }

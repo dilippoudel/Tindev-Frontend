@@ -5,6 +5,9 @@ import {
   LOGOUT_USER,
   SET_LOGGED_IN,
   SET_LOADING,
+  GET_USER_REQUEST,
+  GET_USER_SUCCESS,
+  GET_USER_FAIL,
 } from '../types'
 
 export const loginUserRequest = (
@@ -52,5 +55,25 @@ export const setLoggedIn = () => {
 export const setLoading = () => {
   return {
     type: SET_LOADING,
+  }
+}
+
+export const getUserRequest = () => {
+  return {
+    type: GET_USER_REQUEST,
+  }
+}
+
+export const getUserSuccess = (info: any) => {
+  return {
+    type: GET_USER_SUCCESS,
+    payload: info,
+  }
+}
+
+export const getUserFail = (error: string) => {
+  return {
+    type: GET_USER_FAIL,
+    payload: error,
   }
 }

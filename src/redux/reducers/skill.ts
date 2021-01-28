@@ -38,13 +38,14 @@ const skill = (
       }
     }
     case ADD_SKILL: {
-      const skill = action.payload.skill
-      if (state.inProfile.find((s: any) => s.name === skill.name)) {
+      const id = action.payload.id
+      console.log('idInReducer', id)
+      if (state.inProfile.find((s: any) => s.id === id)) {
         return state
       }
       return {
         ...state,
-        inProfile: [...state.inProfile, skill],
+        inProfile: [...state.inProfile, id],
       }
     }
     case REMOVE_SKILL: {

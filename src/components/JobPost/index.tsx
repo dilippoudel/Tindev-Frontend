@@ -1,28 +1,38 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Row, Button, Col, /*Image,*/ ListGroup } from 'react-bootstrap'
 
 import JobPostRow from '../JobPostRow'
-//import CustomSkill from '../CustomSkill'
+import CustomSkill from '../CustomSkill'
 import icon from '../../media/user-img.svg'
 import CompanyIcon from '../CompanyIcon'
 import './JobPost.scss'
+import { deleteJobPostRequest } from '../../redux/actions/resources'
 
 type JobPostProps = {
+  jobPostId: any
   title: string
   jobDescription: string
   seniority: string
   startingDate: string
-  //skills: any[]
+  skills: any[]
 }
 
 const JobPost = ({
+  jobPostId,
   title,
   jobDescription,
   seniority,
   startingDate,
-}: //skills,
-JobPostProps) => {
+  skills,
+}: JobPostProps) => {
+  const dispatch = useDispatch()
+
+  const handleClick = () => {
+    dispatch(deleteJobPostRequest(jobPostId))
+  }
+
   return (
     <>
       <Row className="job-post-card">
@@ -43,7 +53,7 @@ JobPostProps) => {
             <ListGroup variant="flush">
               <ListGroup.Item>
                 Required Skills:
-                {/* <CustomSkill skills={skills} /> */}
+                <CustomSkill skills={skills} />
               </ListGroup.Item>
             </ListGroup>
           </Row>
@@ -55,7 +65,9 @@ JobPostProps) => {
             </Button>
           </Row>
           <Row>
-            <Button className="delete-button">DELETE</Button>
+            <Button onClick={handleClick} className="delete-button">
+              DELETE
+            </Button>
           </Row>
         </Col>
       </Row>
