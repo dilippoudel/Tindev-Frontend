@@ -5,7 +5,7 @@ import { Form, Row, Col } from 'react-bootstrap'
 import { updateJobseekerRequest } from '../../redux/actions/jobseeker'
 import HalfCircle from '../../components/HalfCircle'
 import CustomButton from '../../components/CustomButton'
-import ProfileUpload from './profileUpload'
+import UploadImage from '../../components/UploadImage'
 
 const JobseekerProfileForm = () => {
   const [state, setState] = React.useState({
@@ -70,7 +70,7 @@ const JobseekerProfileForm = () => {
       <div>
         <HalfCircle inputText="Education & Experiences" />
       </div>
-      <ProfileUpload />
+      <UploadImage />
       <Form
         onSubmit={e => handleSubmit(e)}
         onChange={e => handleChange(e)}

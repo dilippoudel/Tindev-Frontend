@@ -9,7 +9,8 @@ import {
 } from '../types'
 
 const initialState = {
-  credential: { email: '', password: '' },
+  email: '',
+  password: '',
   employerInfo: {
     jobPosts: [],
   },

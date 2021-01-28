@@ -7,39 +7,34 @@ import { AppState } from './types'
 
 export const initState: AppState = {
   user: {
-    credential: { email: '', password: '' },
+    email: '',
+    password: '',
     userInfo: {
       role: '',
       id: 0,
-      address: '',
-      companyName: '',
-      companyInfo: '',
+      loading: false,
+      error: null,
     },
     info: {
       jobPosts: [],
       skills: [],
     },
-    loading: false,
-    error: null,
   },
   employer: {
-    credential: { email: '', password: '' },
-    info: {
-      companyName: '',
-      companyInfo: '',
-      address: '',
-      role: '',
-      jobPosts: [],
-    },
-    loading: false,
-    error: null,
+    companyName: '',
+    companyInfo: '',
+    address: '',
   },
   jobseeker: {
-    credential: { email: '', password: '' },
-    role: '',
-    loading: false,
-    error: null,
-    skills: [],
+    firstName: '',
+    lastName: '',
+    seniority: '',
+    relocate: false,
+    startingDate: '',
+    institute: '',
+    degree: '',
+    contact: '',
+    workExperience: '',
   },
   resources: {
     skills: [],
@@ -51,14 +46,7 @@ export const initState: AppState = {
       seniority: '',
       skills: [],
       startingDate: '',
-      loading: false,
-      error: null,
     },
-  },
-  skill: {
-    inProfile: [],
-    loading: false,
-    error: null,
   },
 }
 

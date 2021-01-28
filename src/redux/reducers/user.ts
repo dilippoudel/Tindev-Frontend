@@ -10,20 +10,21 @@ import {
 } from '../types'
 
 const initialState = {
-  credential: { email: '', password: '' },
+  email: '',
+  password: '',
   history: {},
-  userInfo: {
-    role: '',
-    firstName: '',
-    lastName: '',
-    skills: [],
-    skillLevel: '',
-    relocate: '',
-    startingDate: '',
-    education: {
-      institute: '',
-      degree: '',
-    },
+  // userInfo: {
+  role: '',
+  firstName: '',
+  lastName: '',
+  skills: [],
+  skillLevel: '',
+  relocate: '',
+  startingDate: '',
+  education: {
+    institute: '',
+    degree: '',
+    // },
   },
   loading: false,
   error: null,
@@ -44,7 +45,7 @@ const user = (state = initialState, action: UserActions) => {
       return {
         ...state,
         loading: true,
-        credential: action.payload.credential,
+        credential: action.payload,
         history: action.payload.history,
       }
     case LOGIN_USER_SUCCESS:

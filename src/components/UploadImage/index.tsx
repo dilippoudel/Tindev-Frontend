@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import { AppState } from '../../redux/types'
 import { Alert } from 'react-bootstrap'
 
-const ProfileUpload = () => {
+const UploadImage = () => {
   const [state, setState]: any = React.useState({
     images: [],
   })
@@ -73,4 +73,4 @@ const ProfileUpload = () => {
     </>
   )
 }
-export default ProfileUpload
+export default UploadImage
