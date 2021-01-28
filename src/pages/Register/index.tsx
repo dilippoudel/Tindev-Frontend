@@ -33,7 +33,6 @@ const Register = () => {
   )
 
   const dispatch = useDispatch()
-
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault()
     if (password !== confirmPassword) {

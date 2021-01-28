@@ -10,9 +10,10 @@ export const initState: AppState = {
     credential: { email: '', password: '' },
     userInfo: {
       role: '',
+      id: 0,
+      address: '',
       companyName: '',
       companyInfo: '',
-      address: '',
     },
     info: {
       jobPosts: [],

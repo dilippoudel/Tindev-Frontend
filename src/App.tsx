@@ -9,7 +9,10 @@ const App = () => {
   useEffect(() => {
     axios.interceptors.request.use((config: any) => {
       const token = LocalStorage.getToken()
-      if (token) {
+      const regEx: any = /https:\/\/tindev-dev-test.s3.amazonaws.com\/tindev-image/g
+      let isMatch = config.url.match(regEx) ?? [] // exact same as config.url.match(regEx) ? config.url.match(regEx) : []
+
+      if (token && isMatch.length === 0) {
         config.headers['Authorization'] = `Bearer ${token}`
       }
       return config

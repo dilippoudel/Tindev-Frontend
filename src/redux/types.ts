@@ -435,6 +435,7 @@ export type CredentialStateUser = {
     companyInfo: string
     address: any
     role: string
+    id: number
   }
   info: {
     jobPosts: any[]
