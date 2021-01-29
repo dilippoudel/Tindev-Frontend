@@ -9,8 +9,8 @@ import Loader from '../Loader'
 
 const AuthApp = () => {
   const role = useSelector((state: AppState) => state.user.userInfo.role)
-  const { isLoggedIn } = useSelector((state: AppState) => state.user)
-  const { loading } = useSelector((state: AppState) => state.user)
+  const { isLoggedIn } = useSelector((state: AppState) => state.user.userInfo)
+  const { loading } = useSelector((state: AppState) => state.user.userInfo)
 
   if (loading) return <Loader />
 

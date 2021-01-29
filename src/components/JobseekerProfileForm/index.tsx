@@ -9,6 +9,7 @@ import { updateJobseekerRequest } from '../../redux/actions/jobseeker'
 import HalfCircle from '../../components/HalfCircle'
 import CustomButton from '../../components/CustomButton'
 import { AppState } from '../../redux/types'
+import UploadImage from '../../components/UploadImage'
 
 const JobseekerProfileForm = () => {
   const [tags, setTags] = useState<any[]>([])
@@ -103,6 +104,7 @@ const JobseekerProfileForm = () => {
       <div>
         <HalfCircle inputText="Education & Experiences" />
       </div>
+      <UploadImage />
       <Form onSubmit={e => handleSubmit(e)} className="container my-5">
         <Form.Group as={Row} controlId="formHorizontalFName">
           <Col sm={6}>

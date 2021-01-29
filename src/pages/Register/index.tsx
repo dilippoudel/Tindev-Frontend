@@ -8,6 +8,7 @@ import HalfCircle from '../../components/HalfCircle'
 import CustomSvgIcon from '../../components/CustomSvgIcon'
 import starsLady from '../../media/star-lady.svg'
 import Message from '../../components/Message'
+import Loader from '../../components/Loader'
 import { registerEmployerRequest } from '../../redux/actions/employer'
 import { registerJobseekerRequest } from '../../redux/actions/jobseeker'
 import { AppState } from '../../redux/types'
@@ -22,9 +23,8 @@ const Register = () => {
   const history = useHistory()
   const employer = useSelector((state: AppState) => state.employer)
   const jobseeker = useSelector((state: AppState) => state.jobseeker)
-  const jobseekerError = useSelector((state: AppState) => state.jobseeker.error)
-
-  const employerError = useSelector((state: AppState) => state.employer.error)
+  const user = useSelector((state: AppState) => state.user.userInfo)
+  const { error, loading } = user
 
   const dispatch = useDispatch()
   const handleSubmit = (event: React.FormEvent) => {
@@ -55,11 +55,9 @@ const Register = () => {
       <FormContainer>
         <HalfCircle inputText="Welcome" />
         <h3 className="text-center my-5 purple-text">Sign up</h3>
-        {jobseekerError && <Message variant="danger">{jobseekerError}</Message>}
-        {employerError && <Message variant="danger">{employerError}</Message>}
-        {!jobseekerError && !employerError && message && (
-          <Message variant={variant}>{message}</Message>
-        )}
+        {error && <Message variant="danger">{error}</Message>}
+        {loading && <Loader />}
+        {!error && message && <Message variant={variant}>{message}</Message>}
         <Form onSubmit={handleSubmit} className="container">
           <Form.Row>
             <Form.Group as={Col} controlId="validationCustomEmail">

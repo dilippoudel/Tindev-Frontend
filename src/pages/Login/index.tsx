@@ -22,7 +22,7 @@ const Login = () => {
   const history = useHistory()
   const dispatch = useDispatch()
 
-  const user = useSelector((state: AppState) => state.user)
+  const user = useSelector((state: AppState) => state.user.userInfo)
   const { error } = user
 
   const submitHandler = (e: React.FormEvent) => {

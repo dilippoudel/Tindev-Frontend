@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux'
 import { AppState } from '../../redux/types'
 
 const JobseekerProfile = () => {
-  const { isLoggedIn } = useSelector((state: AppState) => state.user)
+  const { isLoggedIn } = useSelector((state: AppState) => state.user.userInfo)
   if (!isLoggedIn) <Redirect to="/login" />
   return (
     <div className="page">
