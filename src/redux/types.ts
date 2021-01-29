@@ -394,8 +394,6 @@ export type CredentialState = {
 }
 
 export type CredentialStateUser = {
-  email: string
-  password: string
   userInfo: {
     role: string
     id: number

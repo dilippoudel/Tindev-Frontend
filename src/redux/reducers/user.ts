@@ -13,7 +13,6 @@ const initialState = {
   email: '',
   password: '',
   history: {},
-  // userInfo: {
   role: '',
   firstName: '',
   lastName: '',
@@ -24,7 +23,6 @@ const initialState = {
   education: {
     institute: '',
     degree: '',
-    // },
   },
   loading: false,
   error: null,
