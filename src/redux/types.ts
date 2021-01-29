@@ -404,12 +404,12 @@ export type CredentialStateUser = {
     id: number
     loading: Boolean
     error: any
-    isLoggedIn: boolean
   }
   info: {
     jobPosts: any[]
     skills: any[]
   }
+  isLoggedIn: boolean
 }
 
 export type CredentialStateEmployer = {

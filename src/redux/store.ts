@@ -12,12 +12,12 @@ export const initState: AppState = {
       id: 0,
       loading: false,
       error: null,
-      isLoggedIn: false,
     },
     info: {
       jobPosts: [],
       skills: [],
     },
+    isLoggedIn: false,
   },
   employer: {
     companyName: '',

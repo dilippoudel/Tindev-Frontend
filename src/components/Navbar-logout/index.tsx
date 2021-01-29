@@ -1,7 +1,6 @@
 import { LinkContainer } from 'react-router-bootstrap'
 import { Navbar, Nav } from 'react-bootstrap'
 
-//import { logout } from '../../redux/actions/userActions'
 //import './NavBar.scss'
 import LogOut from '../LogOut'
 

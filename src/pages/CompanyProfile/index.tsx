@@ -15,7 +15,7 @@ const CompanyProfile = () => {
     lastName: 'Poudel',
     skills: ['javascript', 'react'],
   }
-  const { isLoggedIn } = useSelector((state: AppState) => state.user.userInfo)
+  const { isLoggedIn } = useSelector((state: AppState) => state.user)
   if (!isLoggedIn) <Redirect to="/login" />
   return (
     <div className="company-profile">

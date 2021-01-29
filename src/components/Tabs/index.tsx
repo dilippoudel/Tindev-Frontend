@@ -33,19 +33,29 @@ const Tabs = ({ formComponent, matchComponent, jobPostListPage }: any) => {
               justify={true}
             >
               <Nav.Item>
-                <Nav.Link onClick={handleSkills} eventKey="first">
+                <Nav.Link
+                  className="navigation"
+                  onClick={handleSkills}
+                  eventKey="first"
+                >
                   Profile
                 </Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link eventKey="second">Match</Nav.Link>
+                <Nav.Link className="navigation" eventKey="second">
+                  Match
+                </Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link eventKey="third">Chat</Nav.Link>
+                <Nav.Link className="navigation" eventKey="third">
+                  Chat
+                </Nav.Link>
               </Nav.Item>
               {role === 'employer' && (
                 <Nav.Item onClick={handleClick}>
-                  <Nav.Link eventKey="fourth">Job Posts</Nav.Link>
+                  <Nav.Link className="navigation" eventKey="fourth">
+                    Job Posts
+                  </Nav.Link>
                 </Nav.Item>
               )}
             </Nav>
