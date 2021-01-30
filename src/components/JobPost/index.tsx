@@ -38,11 +38,6 @@ const JobPost = ({
       <Row className="job-post-card">
         <Col md={2}>
           <CompanyIcon icon={icon} />
-          {/* <Image 
-              src={`/${user.image}`} 
-              alt="company-image"
-              className="image" 
-              fluid /> */}
         </Col>
         <Col md={8}>
           <CustomRow name="Title" item={title} />

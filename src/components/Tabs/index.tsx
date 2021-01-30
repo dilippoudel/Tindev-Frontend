@@ -20,11 +20,6 @@ const Tabs = ({ formComponent, matchComponent, jobPostListPage }: any) => {
     dispatch(getSkillsRequest())
   }
 
-  const customStyle = {
-    backgroundColor: '',
-    color: '',
-  }
-
   return (
     <div>
       <Navbar />
@@ -38,29 +33,19 @@ const Tabs = ({ formComponent, matchComponent, jobPostListPage }: any) => {
               justify={true}
             >
               <Nav.Item>
-                <Nav.Link
-                  onClick={handleSkills}
-                  eventKey="first"
-                  style={customStyle}
-                >
+                <Nav.Link onClick={handleSkills} eventKey="first">
                   Profile
                 </Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link eventKey="second" style={customStyle}>
-                  Match
-                </Nav.Link>
+                <Nav.Link eventKey="second">Match</Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link eventKey="third" style={customStyle}>
-                  Chat
-                </Nav.Link>
+                <Nav.Link eventKey="third">Chat</Nav.Link>
               </Nav.Item>
               {role === 'employer' && (
                 <Nav.Item onClick={handleClick}>
-                  <Nav.Link eventKey="fourth" style={customStyle}>
-                    Job Posts
-                  </Nav.Link>
+                  <Nav.Link eventKey="fourth">Job Posts</Nav.Link>
                 </Nav.Item>
               )}
             </Nav>

@@ -11,20 +11,21 @@ const JobPostList = () => {
   return (
     <>
       <div className="">
-        {jobPosts &&
-          jobPosts.map((jp: any) => {
-            return (
-              <JobPost
-                key={jp.id}
-                jobPostId={jp.id}
-                title={jp.title}
-                jobDescription={jp.jobDescription}
-                seniority={jp.seniority}
-                startingDate={jp.startingDate}
-                skills={jp.skills.map((s: any) => s.name)}
-              />
-            )
-          })}
+        {jobPosts.length > 0 ? (
+          jobPosts.map((jp: any) => (
+            <JobPost
+              key={jp.id}
+              jobPostId={jp.id}
+              title={jp.title}
+              jobDescription={jp.jobDescription}
+              seniority={jp.seniority}
+              startingDate={jp.startingDate}
+              skills={jp.skills.map((s: any) => s.name)}
+            />
+          ))
+        ) : (
+          <h3 className="jobposts-list-empty">Your Job Posts List is empty</h3>
+        )}
       </div>
     </>
   )
