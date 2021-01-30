@@ -2,8 +2,6 @@ import LocalStorage from '../../local-storage'
 import { useHistory } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
 
-import './LogOut.scss'
-
 const LogOut = () => {
   const history = useHistory()
   const deleteTokenFromLocalStorage = () => {
@@ -23,7 +21,6 @@ const LogOut = () => {
   return (
     <>
       <Button
-        className="logout-button"
         style={styles.customButton}
         onClick={() => deleteTokenFromLocalStorage()}
       >

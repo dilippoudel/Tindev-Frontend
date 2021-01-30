@@ -4,6 +4,8 @@
   margin-left: 1rem;
 }
 
-// .nav .nav-link.active {
-//   background: $purple-color;
-// }
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link > a {
+  color: #fff;
+  background: $purple-color !important;
+}
