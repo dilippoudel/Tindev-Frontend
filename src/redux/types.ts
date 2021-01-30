@@ -239,7 +239,7 @@ export type JobseekerUpdate = {
   startingDate: DayValue | string
   institute: string
   degree: string
-  contact: string
+  contact: any
   workExperience: any
   image: string
 }

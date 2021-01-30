@@ -1,31 +1,44 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
+import { Col, Row } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
-import CustomCard from '../CustomCard'
+import JobPost from '../../components/JobPost'
+import CompanyIcon from '../CompanyIcon'
+import icon from '../../media/user-img.svg'
 import './MatchCardJobseeker.scss'
+import { AppState } from '../../redux/types'
 
 const MatchCardJobseeker = () => {
+  const jobPosts = useSelector((state: AppState) => state.user.info.jobPosts)
+
   return (
-    <div>
-      <div className="card-container">
-        <CustomCard
-          title="Front-End Developer"
-          skill="AngularJS" // Skills can be mapped or with forEach
-          message="Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit aut esse mollitia necessitatibus excepturi sit, nobis inventore eligendi dolore enim."
-        />
-
-        <CustomCard
-          title="FullStack Developer"
-          skill="ReactJs"
-          message="Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit aut esse mollitia necessitatibus excepturi sit, nobis inventore eligendi dolore enim."
-        />
-
-        <CustomCard
-          title="Software Developer"
-          skill="All Softwares"
-          message="Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit aut esse mollitia necessitatibus excepturi sit, nobis inventore eligendi dolore enim."
-        />
-      </div>
-    </div>
+    <>
+      <Row className="job-post-card">
+        <Col md={2}>
+          <CompanyIcon icon={icon} />
+        </Col>
+        <Col md={8}>
+          {'match' &&
+            jobPosts.map((jp: any) => {
+              return (
+                <JobPost
+                  key={jp.id}
+                  jobPostId={jp.id}
+                  title={jp.title}
+                  jobDescription={jp.jobDescription}
+                  seniority={jp.seniority}
+                  startingDate={jp.startingDate}
+                  skills={jp.skills.map((s: any) => s.name)}
+                />
+              )
+            })}
+        </Col>
+        <Col md={2}>
+          <Link to="/chat">Chat</Link>
+        </Col>
+      </Row>
+    </>
   )
 }
 

@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Row, Button, Col, /*Image,*/ ListGroup } from 'react-bootstrap'
 
-import JobPostRow from '../JobPostRow'
+import CustomRow from '../CustomRow'
 import CustomSkill from '../CustomSkill'
 import icon from '../../media/user-img.svg'
 import CompanyIcon from '../CompanyIcon'
@@ -45,10 +45,10 @@ const JobPost = ({
               fluid /> */}
         </Col>
         <Col md={8}>
-          <JobPostRow name="Title" item={title} />
-          <JobPostRow name="Job Description" item={jobDescription} />
-          <JobPostRow name="Seniority" item={seniority} />
-          <JobPostRow name="Starting Date" item={startingDate} />
+          <CustomRow name="Title" item={title} />
+          <CustomRow name="Job Description" item={jobDescription} />
+          <CustomRow name="Seniority" item={seniority} />
+          <CustomRow name="Starting Date" item={startingDate} />
           <Row>
             <ListGroup variant="flush">
               <ListGroup.Item>

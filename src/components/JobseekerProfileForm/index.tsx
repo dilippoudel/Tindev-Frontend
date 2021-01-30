@@ -46,7 +46,7 @@ const JobseekerProfileForm = () => {
 
   useEffect(() => {}, [suggestions, skills])
 
-  // Handler for form inputs
+  // Handler for form inputs. TODO: Phone, relocate, workExperience, image
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target
 
@@ -56,9 +56,10 @@ const JobseekerProfileForm = () => {
     })
   }
 
+  // TODO: change to other type of check button and change function
   const handleRelocate = (e: React.ChangeEvent<HTMLInputElement>) => {
     const check = e.target.checked
-    if (check === false) {
+    if (check) {
       setCheck(true)
     }
   }
@@ -77,7 +78,7 @@ const JobseekerProfileForm = () => {
       updateJobseekerRequest({
         firstName: state.firstName,
         lastName: state.lastName,
-        contact: state.contact,
+        contact: Number(state.contact),
         seniority: state.seniority,
         degree: state.degree,
         institute: state.institute,
@@ -132,8 +133,8 @@ const JobseekerProfileForm = () => {
           <Col sm={6}>
             <Form.Control
               type="tel"
-              name="phone"
-              placeholder="Phone"
+              name="contact"
+              placeholder="Phone Number"
               pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
               value={state.contact}
               onChange={handleChange}

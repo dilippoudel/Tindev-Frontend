@@ -6,7 +6,7 @@ type JobPostRowProps = {
   item: any
 }
 
-const JobPostRow = ({ name, item }: JobPostRowProps) => {
+const CustomRow = ({ name, item }: JobPostRowProps) => {
   return (
     <>
       <Row>
@@ -20,4 +20,4 @@ const JobPostRow = ({ name, item }: JobPostRowProps) => {
   )
 }
 
-export default JobPostRow
+export default CustomRow
