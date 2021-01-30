@@ -47,7 +47,7 @@ const JobseekerProfileForm = () => {
 
   useEffect(() => {}, [suggestions, skills])
 
-  // Handler for form inputs. TODO: Phone, relocate, workExperience, image
+  // Handler for form inputs. TODO: Phone, workExperience, image
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target
 

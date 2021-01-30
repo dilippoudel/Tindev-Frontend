@@ -28,8 +28,6 @@ const ViewJobseeker = () => {
       <span className="lead">Skills</span>
       <div className="d-flex">
         <CustomSkill skills={[]} />
-        <CustomSkill skills={[]} />
-        <CustomSkill skills={[]} />
       </div>
       <br />
       <br />

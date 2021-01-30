@@ -50,6 +50,7 @@ const Register = () => {
     setRole(jobseeker)
   }
   const variant = message === 'Registered successfully' ? 'success' : 'danger'
+
   return (
     <div className="page">
       <FormContainer>
