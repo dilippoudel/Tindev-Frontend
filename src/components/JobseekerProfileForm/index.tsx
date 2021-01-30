@@ -4,6 +4,7 @@ import { Form, Row, Col } from 'react-bootstrap'
 import { WithContext as ReactTags } from 'react-tag-input'
 import DatePicker, { DayValue } from 'react-modern-calendar-datepicker'
 import 'react-modern-calendar-datepicker/lib/DatePicker.css'
+import BootstrapSwitchButton from 'bootstrap-switch-button-react'
 
 import { updateJobseekerRequest } from '../../redux/actions/jobseeker'
 import HalfCircle from '../../components/HalfCircle'
@@ -14,7 +15,7 @@ import UploadImage from '../../components/UploadImage'
 const JobseekerProfileForm = () => {
   const [tags, setTags] = useState<any[]>([])
   const [startingAt, setStartingAt] = useState<DayValue>(null)
-  const [check, setCheck] = useState(false)
+  const [isOpenRelocate, setOpenRelocate] = useState(false)
   const [state, setState] = useState({
     firstName: '',
     lastName: '',
@@ -25,7 +26,7 @@ const JobseekerProfileForm = () => {
     skills: [],
     workExperience: '',
     image: '',
-    relocate: check,
+    relocate: isOpenRelocate,
     startingDate: '',
   })
 
@@ -56,14 +57,6 @@ const JobseekerProfileForm = () => {
     })
   }
 
-  // TODO: change to other type of check button and change function
-  const handleRelocate = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const check = e.target.checked
-    if (check) {
-      setCheck(true)
-    }
-  }
-
   const dispatch = useDispatch()
 
   // Handler for form submit
@@ -86,7 +79,7 @@ const JobseekerProfileForm = () => {
         workExperience: Number(state.workExperience),
         image: state.image,
         startingDate: startingAt,
-        relocate: state.relocate,
+        relocate: isOpenRelocate,
       })
     )
   }
@@ -158,14 +151,13 @@ const JobseekerProfileForm = () => {
             <Form.Label as="legend" column className="pl-4">
               Open to Relocate?
             </Form.Label>
-            <Form.Check
-              type="radio"
-              label="Yes"
-              name="relocate"
-              id="formRadios1"
-              className="pr-4 pt-2"
-              onChange={handleRelocate}
-              checked={check}
+            <BootstrapSwitchButton
+              checked={false}
+              onlabel="Yes"
+              offlabel="No"
+              onChange={(checked: boolean) => {
+                setOpenRelocate(checked === true)
+              }}
             />
           </Col>
         </Form.Group>
