@@ -1,12 +1,12 @@
 import React from 'react'
 import { Row, ListGroup } from 'react-bootstrap'
 
-type JobPostRowProps = {
+type CustomRowProps = {
   name: string
   item: any
 }
 
-const CustomRow = ({ name, item }: JobPostRowProps) => {
+const CustomRow = ({ name, item }: CustomRowProps) => {
   return (
     <>
       <Row>

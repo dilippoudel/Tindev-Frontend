@@ -11,10 +11,20 @@ const LogOut = () => {
     history.push('/')
   }
 
+  const styles = {
+    customButton: {
+      backgroundColor: '#6f42c1',
+      border: 'none',
+      color: '#fff',
+      borderRadius: '4px',
+    },
+  }
+
   return (
     <>
       <Button
         className="logout-button"
+        style={styles.customButton}
         onClick={() => deleteTokenFromLocalStorage()}
       >
         Log Out
