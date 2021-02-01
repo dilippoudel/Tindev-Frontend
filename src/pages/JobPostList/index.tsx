@@ -10,7 +10,7 @@ const JobPostList = () => {
 
   return (
     <>
-      <div className="">
+      <div className="jobposts">
         {jobPosts.length > 0 ? (
           jobPosts.map((jp: any) => (
             <JobPost

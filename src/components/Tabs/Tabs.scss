@@ -2,6 +2,10 @@
 
 .tabs {
   margin-left: 1rem;
+  margin-right: 2rem;
+  @media (max-width: 600px) {
+    margin-right: 1rem;
+  }
 }
 
 .nav-pills .nav-link.active,
