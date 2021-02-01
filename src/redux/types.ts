@@ -404,6 +404,7 @@ export type CredentialStateUser = {
     id: number
     loading: Boolean
     error: any
+    relocate: boolean
   }
   info: {
     jobPosts: any[]
@@ -426,8 +427,10 @@ export type CredentialStateJobseeker = {
   startingDate: DayValue | string
   institute: string
   degree: string
-  contact: string
+  contact: any
   workExperience: any
+  image: string
+  skills: any[]
 }
 
 export type ResourcesState = {

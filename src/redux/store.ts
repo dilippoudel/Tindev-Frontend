@@ -12,6 +12,7 @@ export const initState: AppState = {
       id: 0,
       loading: false,
       error: null,
+      relocate: false,
     },
     info: {
       jobPosts: [],
@@ -33,7 +34,9 @@ export const initState: AppState = {
     institute: '',
     degree: '',
     contact: '',
-    workExperience: '',
+    workExperience: 0,
+    image: '',
+    skills: [],
   },
   resources: {
     skills: [],

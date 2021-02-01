@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Form, Row, Col } from 'react-bootstrap'
 import { WithContext as ReactTags } from 'react-tag-input'
@@ -12,7 +12,15 @@ import CustomButton from '../../components/CustomButton'
 import { AppState } from '../../redux/types'
 import UploadImage from '../../components/UploadImage'
 
+const KeyCodes = {
+  comma: 188,
+  enter: 13,
+}
+
+const delimiters = [KeyCodes.comma, KeyCodes.enter]
+
 const JobseekerProfileForm = () => {
+  const user = useSelector((state: AppState) => state.user.userInfo)
   const [tags, setTags] = useState<any[]>([])
   const [startingAt, setStartingAt] = useState<DayValue>(null)
   const [isOpenRelocate, setOpenRelocate] = useState(false)
@@ -26,17 +34,14 @@ const JobseekerProfileForm = () => {
     skills: [],
     workExperience: '',
     image: '',
-    relocate: isOpenRelocate,
+    relocate: user.relocate,
     startingDate: '',
   })
 
-  const KeyCodes = {
-    comma: 188,
-    enter: 13,
-  }
+  const userId = useSelector((state: AppState) => state.user.userInfo.id)
+  const imageUrlEnd = userId.toString()
 
-  const delimiters = [KeyCodes.comma, KeyCodes.enter]
-
+  // Skill tags
   const skills = useSelector((state: AppState) => state.resources.skills)
   const suggestions = skills.map(skill => {
     return {
@@ -44,8 +49,6 @@ const JobseekerProfileForm = () => {
       text: skill.name,
     }
   })
-
-  useEffect(() => {}, [suggestions, skills])
 
   // Handler for form inputs. TODO: Phone, workExperience, image
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -77,11 +80,14 @@ const JobseekerProfileForm = () => {
         institute: state.institute,
         skills: skills,
         workExperience: Number(state.workExperience),
-        image: state.image,
+        image: `/s3/${imageUrlEnd}`,
         startingDate: startingAt,
         relocate: isOpenRelocate,
       })
     )
+    console.log('workExperience', state.workExperience)
+    console.log('contact', state.contact)
+    console.log('isOpenRelocate', isOpenRelocate)
   }
 
   const handleDelete = (i: any) => {
@@ -151,14 +157,26 @@ const JobseekerProfileForm = () => {
             <Form.Label as="legend" column className="pl-4">
               Open to Relocate?
             </Form.Label>
-            <BootstrapSwitchButton
-              checked={false}
-              onlabel="Yes"
-              offlabel="No"
-              onChange={(checked: boolean) => {
-                setOpenRelocate(checked === true)
-              }}
-            />
+            {user.relocate === false ? (
+              <BootstrapSwitchButton
+                checked={false}
+                onlabel="Yes"
+                offlabel="No"
+                onChange={(checked: boolean) => {
+                  setOpenRelocate(checked === true)
+                }}
+              />
+            ) : (
+              <BootstrapSwitchButton
+                checked={false}
+                onlabel="No"
+                offlabel="Yes"
+                onChange={(checked: boolean) => {
+                  setOpenRelocate(checked)
+                  setState({ ...state, relocate: checked })
+                }}
+              />
+            )}
           </Col>
         </Form.Group>
 

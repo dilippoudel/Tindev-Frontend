@@ -2,7 +2,6 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Tab, Row, Col, Nav } from 'react-bootstrap'
 
-import Navbar from '../Navbar-logout'
 import { getUserRequest } from '../../redux/actions/user'
 import { getSkillsRequest } from '../../redux/actions/resources'
 import { AppState } from '../../redux/types'
@@ -22,7 +21,6 @@ const Tabs = ({ formComponent, matchComponent, jobPostListPage }: any) => {
 
   return (
     <div>
-      <Navbar />
       <Tab.Container defaultActiveKey="first">
         <Row>
           <Col className="tabs" sm={3}>
