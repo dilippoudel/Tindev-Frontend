@@ -4,7 +4,6 @@ type Icon = {
   icon: string
 }
 
-// TODO: use image url from db
 const CompanyIcon = ({ icon }: Icon) => {
   return (
     <>
