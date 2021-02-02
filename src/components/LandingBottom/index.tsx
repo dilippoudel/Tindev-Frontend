@@ -5,7 +5,7 @@ const LandingBottom = () => {
     <div className="container mb-5 pb-5">
       <div className="row justify-content-center">
         <h4 className="text-danger text-center">
-          <q>Tindev for anonymizing the interview process.</q>
+          <q>Tindev for anonymizing the job application process.</q>
         </h4>
       </div>
       <div className="border border-primary rounded mx-auto d-block my-5 p-5">
