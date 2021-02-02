@@ -5,7 +5,7 @@ import { Row, Button, Col, /*Image,*/ ListGroup } from 'react-bootstrap'
 
 import CustomRow from '../CustomRow'
 import CustomSkill from '../CustomSkill'
-import CompanyIcon from '../CompanyIcon'
+import UserImage from '../UserImage'
 import './JobPost.scss'
 import { deleteJobPostRequest } from '../../redux/actions/resources'
 
@@ -38,7 +38,7 @@ const JobPost = ({
     <>
       <Row className="job-post-card">
         <Col md={2}>
-          <CompanyIcon icon={image} />
+          <UserImage image={image} />
         </Col>
         <Col md={8}>
           <CustomRow name="Title" item={title} />
