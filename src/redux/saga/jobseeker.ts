@@ -10,6 +10,8 @@ import {
   updateJobseekerSuccess,
   registerJobseekerSuccess,
   registerJobseekerFail,
+  matchJobseekerSuccess,
+  matchJobseekerFail,
 } from './../actions/jobseeker'
 
 function* registerJobseekerSaga(action: RegisterJobseekerRequestAction) {
@@ -40,9 +42,20 @@ function* updateJobseekerSaga(action: updateJobseekerRequestAction) {
   }
 }
 
+function* matchJobseekerSaga() {
+  try {
+    const res = yield axios.get('/jobSeeker/match')
+    console.log('res', res)
+    yield put(matchJobseekerSuccess(res.data))
+  } catch (error) {
+    yield put(matchJobseekerFail(error))
+  }
+}
+
 const sagaWatcher = [
   takeLatest('UPDATE_JOBSEEKER_REQUEST', updateJobseekerSaga),
   takeLatest('REGISTER_JOBSEEKER_REQUEST', registerJobseekerSaga),
+  takeLatest('MATCH_JOBSEEKER_REQUEST', matchJobseekerSaga),
 ]
 
 export default sagaWatcher

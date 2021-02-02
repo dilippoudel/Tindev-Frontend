@@ -4,32 +4,28 @@ import { Col, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 import JobPost from '../../components/JobPost'
-import CompanyIcon from '../CompanyIcon'
-import icon from '../../media/user-img.svg'
 import './MatchCardJobseeker.scss'
 import { AppState } from '../../redux/types'
 
 const MatchCardJobseeker = () => {
-  const jobPosts = useSelector((state: AppState) => state.user.info.jobPosts)
+  const match = useSelector((state: AppState) => state.jobseeker.match)
 
   return (
     <>
       <Row className="job-post-card">
-        <Col md={2}>
-          <CompanyIcon icon={icon} />
-        </Col>
         <Col md={8}>
-          {'match' &&
-            jobPosts.map((jp: any) => {
+          {match &&
+            match.map((m: any) => {
               return (
                 <JobPost
-                  key={jp.id}
-                  jobPostId={jp.id}
-                  title={jp.title}
-                  jobDescription={jp.jobDescription}
-                  seniority={jp.seniority}
-                  startingDate={jp.startingDate}
-                  skills={jp.skills.map((s: any) => s.name)}
+                  key={m.id}
+                  jobPostId={m.id}
+                  image={m.image}
+                  title={m.title}
+                  jobDescription={m.jobDescription}
+                  seniority={m.seniority}
+                  startingDate={m.startingDate}
+                  skills={m.skills.map((s: any) => s.name)}
                 />
               )
             })}

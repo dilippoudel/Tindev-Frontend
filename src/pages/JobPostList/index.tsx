@@ -16,6 +16,7 @@ const JobPostList = () => {
             <JobPost
               key={jp.id}
               jobPostId={jp.id}
+              image={jp.image}
               title={jp.title}
               jobDescription={jp.jobDescription}
               seniority={jp.seniority}

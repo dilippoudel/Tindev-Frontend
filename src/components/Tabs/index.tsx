@@ -7,6 +7,7 @@ import { getUserRequest } from '../../redux/actions/user'
 import { getSkillsRequest } from '../../redux/actions/resources'
 import { AppState } from '../../redux/types'
 import './Tabs.scss'
+import { matchJobseekerRequest } from '../../redux/actions/jobseeker'
 
 const Tabs = ({ formComponent, matchComponent, jobPostListPage }: any) => {
   const role = useSelector((state: AppState) => state.user.userInfo.role)
@@ -18,6 +19,10 @@ const Tabs = ({ formComponent, matchComponent, jobPostListPage }: any) => {
 
   const handleSkills = () => {
     dispatch(getSkillsRequest())
+  }
+
+  const handleJobseekerMatch = () => {
+    dispatch(matchJobseekerRequest())
   }
 
   return (
@@ -37,9 +42,15 @@ const Tabs = ({ formComponent, matchComponent, jobPostListPage }: any) => {
                   Profile
                 </Nav.Link>
               </Nav.Item>
-              <Nav.Item>
-                <Nav.Link eventKey="second">Match</Nav.Link>
-              </Nav.Item>
+              {role === 'job seeker' ? (
+                <Nav.Item onClick={handleJobseekerMatch}>
+                  <Nav.Link eventKey="second">Match</Nav.Link>
+                </Nav.Item>
+              ) : (
+                <Nav.Item>
+                  <Nav.Link eventKey="second">Match</Nav.Link>
+                </Nav.Item>
+              )}
               <Nav.Item>
                 <Nav.Link eventKey="third">Chat</Nav.Link>
               </Nav.Item>
