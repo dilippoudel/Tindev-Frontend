@@ -402,7 +402,7 @@ export type CredentialStateUser = {
   userInfo: {
     role: string
     id: number
-    loading: Boolean
+    loading: boolean
     error: any
     relocate: boolean
   }

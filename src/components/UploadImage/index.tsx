@@ -2,8 +2,10 @@ import React, { useState } from 'react'
 import ImageUploader from 'react-images-upload'
 import axios from 'axios'
 import { useSelector } from 'react-redux'
+
 import { AppState } from '../../redux/types'
 import { Alert } from 'react-bootstrap'
+import './UploadImage.scss'
 
 const UploadImage = () => {
   const [state, setState]: any = React.useState({
@@ -68,8 +70,15 @@ const UploadImage = () => {
         imgExtension={['.jpg', '.gif', '.png', '.gif']}
         maxFileSize={5242880}
       />
-      {alertMessage()}
-      <button onClick={() => onClickHandler()}>upload</button>
+      <div className="image-button">
+        {alertMessage()}
+        <button
+          className="upload-image-button"
+          onClick={() => onClickHandler()}
+        >
+          Upload
+        </button>
+      </div>
     </>
   )
 }

@@ -10,7 +10,7 @@ export const initState: AppState = {
     userInfo: {
       role: '',
       id: 0,
-      loading: false,
+      loading: true,
       error: null,
       relocate: false,
     },

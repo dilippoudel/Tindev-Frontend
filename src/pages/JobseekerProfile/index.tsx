@@ -4,7 +4,6 @@ import { Redirect } from 'react-router-dom'
 import Tabs from '../../components/Tabs'
 import JobseekerProfileForm from '../../components/JobseekerProfileForm'
 import MatchCardJobseeker from '../../components/MatchCardJobseeker'
-import Navbar from '../../components/Navbar-logout'
 import { useSelector } from 'react-redux'
 import { AppState } from '../../redux/types'
 
@@ -13,7 +12,6 @@ const JobseekerProfile = () => {
   if (!isLoggedIn) <Redirect to="/login" />
   return (
     <>
-      <Navbar />
       <div className="page">
         <Tabs
           formComponent={<JobseekerProfileForm />}
