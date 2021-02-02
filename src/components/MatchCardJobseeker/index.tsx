@@ -19,7 +19,7 @@ const MatchCardJobseeker = () => {
           {match &&
             match.map((m: any) => {
               return (
-                <>
+                <div className="match-card">
                   <JobPost
                     key={m.id}
                     jobPostId={m.jobPost.id}
@@ -31,11 +31,11 @@ const MatchCardJobseeker = () => {
                     skills={m.jobPost.skills.map((s: any) => s.name)}
                   />
                   <CustomRow
-                    name={'Company Name'}
+                    name="Company Name"
                     item={m.employer.companyName}
                   />
-                  <CustomRow name={'Address'} item={m.employer.address} />
-                </>
+                  <CustomRow name="Address" item={m.employer.address} />
+                </div>
               )
             })}
         </Col>
