@@ -34,7 +34,7 @@ export const initState: AppState = {
     institute: '',
     degree: '',
     contact: '',
-    workExperience: 0,
+    workExperience: '',
     image: '',
     skills: [],
   },

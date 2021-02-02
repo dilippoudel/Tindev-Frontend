@@ -33,13 +33,9 @@ const JobseekerProfileForm = () => {
     institute: '',
     skills: [],
     workExperience: '',
-    image: '',
     relocate: user.relocate,
     startingDate: '',
   })
-
-  const userId = useSelector((state: AppState) => state.user.userInfo.id)
-  const imageUrlEnd = userId.toString()
 
   // Skill tags
   const skills = useSelector((state: AppState) => state.resources.skills)
@@ -80,7 +76,6 @@ const JobseekerProfileForm = () => {
         institute: state.institute,
         skills: skills,
         workExperience: Number(state.workExperience),
-        image: `/s3/${imageUrlEnd}`,
         startingDate: startingAt,
         relocate: isOpenRelocate,
       })
