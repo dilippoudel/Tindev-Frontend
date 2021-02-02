@@ -11,6 +11,7 @@ import HalfCircle from '../../components/HalfCircle'
 import CustomButton from '../../components/CustomButton'
 import { AppState } from '../../redux/types'
 import UploadImage from '../../components/UploadImage'
+import './JobseekerProfileForm.scss'
 
 const KeyCodes = {
   comma: 188,
@@ -147,11 +148,64 @@ const JobseekerProfileForm = () => {
           </Col>
         </Form.Group>
 
-        <Form.Group as={Row}>
-          <Col as={Row} sm={8} className="mt-2">
-            <Form.Label as="legend" column className="pl-4">
-              Open to Relocate?
-            </Form.Label>
+        <Form.Label as="legend" column sm={2} className="ml-n3">
+          Education
+        </Form.Label>
+        <Form.Row>
+          <Col sm={6} className="pr-3">
+            <Form.Control
+              type="text"
+              placeholder="Name of Degree"
+              name="degree"
+              value={state.degree}
+              onChange={handleChange}
+            />
+          </Col>
+          <Col sm={6} className="pl-3">
+            <Form.Control
+              type="text"
+              placeholder="University / School"
+              name="institute"
+              value={state.institute}
+              onChange={handleChange}
+            />
+          </Col>
+        </Form.Row>
+
+        <Form.Row>
+          <Form.Label as="legend" column sm="1" className="my-3">
+            Skills
+          </Form.Label>
+          <Col sm="11" className="my-3">
+            <ReactTags
+              tags={tags}
+              suggestions={suggestions}
+              handleDelete={handleDelete}
+              handleAddition={handleAddition}
+              delimiters={delimiters}
+            />
+          </Col>
+        </Form.Row>
+
+        <Form.Row>
+          <Form.Label as="legend" column className="my-1">
+            Work Experience
+          </Form.Label>
+          <Col className="my-1 pl-2" lg={9}>
+            <Form.Control
+              name="workExperience"
+              placeholder="Work Experience in Years"
+              value={state.workExperience}
+              onChange={handleChange}
+            />
+          </Col>
+        </Form.Row>
+
+        <Form.Row>
+          <Form.Label as="legend" column sm="3" className="mt-3 mb-1">
+            Open to Relocate?
+          </Form.Label>
+          <Col sm={7} className="pl-2 mt-3 mb-1">
             {user.relocate === false ? (
               <BootstrapSwitchButton
                 checked={false}
@@ -173,75 +227,22 @@ const JobseekerProfileForm = () => {
               />
             )}
           </Col>
-        </Form.Group>
-
-        <Form.Label as="legend" column sm={2} className="ml-n3">
-          Education
-        </Form.Label>
-        <Form.Row>
-          <Col sm={6} className="p-2">
-            <Form.Control
-              type="text"
-              placeholder="Name of Degree"
-              name="degree"
-              value={state.degree}
-              onChange={handleChange}
-            />
-          </Col>
-          <Col sm={6} className="p-2">
-            <Form.Control
-              type="text"
-              placeholder="University / School"
-              name="institute"
-              value={state.institute}
-              onChange={handleChange}
-            />
-          </Col>
         </Form.Row>
-
-        <Form.Row>
-          <Form.Label column sm="4">
-            Skills
-          </Form.Label>
-          <Col sm="8">
-            <ReactTags
-              tags={tags}
-              suggestions={suggestions}
-              handleDelete={handleDelete}
-              handleAddition={handleAddition}
-              delimiters={delimiters}
-            />
-          </Col>
-        </Form.Row>
-        <br />
-        <Form.Label as="legend" column>
-          Work Experience
-        </Form.Label>
-        <Form.Row>
-          <Col className="px-2" lg={6}>
-            <Form.Control
-              name="workExperience"
-              placeholder="Work Experience in Years"
-              value={state.workExperience}
-              onChange={handleChange}
-            />
-          </Col>
-        </Form.Row>
-        <br />
         <Form.Group
           as={Row}
           className="form-group-set"
           controlId="formElementStartingAt"
         >
-          <Form.Label column sm="4">
+          <Form.Label column sm="3">
             Starting At
           </Form.Label>
-          <Col sm="8">
+          <Col sm="9" className="date-picker">
             <DatePicker
               value={startingAt}
               onChange={setStartingAt}
               inputPlaceholder="Select earliest starting day"
               colorPrimary="#000"
+              inputClassName="my-custom-input"
             />
           </Col>
         </Form.Group>

@@ -7,11 +7,7 @@ type UserImageProps = {
 const UserImage = ({ image }: UserImageProps) => {
   return (
     <>
-      <img
-        src={image}
-        alt="company-icon-svg"
-        className="company-icon hide-md"
-      />
+      <img src={image} alt="user" className="user-image hide-md" />
     </>
   )
 }
