@@ -5,6 +5,9 @@ import {
   REGISTER_JOBSEEKER_REQUEST,
   REGISTER_JOBSEEKER_SUCCESS,
   REGISTER_JOBSEEKER_FAIL,
+  MATCH_JOBSEEKER_REQUEST,
+  MATCH_JOBSEEKER_SUCCESS,
+  MATCH_JOBSEEKER_FAIL,
   JobseekerActions,
 } from '../types'
 
@@ -13,6 +16,7 @@ const initialState = {
   jobseekerInfo: {},
   loading: false,
   error: null,
+  jobseekerMatch: [],
 }
 
 const jobseeker = (state = initialState, action: JobseekerActions) => {
@@ -35,6 +39,24 @@ const jobseeker = (state = initialState, action: JobseekerActions) => {
         credentials: action.payload,
       }
     case UPDATE_JOBSEEKER_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      }
+    case MATCH_JOBSEEKER_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      }
+    case MATCH_JOBSEEKER_SUCCESS:
+      console.log('jobseekerMatchInReducer', action.payload)
+      return {
+        ...state,
+        loading: false,
+        jobseekerMatch: action.payload,
+      }
+    case MATCH_JOBSEEKER_FAIL:
       return {
         ...state,
         loading: false,

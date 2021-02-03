@@ -3,10 +3,9 @@ import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Row, Button, Col, /*Image,*/ ListGroup } from 'react-bootstrap'
 
-import JobPostRow from '../JobPostRow'
+import CustomRow from '../CustomRow'
 import CustomSkill from '../CustomSkill'
-import icon from '../../media/user-img.svg'
-import CompanyIcon from '../CompanyIcon'
+import UserImage from '../UserImage'
 import './JobPost.scss'
 import { deleteJobPostRequest } from '../../redux/actions/resources'
 
@@ -17,6 +16,7 @@ type JobPostProps = {
   seniority: string
   startingDate: string
   skills: any[]
+  image: string
 }
 
 const JobPost = ({
@@ -26,6 +26,7 @@ const JobPost = ({
   seniority,
   startingDate,
   skills,
+  image,
 }: JobPostProps) => {
   const dispatch = useDispatch()
 
@@ -37,18 +38,13 @@ const JobPost = ({
     <>
       <Row className="job-post-card">
         <Col md={2}>
-          <CompanyIcon icon={icon} />
-          {/* <Image 
-              src={`/${user.image}`} 
-              alt="company-image"
-              className="image" 
-              fluid /> */}
+          <UserImage image={image} />
         </Col>
         <Col md={8}>
-          <JobPostRow name="Title" item={title} />
-          <JobPostRow name="Job Description" item={jobDescription} />
-          <JobPostRow name="Seniority" item={seniority} />
-          <JobPostRow name="Starting Date" item={startingDate} />
+          <CustomRow name="Title" item={title} />
+          <CustomRow name="Job Description" item={jobDescription} />
+          <CustomRow name="Seniority" item={seniority} />
+          <CustomRow name="Starting Date" item={startingDate} />
           <Row>
             <ListGroup variant="flush">
               <ListGroup.Item>

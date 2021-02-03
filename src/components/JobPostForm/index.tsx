@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Form, Col, Row, Container, Button } from 'react-bootstrap'
 import { WithContext as ReactTags } from 'react-tag-input'
@@ -44,11 +44,8 @@ const JobPostForm = ({ header }: JobPostFormProps) => {
     }
   })
 
-  useEffect(() => {}, [suggestions, skills])
-
   // TODO: date format
-
-  const user = useSelector((state: AppState) => state.user)
+  const user = useSelector((state: AppState) => state.user.userInfo)
   const { loading, error } = user
 
   const dispatch = useDispatch()

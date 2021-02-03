@@ -6,19 +6,24 @@ import {
   UPDATE_JOBSEEKER_REQUEST,
   UPDATE_JOBSEEKER_SUCCESS,
   UPDATE_JOBSEEKER_FAIL,
+  MATCH_JOBSEEKER_REQUEST,
+  MATCH_JOBSEEKER_SUCCESS,
+  MATCH_JOBSEEKER_FAIL,
+  JobseekerUpdate,
+  JobPostInfo,
 } from '../types'
 
-export const updateJobseekerRequest = (data: Credential) => {
+export const updateJobseekerRequest = (jobseeker: Partial<JobseekerUpdate>) => {
   return {
     type: UPDATE_JOBSEEKER_REQUEST,
-    payload: data,
+    payload: jobseeker,
   }
 }
 
-export const updateJobseekerSuccess = (data: Credential) => {
+export const updateJobseekerSuccess = (jobseeker: JobseekerUpdate) => {
   return {
     type: UPDATE_JOBSEEKER_SUCCESS,
-    payload: data,
+    payload: jobseeker,
   }
 }
 
@@ -54,5 +59,25 @@ export const registerJobseekerSuccess = (jobSeekerInfo: Credential) => {
 export const registerJobseekerFail = () => {
   return {
     type: REGISTER_JOBSEEKER_FAIL,
+  }
+}
+
+export const matchJobseekerRequest = () => {
+  return {
+    type: MATCH_JOBSEEKER_REQUEST,
+  }
+}
+
+export const matchJobseekerSuccess = (jobseekerMatch: JobPostInfo) => {
+  return {
+    type: MATCH_JOBSEEKER_SUCCESS,
+    payload: jobseekerMatch,
+  }
+}
+
+export const matchJobseekerFail = (error: string) => {
+  return {
+    type: MATCH_JOBSEEKER_FAIL,
+    payload: error,
   }
 }

@@ -18,14 +18,16 @@ const CompanyProfile = () => {
   const { isLoggedIn } = useSelector((state: AppState) => state.user)
   if (!isLoggedIn) <Redirect to="/login" />
   return (
-    <div className="company-profile">
-      <h2 className="company-header purple-text">Company Profile</h2>
-      <Tabs
-        formComponent={<CompanyProfileForm />}
-        matchComponent={<MatchCardCompany match={match} />}
-        jobPostListPage={<JobPostList />}
-      />
-    </div>
+    <>
+      <div className="company-profile">
+        <h2 className="company-header purple-text">Company Profile</h2>
+        <Tabs
+          formComponent={<CompanyProfileForm />}
+          matchComponent={<MatchCardCompany match={match} />}
+          jobPostListPage={<JobPostList />}
+        />
+      </div>
+    </>
   )
 }
 export default CompanyProfile

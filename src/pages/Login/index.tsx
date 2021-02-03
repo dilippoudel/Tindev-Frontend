@@ -11,6 +11,7 @@ import FormContainer from '../../components/FormContainer'
 import CustomButton from '../../components/CustomButton'
 import Footer from '../../components/Footer'
 import { loginUserRequest } from '../../redux/actions/user'
+import { getSkillsRequest } from '../../redux/actions/resources'
 import { AppState } from '../../redux/types'
 import './Login.scss'
 
@@ -21,12 +22,13 @@ const Login = () => {
   const history = useHistory()
   const dispatch = useDispatch()
 
-  const user = useSelector((state: AppState) => state.user)
+  const user = useSelector((state: AppState) => state.user.userInfo)
   const { error } = user
 
   const submitHandler = (e: React.FormEvent) => {
     e.preventDefault()
     dispatch(loginUserRequest(email, password, history))
+    dispatch(getSkillsRequest())
   }
 
   return (

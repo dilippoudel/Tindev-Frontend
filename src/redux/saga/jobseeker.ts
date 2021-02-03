@@ -1,21 +1,26 @@
-import { put, takeLatest, select } from 'redux-saga/effects'
+import { put, takeLatest } from 'redux-saga/effects'
 import axios from 'axios'
 
-import { AppState, RegisterJobseekerRequestAction } from '../types'
+import {
+  RegisterJobseekerRequestAction,
+  updateJobseekerRequestAction,
+} from '../types'
 import {
   updateJobseekerFail,
   updateJobseekerSuccess,
   registerJobseekerSuccess,
   registerJobseekerFail,
+  matchJobseekerSuccess,
+  matchJobseekerFail,
 } from './../actions/jobseeker'
 
-const credential = (state: AppState) => state.jobseeker.credential
-
 function* registerJobseekerSaga(action: RegisterJobseekerRequestAction) {
+  const email = action.payload.email
+  const password = action.payload.password
+
   try {
-    const credentialData = yield select(credential)
     const res = yield axios.post('/jobseeker', {
-      credential: credentialData,
+      credential: { email, password },
     })
     yield put(registerJobseekerSuccess(res.data))
     const history = action.payload.history
@@ -27,18 +32,30 @@ function* registerJobseekerSaga(action: RegisterJobseekerRequestAction) {
   }
 }
 
-function* updateJobseekerSaga(credential: Credential) {
+function* updateJobseekerSaga(action: updateJobseekerRequestAction) {
+  const jobseekerInfo = action.payload
   try {
-    const response = yield axios.patch('/jobSeeker', { credential })
-    yield put(updateJobseekerSuccess(response.data))
+    const response = yield axios.patch('/jobSeeker', jobseekerInfo)
+    yield put(updateJobseekerSuccess(response.data.payload))
   } catch (error) {
     yield put(updateJobseekerFail(error.message))
+  }
+}
+
+function* matchJobseekerSaga() {
+  try {
+    const res = yield axios.get('/jobSeeker/match')
+    console.log('res', res)
+    yield put(matchJobseekerSuccess(res.data))
+  } catch (error) {
+    yield put(matchJobseekerFail(error))
   }
 }
 
 const sagaWatcher = [
   takeLatest('UPDATE_JOBSEEKER_REQUEST', updateJobseekerSaga),
   takeLatest('REGISTER_JOBSEEKER_REQUEST', registerJobseekerSaga),
+  takeLatest('MATCH_JOBSEEKER_REQUEST', matchJobseekerSaga),
 ]
 
 export default sagaWatcher
