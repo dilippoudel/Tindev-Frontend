@@ -153,13 +153,15 @@ const JobPostForm = ({ header }: JobPostFormProps) => {
                 Required Skills
               </Form.Label>
               <Col sm="8">
-                <ReactTags
-                  tags={tags}
-                  suggestions={suggestions}
-                  handleDelete={handleDelete}
-                  handleAddition={handleAddition}
-                  delimiters={delimiters}
-                />
+                {skills && (
+                  <ReactTags
+                    tags={tags}
+                    suggestions={suggestions}
+                    handleDelete={handleDelete}
+                    handleAddition={handleAddition}
+                    delimiters={delimiters}
+                  />
+                )}
               </Col>
             </Form.Group>
             <Form.Group

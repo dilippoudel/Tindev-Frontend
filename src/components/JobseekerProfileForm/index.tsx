@@ -177,13 +177,15 @@ const JobseekerProfileForm = () => {
             Skills
           </Form.Label>
           <Col sm="11" className="my-3">
-            <ReactTags
-              tags={tags}
-              suggestions={suggestions}
-              handleDelete={handleDelete}
-              handleAddition={handleAddition}
-              delimiters={delimiters}
-            />
+            {skills && (
+              <ReactTags
+                tags={tags}
+                suggestions={suggestions}
+                handleDelete={handleDelete}
+                handleAddition={handleAddition}
+                delimiters={delimiters}
+              />
+            )}
           </Col>
         </Form.Row>
 
