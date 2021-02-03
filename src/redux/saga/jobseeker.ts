@@ -46,7 +46,7 @@ function* matchJobseekerSaga() {
   try {
     const res = yield axios.get('/jobSeeker/match')
     console.log('res', res)
-    yield put(matchJobseekerSuccess(res.data))
+    yield put(matchJobseekerSuccess(res.data.payload))
   } catch (error) {
     yield put(matchJobseekerFail(error))
   }
