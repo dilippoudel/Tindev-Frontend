@@ -44,7 +44,7 @@ function* updateJobseekerSaga(action: updateJobseekerRequestAction) {
 
 function* matchJobseekerSaga() {
   try {
-    const res = yield axios.get('/jobSeeker/match')
+    const res = yield axios.get('/jobseeker/match')
     console.log('res', res)
     yield put(matchJobseekerSuccess(res.data.payload))
   } catch (error) {

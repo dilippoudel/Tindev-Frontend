@@ -9,7 +9,6 @@ import './MatchCardJobseeker.scss'
 import { AppState } from '../../redux/types'
 
 const MatchCardJobseeker = () => {
-  const companyImage = useSelector((state: AppState) => state.employer.image)
   const match = useSelector((state: AppState) => state.jobseeker.match)
 
   return (
@@ -23,7 +22,7 @@ const MatchCardJobseeker = () => {
                   <JobPost
                     key={m.id}
                     jobPostId={m.jobPost.id}
-                    image={companyImage}
+                    image={m.employer.image}
                     title={m.jobPost.title}
                     jobDescription={m.jobPost.jobDescription}
                     seniority={m.jobPost.seniority}

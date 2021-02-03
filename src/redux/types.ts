@@ -268,15 +268,17 @@ export type updateJobseekerFailAction = {
   }
 }
 
-export type JobPostInfo = {
-  title: JobPost
-  jobDescription: JobPost
-  seniority: JobPost
-  skills: JobPost
-  startingDate: JobPost
-  companyName: EmployerUpdate
-  companyInfo: EmployerUpdate
-  address: EmployerUpdate
+export type MatchInfo = {
+  payload: {
+    title: JobPost
+    jobDescription: JobPost
+    seniority: JobPost
+    skills: JobPost
+    startingDate: JobPost
+    companyName: EmployerUpdate
+    companyInfo: EmployerUpdate
+    address: EmployerUpdate
+  }
 }
 
 export type matchJobseekerRequestAction = {
@@ -285,7 +287,7 @@ export type matchJobseekerRequestAction = {
 
 export type matchJobseekerSuccessAction = {
   type: typeof MATCH_JOBSEEKER_SUCCESS
-  payload: JobPostInfo
+  payload: MatchInfo
 }
 
 export type matchJobseekerFailAction = {

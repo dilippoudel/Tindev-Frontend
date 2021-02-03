@@ -197,6 +197,7 @@ const JobPostForm = ({ header }: JobPostFormProps) => {
                   onChange={setStartingAt}
                   inputPlaceholder="Select starting day"
                   colorPrimary="#000"
+                  inputClassName="my-custom-input"
                 />
               </Col>
             </Form.Group>

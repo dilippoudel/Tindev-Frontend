@@ -10,7 +10,7 @@ import {
   MATCH_JOBSEEKER_SUCCESS,
   MATCH_JOBSEEKER_FAIL,
   JobseekerUpdate,
-  JobPostInfo,
+  MatchInfo,
 } from '../types'
 
 export const updateJobseekerRequest = (jobseeker: Partial<JobseekerUpdate>) => {
@@ -68,7 +68,7 @@ export const matchJobseekerRequest = () => {
   }
 }
 
-export const matchJobseekerSuccess = (jobseekerMatch: JobPostInfo) => {
+export const matchJobseekerSuccess = (jobseekerMatch: MatchInfo) => {
   return {
     type: MATCH_JOBSEEKER_SUCCESS,
     payload: jobseekerMatch,

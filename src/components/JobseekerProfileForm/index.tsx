@@ -173,10 +173,10 @@ const JobseekerProfileForm = () => {
         </Form.Row>
 
         <Form.Row>
-          <Form.Label as="legend" column sm="1" className="my-3">
+          <Form.Label as="legend" column sm="3" className="my-3">
             Skills
           </Form.Label>
-          <Col sm="11" className="my-3">
+          <Col sm="9" className="my-3">
             {skills && (
               <ReactTags
                 tags={tags}
