@@ -1,7 +1,10 @@
-import { put, takeLatest, select } from 'redux-saga/effects'
+import { put, takeLatest } from 'redux-saga/effects'
 import axios from 'axios'
 
-import { AppState, RegisterJobseekerRequestAction } from '../types'
+import {
+  RegisterJobseekerRequestAction,
+  updateJobseekerRequestAction,
+} from '../types'
 import {
   updateJobseekerFail,
   updateJobseekerSuccess,
@@ -9,13 +12,13 @@ import {
   registerJobseekerFail,
 } from './../actions/jobseeker'
 
-const credential = (state: AppState) => state.jobseeker.credential
-
 function* registerJobseekerSaga(action: RegisterJobseekerRequestAction) {
+  const email = action.payload.email
+  const password = action.payload.password
+
   try {
-    const credentialData = yield select(credential)
     const res = yield axios.post('/jobseeker', {
-      credential: credentialData,
+      credential: { email, password },
     })
     yield put(registerJobseekerSuccess(res.data))
     const history = action.payload.history
@@ -27,10 +30,11 @@ function* registerJobseekerSaga(action: RegisterJobseekerRequestAction) {
   }
 }
 
-function* updateJobseekerSaga(credential: Credential) {
+function* updateJobseekerSaga(action: updateJobseekerRequestAction) {
+  const jobseekerInfo = action.payload
   try {
-    const response = yield axios.patch('/jobSeeker', { credential })
-    yield put(updateJobseekerSuccess(response.data))
+    const response = yield axios.patch('/jobSeeker', jobseekerInfo)
+    yield put(updateJobseekerSuccess(response.data.payload))
   } catch (error) {
     yield put(updateJobseekerFail(error.message))
   }

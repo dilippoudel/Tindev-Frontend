@@ -1,3 +1,15 @@
-a.nav-link {
-  padding: 0.093rem 1rem 2rem;
+@import '../../scss/config';
+
+.tabs {
+  margin-left: 1rem;
+  margin-right: 2rem;
+  @media (max-width: 600px) {
+    margin-right: 1rem;
+  }
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link > a {
+  color: $white;
+  background: $purple-color !important;
 }
