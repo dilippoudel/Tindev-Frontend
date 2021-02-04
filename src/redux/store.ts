@@ -24,6 +24,7 @@ export const initState: AppState = {
     companyName: '',
     companyInfo: '',
     address: '',
+    image: '',
   },
   jobseeker: {
     firstName: '',
@@ -47,6 +48,7 @@ export const initState: AppState = {
       jobDescription: '',
       seniority: '',
       skills: [],
+      image: '',
       startingDate: '',
     },
   },

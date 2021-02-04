@@ -23,7 +23,7 @@ const JobseekerProfileForm = () => {
   const user = useSelector((state: AppState) => state.user.userInfo)
   const [tags, setTags] = useState<any[]>([])
   const [startingAt, setStartingAt] = useState<DayValue>(null)
-  const [isOpenRelocate, setOpenRelocate] = useState(false)
+  const [isOpenRelocate, setOpenRelocate] = useState(user.relocate)
   const [state, setState] = useState({
     firstName: '',
     lastName: '',
@@ -33,7 +33,7 @@ const JobseekerProfileForm = () => {
     institute: '',
     skills: [],
     workExperience: '',
-    relocate: user.relocate,
+    relocate: isOpenRelocate,
     startingDate: '',
   })
 
@@ -152,26 +152,15 @@ const JobseekerProfileForm = () => {
             <Form.Label as="legend" column className="pl-4">
               Open to Relocate?
             </Form.Label>
-            {user.relocate === false ? (
-              <BootstrapSwitchButton
-                checked={false}
-                onlabel="Yes"
-                offlabel="No"
-                onChange={(checked: boolean) => {
-                  setOpenRelocate(checked === true)
-                }}
-              />
-            ) : (
-              <BootstrapSwitchButton
-                checked={false}
-                onlabel="No"
-                offlabel="Yes"
-                onChange={(checked: boolean) => {
-                  setOpenRelocate(checked)
-                  setState({ ...state, relocate: checked })
-                }}
-              />
-            )}
+            <BootstrapSwitchButton
+              checked={isOpenRelocate}
+              onlabel="Yes"
+              offlabel="No"
+              onChange={(checked: boolean) => {
+                setOpenRelocate(checked === true)
+              }}
+            />
+            )
           </Col>
         </Form.Group>
 

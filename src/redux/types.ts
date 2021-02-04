@@ -15,6 +15,9 @@ export const UPDATE_JOBSEEKER_FAIL = 'UPDATE_JOBSEEKER_FAIL'
 export const REGISTER_JOBSEEKER_REQUEST = 'REGISTER_JOBSEEKER_REQUEST'
 export const REGISTER_JOBSEEKER_SUCCESS = 'REGISTER_JOBSEEKER_SUCCESS'
 export const REGISTER_JOBSEEKER_FAIL = 'REGISTER_JOBSEEKER_FAIL'
+export const MATCH_JOBSEEKER_REQUEST = 'MATCH_JOBSEEKER_REQUEST'
+export const MATCH_JOBSEEKER_SUCCESS = 'MATCH_JOBSEEKER_SUCCESS'
+export const MATCH_JOBSEEKER_FAIL = 'MATCH_JOBSEEKER_FAIL'
 export const LOGIN_USER_REQUEST = 'LOGIN_USER_REQUEST'
 export const LOGIN_USER_SUCCESS = 'LOGIN_USER_SUCCESS'
 export const LOGIN_USER_FAIL = 'LOGIN_USER_FAIL'
@@ -89,6 +92,7 @@ export type LoginUserSuccessAction = {
       companyInfo?: string
       address?: string
       jobPosts?: any[]
+      image: string
     }
   }
 }
@@ -202,6 +206,9 @@ export type JobseekerActions =
   | updateJobseekerRequestAction
   | updateJobseekerSuccessAction
   | updateJobseekerFailAction
+  | matchJobseekerRequestAction
+  | matchJobseekerSuccessAction
+  | matchJobseekerFailAction
 
 export type RegisterJobseekerRequestAction = {
   type: typeof REGISTER_JOBSEEKER_REQUEST
@@ -258,6 +265,35 @@ export type updateJobseekerFailAction = {
   type: typeof UPDATE_JOBSEEKER_FAIL
   payload: {
     error: any
+  }
+}
+
+export type MatchInfo = {
+  payload: {
+    title: JobPost
+    jobDescription: JobPost
+    seniority: JobPost
+    skills: JobPost
+    startingDate: JobPost
+    companyName: EmployerUpdate
+    companyInfo: EmployerUpdate
+    address: EmployerUpdate
+  }
+}
+
+export type matchJobseekerRequestAction = {
+  type: typeof MATCH_JOBSEEKER_REQUEST
+}
+
+export type matchJobseekerSuccessAction = {
+  type: typeof MATCH_JOBSEEKER_SUCCESS
+  payload: MatchInfo
+}
+
+export type matchJobseekerFailAction = {
+  type: typeof MATCH_JOBSEEKER_FAIL
+  payload: {
+    error: string
   }
 }
 
@@ -417,6 +453,7 @@ export type CredentialStateEmployer = {
   companyName: string
   companyInfo: string
   address: any
+  image: string
 }
 
 export type CredentialStateJobseeker = {
@@ -446,6 +483,7 @@ export type JobPostState = {
   seniority: string
   skills: any[]
   startingDate: DayValue | string
+  image: string
 }
 
 export type AppState = {
