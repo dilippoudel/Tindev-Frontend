@@ -16,6 +16,7 @@ const MatchListJobseeker = () => {
             //@ts-ignore
             image={m.employer.image}
             companyName={m.employer.companyName}
+            companyInfo={m.employer.companyInfo}
             address={m.employer.address}
             title={m.title}
             jobDescription={m.jobDescription}

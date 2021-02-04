@@ -9,6 +9,7 @@ import './MatchCardJobseeker.scss'
 type MatchCardJobseekerProps = {
   image: string
   companyName: string
+  companyInfo: string
   address: string
   title: string
   jobDescription: string
@@ -19,6 +20,7 @@ type MatchCardJobseekerProps = {
 const MatchCardJobseeker = ({
   image,
   companyName,
+  companyInfo,
   address,
   title,
   jobDescription,
@@ -28,16 +30,17 @@ const MatchCardJobseeker = ({
   return (
     <>
       <Row className="match-card">
-        <Col md={8}>
+        <Col md={9}>
           <UserImage image={image} />
           <CustomRow name="Company Name" item={companyName} />
           <CustomRow name="Address" item={address} />
+          <CustomRow name="Company Info" item={companyInfo} />
           <CustomRow name="Job Title" item={title} />
           <CustomRow name="Job Description" item={jobDescription} />
           <CustomRow name="Seniority" item={seniority} />
           <CustomRow name="Starting Date" item={startingDate} />
         </Col>
-        <Col md={2}>
+        <Col md={1}>
           <Link to="/chat">Chat</Link>
         </Col>
       </Row>
