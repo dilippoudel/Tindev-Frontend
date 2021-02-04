@@ -33,7 +33,7 @@ const JobPostForm = ({ header }: JobPostFormProps) => {
     jobDescription: '',
     requiredSkills: [],
     seniority: '',
-    startingDate: '',
+    startingDate: startingAt,
   })
 
   const skills = useSelector((state: AppState) => state.resources.skills)
@@ -59,7 +59,6 @@ const JobPostForm = ({ header }: JobPostFormProps) => {
         [name]: value,
       }
     })
-    setStartingAt(startingAt)
   }
 
   // TODO: Add condition for edit job post
@@ -84,7 +83,7 @@ const JobPostForm = ({ header }: JobPostFormProps) => {
       jobDescription: '',
       requiredSkills: [],
       seniority: '',
-      startingDate: '',
+      startingDate: null,
     })
     // skills ready for next jobpost
     dispatch(getSkillsRequest())
@@ -153,13 +152,15 @@ const JobPostForm = ({ header }: JobPostFormProps) => {
                 Required Skills
               </Form.Label>
               <Col sm="8">
-                <ReactTags
-                  tags={tags}
-                  suggestions={suggestions}
-                  handleDelete={handleDelete}
-                  handleAddition={handleAddition}
-                  delimiters={delimiters}
-                />
+                {skills && (
+                  <ReactTags
+                    tags={tags}
+                    suggestions={suggestions}
+                    handleDelete={handleDelete}
+                    handleAddition={handleAddition}
+                    delimiters={delimiters}
+                  />
+                )}
               </Col>
             </Form.Group>
             <Form.Group
@@ -195,6 +196,7 @@ const JobPostForm = ({ header }: JobPostFormProps) => {
                   onChange={setStartingAt}
                   inputPlaceholder="Select starting day"
                   colorPrimary="#000"
+                  inputClassName="my-custom-input"
                 />
               </Col>
             </Form.Group>

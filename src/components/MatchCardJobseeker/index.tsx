@@ -1,45 +1,46 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
 import { Col, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-import JobPost from '../../components/JobPost'
 import CustomRow from '../../components/CustomRow'
+import UserImage from '../../components/UserImage'
 import './MatchCardJobseeker.scss'
-import { AppState } from '../../redux/types'
 
-const MatchCardJobseeker = () => {
-  const companyImage = useSelector((state: AppState) => state.employer.image)
-  const match = useSelector((state: AppState) => state.jobseeker.match)
+type MatchCardJobseekerProps = {
+  image: string
+  companyName: string
+  companyInfo: string
+  address: string
+  title: string
+  jobDescription: string
+  seniority: string
+  startingDate: string
+}
 
+const MatchCardJobseeker = ({
+  image,
+  companyName,
+  companyInfo,
+  address,
+  title,
+  jobDescription,
+  seniority,
+  startingDate,
+}: MatchCardJobseekerProps) => {
   return (
     <>
-      <Row className="job-post-card">
-        <Col md={8}>
-          {match &&
-            match.map((m: any) => {
-              return (
-                <div className="match-card">
-                  <JobPost
-                    key={m.id}
-                    jobPostId={m.jobPost.id}
-                    image={companyImage}
-                    title={m.jobPost.title}
-                    jobDescription={m.jobPost.jobDescription}
-                    seniority={m.jobPost.seniority}
-                    startingDate={m.jobPost.startingDate}
-                    skills={m.jobPost.skills.map((s: any) => s.name)}
-                  />
-                  <CustomRow
-                    name="Company Name"
-                    item={m.employer.companyName}
-                  />
-                  <CustomRow name="Address" item={m.employer.address} />
-                </div>
-              )
-            })}
+      <Row className="match-card">
+        <Col md={9}>
+          <UserImage image={image} />
+          <CustomRow name="Company Name" item={companyName} />
+          <CustomRow name="Address" item={address} />
+          <CustomRow name="Company Info" item={companyInfo} />
+          <CustomRow name="Job Title" item={title} />
+          <CustomRow name="Job Description" item={jobDescription} />
+          <CustomRow name="Seniority" item={seniority} />
+          <CustomRow name="Starting Date" item={startingDate} />
         </Col>
-        <Col md={2}>
+        <Col md={1}>
           <Link to="/chat">Chat</Link>
         </Col>
       </Row>

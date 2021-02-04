@@ -24,18 +24,18 @@ const JobseekerProfileForm = () => {
   const user = useSelector((state: AppState) => state.user.userInfo)
   const [tags, setTags] = useState<any[]>([])
   const [startingAt, setStartingAt] = useState<DayValue>(null)
-  const [isOpenRelocate, setOpenRelocate] = useState(false)
+  const [isOpenRelocate, setOpenRelocate] = useState(user.relocate)
   const [state, setState] = useState({
     firstName: '',
     lastName: '',
-    contact: '',
+    contact: undefined,
     seniority: '',
     degree: '',
     institute: '',
     skills: [],
-    workExperience: '',
-    relocate: user.relocate,
-    startingDate: '',
+    workExperience: 0,
+    relocate: isOpenRelocate,
+    startingDate: startingAt,
   })
 
   // Skill tags
@@ -47,7 +47,11 @@ const JobseekerProfileForm = () => {
     }
   })
 
-  // Handler for form inputs. TODO: Phone, workExperience, relocate
+  const handleInputChange = () => {
+    setTags(tags)
+  }
+
+  // Handler for form inputs. TODO: workExperience, relocate
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target
 
@@ -71,12 +75,12 @@ const JobseekerProfileForm = () => {
       updateJobseekerRequest({
         firstName: state.firstName,
         lastName: state.lastName,
-        contact: Number(state.contact),
+        contact: state.contact,
         seniority: state.seniority,
         degree: state.degree,
         institute: state.institute,
         skills: skills,
-        workExperience: Number(state.workExperience),
+        workExperience: state.workExperience,
         startingDate: startingAt,
         relocate: isOpenRelocate,
       })
@@ -130,18 +134,16 @@ const JobseekerProfileForm = () => {
               type="tel"
               name="contact"
               placeholder="Phone Number"
-              pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
               value={state.contact}
               onChange={handleChange}
             />
-            <small>Format: 123-456-7890</small>
           </Col>
 
           <Col sm={6}>
             <Form.Control
               type="text"
               name="seniority"
-              placeholder="Seniority"
+              placeholder="Junior/Middle/Senior"
               value={state.seniority}
               onChange={handleChange}
             />
@@ -173,17 +175,20 @@ const JobseekerProfileForm = () => {
         </Form.Row>
 
         <Form.Row>
-          <Form.Label as="legend" column sm="1" className="my-3">
+          <Form.Label as="legend" column sm="3" className="my-3">
             Skills
           </Form.Label>
-          <Col sm="11" className="my-3">
-            <ReactTags
-              tags={tags}
-              suggestions={suggestions}
-              handleDelete={handleDelete}
-              handleAddition={handleAddition}
-              delimiters={delimiters}
-            />
+          <Col sm="9" className="my-3">
+            {skills && (
+              <ReactTags
+                tags={tags}
+                suggestions={suggestions}
+                handleDelete={handleDelete}
+                handleAddition={handleAddition}
+                delimiters={delimiters}
+                handleInputChange={handleInputChange}
+              />
+            )}
           </Col>
         </Form.Row>
 
@@ -193,6 +198,7 @@ const JobseekerProfileForm = () => {
           </Form.Label>
           <Col className="my-1 pl-2" lg={9}>
             <Form.Control
+              type="number"
               name="workExperience"
               placeholder="Work Experience in Years"
               value={state.workExperience}
@@ -206,26 +212,14 @@ const JobseekerProfileForm = () => {
             Open to Relocate?
           </Form.Label>
           <Col sm={7} className="pl-2 mt-3 mb-1">
-            {user.relocate === false ? (
-              <BootstrapSwitchButton
-                checked={false}
-                onlabel="Yes"
-                offlabel="No"
-                onChange={(checked: boolean) => {
-                  setOpenRelocate(checked === true)
-                }}
-              />
-            ) : (
-              <BootstrapSwitchButton
-                checked={false}
-                onlabel="No"
-                offlabel="Yes"
-                onChange={(checked: boolean) => {
-                  setOpenRelocate(checked)
-                  setState({ ...state, relocate: checked })
-                }}
-              />
-            )}
+            <BootstrapSwitchButton
+              checked={isOpenRelocate}
+              onlabel="Yes"
+              offlabel="No"
+              onChange={(checked: boolean) => {
+                setOpenRelocate(checked)
+              }}
+            />
           </Col>
         </Form.Row>
         <Form.Group

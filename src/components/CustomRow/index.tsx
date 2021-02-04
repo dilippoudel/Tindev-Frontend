@@ -8,15 +8,13 @@ type CustomRowProps = {
 
 const CustomRow = ({ name, item }: CustomRowProps) => {
   return (
-    <>
-      <Row>
-        <ListGroup variant="flush">
-          <ListGroup.Item>
-            {name}: {item}
-          </ListGroup.Item>
-        </ListGroup>
-      </Row>
-    </>
+    <Row>
+      <ListGroup variant="flush">
+        <ListGroup.Item className="py-1">
+          {name}: {item}
+        </ListGroup.Item>
+      </ListGroup>
+    </Row>
   )
 }
 

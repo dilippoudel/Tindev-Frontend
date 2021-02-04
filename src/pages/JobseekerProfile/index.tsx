@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom'
 
 import Tabs from '../../components/Tabs'
 import JobseekerProfileForm from '../../components/JobseekerProfileForm'
-import MatchCardJobseeker from '../../components/MatchCardJobseeker'
+import MatchListJobseeker from '../../components/MatchListJobseeker'
 import { useSelector } from 'react-redux'
 import { AppState } from '../../redux/types'
 
@@ -15,7 +15,7 @@ const JobseekerProfile = () => {
       <div className="page">
         <Tabs
           formComponent={<JobseekerProfileForm />}
-          matchComponent={<MatchCardJobseeker />}
+          matchComponent={<MatchListJobseeker />}
         />
       </div>
     </>

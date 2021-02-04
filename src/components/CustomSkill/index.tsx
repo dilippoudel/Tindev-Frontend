@@ -9,11 +9,11 @@ export type CustomSkillTypes = {
 const CustomSkill = ({ skills, ...otherProps }: CustomSkillTypes) => {
   return (
     <div className="custom-skill" {...otherProps}>
-      {skills.map((skill, index) => {
+      {skills.map(skill => {
         return (
           <Badge
             pill
-            key={index}
+            key={skill.id}
             className="tag-btn btn btn-pill btn-outline-primary ml-2"
           >
             <span className="m-auto">{skill}</span>
