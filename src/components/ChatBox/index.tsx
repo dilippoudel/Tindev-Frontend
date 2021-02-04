@@ -2,7 +2,7 @@ import React from 'react'
 import Incoming from './Incoming'
 import Outgoing from './Outgoing'
 import UsersList from './UsersList'
-const ChatBoxs = () => {
+const ChatBox = () => {
   return (
     <>
       <div className="container">
@@ -68,4 +68,4 @@ const ChatBoxs = () => {
     </>
   )
 }
-export default ChatBoxs
+export default ChatBox

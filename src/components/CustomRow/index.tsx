@@ -1,12 +1,12 @@
 import React from 'react'
 import { Row, ListGroup } from 'react-bootstrap'
 
-type JobPostRowProps = {
+type CustomRowProps = {
   name: string
   item: any
 }
 
-const JobPostRow = ({ name, item }: JobPostRowProps) => {
+const CustomRow = ({ name, item }: CustomRowProps) => {
   return (
     <>
       <Row>
@@ -20,4 +20,4 @@ const JobPostRow = ({ name, item }: JobPostRowProps) => {
   )
 }
 
-export default JobPostRow
+export default CustomRow

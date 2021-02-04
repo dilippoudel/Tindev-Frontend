@@ -1,22 +1,31 @@
 import LocalStorage from '../../local-storage'
 import { useHistory } from 'react-router-dom'
+import { Button } from 'react-bootstrap'
+
+const styles = {
+  customButton: {
+    backgroundColor: '#6f42c1',
+    border: 'none',
+    color: '#fff',
+    borderRadius: '4px',
+  },
+}
 
 const LogOut = () => {
   const history = useHistory()
-  const deleteTokenFromLocalStorage = async () => {
-    await LocalStorage.removeToken()
-    await history.push('/')
+  const deleteTokenFromLocalStorage = () => {
+    LocalStorage.removeToken()
+    history.push('/')
   }
 
   return (
     <>
-      <button
-        className="btn btn-danger sm-2"
+      <Button
+        style={styles.customButton}
         onClick={() => deleteTokenFromLocalStorage()}
-        style={{ marginLeft: '5px' }}
       >
         Log Out
-      </button>
+      </Button>
     </>
   )
 }

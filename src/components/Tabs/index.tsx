@@ -4,6 +4,7 @@ import { Tab, Row, Col, Nav } from 'react-bootstrap'
 
 import Navbar from '../Navbar-logout'
 import { getUserRequest } from '../../redux/actions/user'
+import { getSkillsRequest } from '../../redux/actions/resources'
 import { AppState } from '../../redux/types'
 import './Tabs.scss'
 
@@ -11,13 +12,17 @@ const Tabs = ({
   formComponent,
   matchComponent,
   jobPostListPage,
-  ChatBoxs,
+  ChatBoxPage,
 }: any) => {
   const role = useSelector((state: AppState) => state.user.userInfo.role)
   const dispatch = useDispatch()
 
   const handleClick = () => {
     dispatch(getUserRequest())
+  }
+
+  const handleSkills = () => {
+    dispatch(getSkillsRequest())
   }
 
   return (
@@ -33,7 +38,9 @@ const Tabs = ({
               justify={true}
             >
               <Nav.Item>
-                <Nav.Link eventKey="first">Profile</Nav.Link>
+                <Nav.Link onClick={handleSkills} eventKey="first">
+                  Profile
+                </Nav.Link>
               </Nav.Item>
               <Nav.Item>
                 <Nav.Link eventKey="second">Match</Nav.Link>
@@ -52,7 +59,7 @@ const Tabs = ({
             <Tab.Content>
               <Tab.Pane eventKey="first">{formComponent}</Tab.Pane>
               <Tab.Pane eventKey="second">{matchComponent}</Tab.Pane>
-              <Tab.Pane eventKey="third">{ChatBoxs}</Tab.Pane>
+              <Tab.Pane eventKey="third">{ChatBoxPage}</Tab.Pane>
               <Tab.Pane eventKey="fourth">{jobPostListPage}</Tab.Pane>
             </Tab.Content>
           </Col>

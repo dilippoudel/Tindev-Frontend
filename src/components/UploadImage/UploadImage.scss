@@ -1,0 +1,26 @@
+@import '../../scss/config';
+
+button.upload-image-button {
+  align-items: center;
+  background: $dark-purple;
+  border: $dark-purple 1px solid;
+  border-radius: 50px;
+  color: $white;
+  font-size: 0.9em;
+  padding: 0.29rem;
+  min-width: 10.8em;
+  text-align: center;
+  &:hover {
+    background: $white;
+    border: $dark-purple 1px solid;
+    color: $black;
+  }
+}
+
+.image-button {
+  text-align: center;
+}
+
+.fileContainer {
+  padding: 10px 0 3px 0;
+}
