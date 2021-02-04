@@ -2,6 +2,7 @@ import React from 'react'
 import Incoming from './Incoming'
 import Outgoing from './Outgoing'
 import UsersList from './UsersList'
+import './ChatBox.scss'
 const ChatBox = () => {
   return (
     <>

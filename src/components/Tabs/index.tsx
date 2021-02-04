@@ -12,7 +12,7 @@ const Tabs = ({
   formComponent,
   matchComponent,
   jobPostListPage,
-  ChatBoxPage,
+  chatBoxPage,
 }: any) => {
   const role = useSelector((state: AppState) => state.user.userInfo.role)
   const dispatch = useDispatch()
@@ -59,7 +59,7 @@ const Tabs = ({
             <Tab.Content>
               <Tab.Pane eventKey="first">{formComponent}</Tab.Pane>
               <Tab.Pane eventKey="second">{matchComponent}</Tab.Pane>
-              <Tab.Pane eventKey="third">{ChatBoxPage}</Tab.Pane>
+              <Tab.Pane eventKey="third">{chatBoxPage}</Tab.Pane>
               <Tab.Pane eventKey="fourth">{jobPostListPage}</Tab.Pane>
             </Tab.Content>
           </Col>
