@@ -247,7 +247,7 @@ export type JobseekerUpdate = {
   institute: string
   degree: string
   contact: any
-  workExperience: any
+  workExperience: number
   image: string
 }
 
@@ -465,7 +465,7 @@ export type CredentialStateJobseeker = {
   institute: string
   degree: string
   contact: any
-  workExperience: any
+  workExperience: number
   image: string
   skills: any[]
   jobseekerMatch: any[]

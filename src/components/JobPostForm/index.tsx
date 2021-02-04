@@ -33,7 +33,7 @@ const JobPostForm = ({ header }: JobPostFormProps) => {
     jobDescription: '',
     requiredSkills: [],
     seniority: '',
-    startingDate: '',
+    startingDate: startingAt,
   })
 
   const skills = useSelector((state: AppState) => state.resources.skills)
@@ -59,7 +59,6 @@ const JobPostForm = ({ header }: JobPostFormProps) => {
         [name]: value,
       }
     })
-    setStartingAt(startingAt)
   }
 
   // TODO: Add condition for edit job post
@@ -84,7 +83,7 @@ const JobPostForm = ({ header }: JobPostFormProps) => {
       jobDescription: '',
       requiredSkills: [],
       seniority: '',
-      startingDate: '',
+      startingDate: null,
     })
     // skills ready for next jobpost
     dispatch(getSkillsRequest())

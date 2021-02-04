@@ -28,14 +28,14 @@ const JobseekerProfileForm = () => {
   const [state, setState] = useState({
     firstName: '',
     lastName: '',
-    contact: '',
+    contact: undefined,
     seniority: '',
     degree: '',
     institute: '',
     skills: [],
-    workExperience: '',
+    workExperience: 0,
     relocate: isOpenRelocate,
-    startingDate: '',
+    startingDate: startingAt,
   })
 
   // Skill tags
@@ -47,7 +47,11 @@ const JobseekerProfileForm = () => {
     }
   })
 
-  // Handler for form inputs. TODO: Phone, workExperience, relocate
+  const handleInputChange = () => {
+    setTags(tags)
+  }
+
+  // Handler for form inputs. TODO: workExperience, relocate
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target
 
@@ -71,12 +75,12 @@ const JobseekerProfileForm = () => {
       updateJobseekerRequest({
         firstName: state.firstName,
         lastName: state.lastName,
-        contact: Number(state.contact),
+        contact: state.contact,
         seniority: state.seniority,
         degree: state.degree,
         institute: state.institute,
         skills: skills,
-        workExperience: Number(state.workExperience),
+        workExperience: state.workExperience,
         startingDate: startingAt,
         relocate: isOpenRelocate,
       })
@@ -130,18 +134,16 @@ const JobseekerProfileForm = () => {
               type="tel"
               name="contact"
               placeholder="Phone Number"
-              pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
               value={state.contact}
               onChange={handleChange}
             />
-            <small>Format: 123-456-7890</small>
           </Col>
 
           <Col sm={6}>
             <Form.Control
               type="text"
               name="seniority"
-              placeholder="Seniority"
+              placeholder="Junior/Middle/Senior"
               value={state.seniority}
               onChange={handleChange}
             />
@@ -184,6 +186,7 @@ const JobseekerProfileForm = () => {
                 handleDelete={handleDelete}
                 handleAddition={handleAddition}
                 delimiters={delimiters}
+                handleInputChange={handleInputChange}
               />
             )}
           </Col>
@@ -195,6 +198,7 @@ const JobseekerProfileForm = () => {
           </Form.Label>
           <Col className="my-1 pl-2" lg={9}>
             <Form.Control
+              type="number"
               name="workExperience"
               placeholder="Work Experience in Years"
               value={state.workExperience}
@@ -213,7 +217,7 @@ const JobseekerProfileForm = () => {
               onlabel="Yes"
               offlabel="No"
               onChange={(checked: boolean) => {
-                setOpenRelocate(checked === true)
+                setOpenRelocate(checked)
               }}
             />
           </Col>
