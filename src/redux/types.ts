@@ -468,7 +468,7 @@ export type CredentialStateJobseeker = {
   workExperience: any
   image: string
   skills: any[]
-  match: any[]
+  jobseekerMatch: any[]
 }
 
 export type ResourcesState = {

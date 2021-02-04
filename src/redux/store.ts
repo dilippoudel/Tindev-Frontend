@@ -38,7 +38,7 @@ export const initState: AppState = {
     workExperience: '',
     image: '',
     skills: [],
-    match: [],
+    jobseekerMatch: [],
   },
   resources: {
     skills: [],

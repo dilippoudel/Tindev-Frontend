@@ -3,37 +3,32 @@ import { useSelector } from 'react-redux'
 import { Col, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-import JobPost from '../../components/JobPost'
 import CustomRow from '../../components/CustomRow'
+import UserImage from '../../components/UserImage'
 import './MatchCardJobseeker.scss'
 import { AppState } from '../../redux/types'
 
 const MatchCardJobseeker = () => {
-  const match = useSelector((state: AppState) => state.jobseeker.match)
+  const match = useSelector((state: AppState) => state.jobseeker.jobseekerMatch)
 
   return (
     <>
-      <Row className="job-post-card">
+      <Row className="match-card">
         <Col md={8}>
           {match &&
             match.map((m: any) => {
               return (
-                <div className="match-card">
-                  <JobPost
-                    key={m.id}
-                    jobPostId={m.jobPost.id}
-                    image={m.employer.image}
-                    title={m.jobPost.title}
-                    jobDescription={m.jobPost.jobDescription}
-                    seniority={m.jobPost.seniority}
-                    startingDate={m.jobPost.startingDate}
-                    skills={m.jobPost.skills.map((s: any) => s.name)}
-                  />
+                <div className="match-content">
+                  <UserImage image={m.employer.image} />
                   <CustomRow
                     name="Company Name"
                     item={m.employer.companyName}
                   />
                   <CustomRow name="Address" item={m.employer.address} />
+                  <CustomRow name="Job Title" item={m.title} />
+                  <CustomRow name="Job Description" item={m.jobDescription} />
+                  <CustomRow name="Seniority" item={m.seniority} />
+                  <CustomRow name="Starting Date" item={m.startingDate} />
                 </div>
               )
             })}

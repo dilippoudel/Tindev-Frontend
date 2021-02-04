@@ -50,7 +50,6 @@ const jobseeker = (state = initialState, action: JobseekerActions) => {
         loading: true,
       }
     case MATCH_JOBSEEKER_SUCCESS:
-      console.log('jobseekerMatchInReducer', action.payload)
       return {
         ...state,
         loading: false,
