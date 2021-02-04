@@ -1,40 +1,46 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
 import { Col, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-import JobPost from '../../components/JobPost'
-import CompanyIcon from '../CompanyIcon'
-import icon from '../../media/user-img.svg'
+import CustomRow from '../../components/CustomRow'
+import UserImage from '../../components/UserImage'
 import './MatchCardJobseeker.scss'
-import { AppState } from '../../redux/types'
 
-const MatchCardJobseeker = () => {
-  const jobPosts = useSelector((state: AppState) => state.user.info.jobPosts)
+type MatchCardJobseekerProps = {
+  image: string
+  companyName: string
+  companyInfo: string
+  address: string
+  title: string
+  jobDescription: string
+  seniority: string
+  startingDate: string
+}
 
+const MatchCardJobseeker = ({
+  image,
+  companyName,
+  companyInfo,
+  address,
+  title,
+  jobDescription,
+  seniority,
+  startingDate,
+}: MatchCardJobseekerProps) => {
   return (
     <>
-      <Row className="job-post-card">
-        <Col md={2}>
-          <CompanyIcon icon={icon} />
+      <Row className="match-card">
+        <Col md={9}>
+          <UserImage image={image} />
+          <CustomRow name="Company Name" item={companyName} />
+          <CustomRow name="Address" item={address} />
+          <CustomRow name="Company Info" item={companyInfo} />
+          <CustomRow name="Job Title" item={title} />
+          <CustomRow name="Job Description" item={jobDescription} />
+          <CustomRow name="Seniority" item={seniority} />
+          <CustomRow name="Starting Date" item={startingDate} />
         </Col>
-        <Col md={8}>
-          {'match' &&
-            jobPosts.map((jp: any) => {
-              return (
-                <JobPost
-                  key={jp.id}
-                  jobPostId={jp.id}
-                  title={jp.title}
-                  jobDescription={jp.jobDescription}
-                  seniority={jp.seniority}
-                  startingDate={jp.startingDate}
-                  skills={jp.skills.map((s: any) => s.name)}
-                />
-              )
-            })}
-        </Col>
-        <Col md={2}>
+        <Col md={1}>
           <Link to="/chat">Chat</Link>
         </Col>
       </Row>

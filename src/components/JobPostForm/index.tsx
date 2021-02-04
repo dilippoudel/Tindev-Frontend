@@ -153,13 +153,15 @@ const JobPostForm = ({ header }: JobPostFormProps) => {
                 Required Skills
               </Form.Label>
               <Col sm="8">
-                <ReactTags
-                  tags={tags}
-                  suggestions={suggestions}
-                  handleDelete={handleDelete}
-                  handleAddition={handleAddition}
-                  delimiters={delimiters}
-                />
+                {skills && (
+                  <ReactTags
+                    tags={tags}
+                    suggestions={suggestions}
+                    handleDelete={handleDelete}
+                    handleAddition={handleAddition}
+                    delimiters={delimiters}
+                  />
+                )}
               </Col>
             </Form.Group>
             <Form.Group
@@ -195,6 +197,7 @@ const JobPostForm = ({ header }: JobPostFormProps) => {
                   onChange={setStartingAt}
                   inputPlaceholder="Select starting day"
                   colorPrimary="#000"
+                  inputClassName="my-custom-input"
                 />
               </Col>
             </Form.Group>

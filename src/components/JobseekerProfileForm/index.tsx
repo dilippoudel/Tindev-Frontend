@@ -11,6 +11,7 @@ import HalfCircle from '../../components/HalfCircle'
 import CustomButton from '../../components/CustomButton'
 import { AppState } from '../../redux/types'
 import UploadImage from '../../components/UploadImage'
+import './JobseekerProfileForm.scss'
 
 const KeyCodes = {
   comma: 188,
@@ -23,7 +24,7 @@ const JobseekerProfileForm = () => {
   const user = useSelector((state: AppState) => state.user.userInfo)
   const [tags, setTags] = useState<any[]>([])
   const [startingAt, setStartingAt] = useState<DayValue>(null)
-  const [isOpenRelocate, setOpenRelocate] = useState(false)
+  const [isOpenRelocate, setOpenRelocate] = useState(user.relocate)
   const [state, setState] = useState({
     firstName: '',
     lastName: '',
@@ -33,7 +34,7 @@ const JobseekerProfileForm = () => {
     institute: '',
     skills: [],
     workExperience: '',
-    relocate: user.relocate,
+    relocate: isOpenRelocate,
     startingDate: '',
   })
 
@@ -147,39 +148,11 @@ const JobseekerProfileForm = () => {
           </Col>
         </Form.Group>
 
-        <Form.Group as={Row}>
-          <Col as={Row} sm={8} className="mt-2">
-            <Form.Label as="legend" column className="pl-4">
-              Open to Relocate?
-            </Form.Label>
-            {user.relocate === false ? (
-              <BootstrapSwitchButton
-                checked={false}
-                onlabel="Yes"
-                offlabel="No"
-                onChange={(checked: boolean) => {
-                  setOpenRelocate(checked === true)
-                }}
-              />
-            ) : (
-              <BootstrapSwitchButton
-                checked={false}
-                onlabel="No"
-                offlabel="Yes"
-                onChange={(checked: boolean) => {
-                  setOpenRelocate(checked)
-                  setState({ ...state, relocate: checked })
-                }}
-              />
-            )}
-          </Col>
-        </Form.Group>
-
         <Form.Label as="legend" column sm={2} className="ml-n3">
           Education
         </Form.Label>
         <Form.Row>
-          <Col sm={6} className="p-2">
+          <Col sm={6} className="pr-3">
             <Form.Control
               type="text"
               placeholder="Name of Degree"
@@ -188,7 +161,7 @@ const JobseekerProfileForm = () => {
               onChange={handleChange}
             />
           </Col>
-          <Col sm={6} className="p-2">
+          <Col sm={6} className="pl-3">
             <Form.Control
               type="text"
               placeholder="University / School"
@@ -200,25 +173,27 @@ const JobseekerProfileForm = () => {
         </Form.Row>
 
         <Form.Row>
-          <Form.Label column sm="4">
+          <Form.Label as="legend" column sm="3" className="my-3">
             Skills
           </Form.Label>
-          <Col sm="8">
-            <ReactTags
-              tags={tags}
-              suggestions={suggestions}
-              handleDelete={handleDelete}
-              handleAddition={handleAddition}
-              delimiters={delimiters}
-            />
+          <Col sm="9" className="my-3">
+            {skills && (
+              <ReactTags
+                tags={tags}
+                suggestions={suggestions}
+                handleDelete={handleDelete}
+                handleAddition={handleAddition}
+                delimiters={delimiters}
+              />
+            )}
           </Col>
         </Form.Row>
-        <br />
-        <Form.Label as="legend" column>
-          Work Experience
-        </Form.Label>
+
         <Form.Row>
-          <Col className="px-2" lg={6}>
+          <Form.Label as="legend" column className="my-1">
+            Work Experience
+          </Form.Label>
+          <Col className="my-1 pl-2" lg={9}>
             <Form.Control
               name="workExperience"
               placeholder="Work Experience in Years"
@@ -227,21 +202,37 @@ const JobseekerProfileForm = () => {
             />
           </Col>
         </Form.Row>
-        <br />
+
+        <Form.Row>
+          <Form.Label as="legend" column sm="3" className="mt-3 mb-1">
+            Open to Relocate?
+          </Form.Label>
+          <Col sm={7} className="pl-2 mt-3 mb-1">
+            <BootstrapSwitchButton
+              checked={isOpenRelocate}
+              onlabel="Yes"
+              offlabel="No"
+              onChange={(checked: boolean) => {
+                setOpenRelocate(checked === true)
+              }}
+            />
+          </Col>
+        </Form.Row>
         <Form.Group
           as={Row}
           className="form-group-set"
           controlId="formElementStartingAt"
         >
-          <Form.Label column sm="4">
+          <Form.Label column sm="3">
             Starting At
           </Form.Label>
-          <Col sm="8">
+          <Col sm="9" className="date-picker">
             <DatePicker
               value={startingAt}
               onChange={setStartingAt}
               inputPlaceholder="Select earliest starting day"
               colorPrimary="#000"
+              inputClassName="my-custom-input"
             />
           </Col>
         </Form.Group>

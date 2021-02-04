@@ -5,8 +5,7 @@ import { Row, Button, Col, /*Image,*/ ListGroup } from 'react-bootstrap'
 
 import CustomRow from '../CustomRow'
 import CustomSkill from '../CustomSkill'
-import icon from '../../media/user-img.svg'
-import CompanyIcon from '../CompanyIcon'
+import UserImage from '../UserImage'
 import './JobPost.scss'
 import { deleteJobPostRequest } from '../../redux/actions/resources'
 
@@ -17,6 +16,7 @@ type JobPostProps = {
   seniority: string
   startingDate: string
   skills: any[]
+  image: string
 }
 
 const JobPost = ({
@@ -26,6 +26,7 @@ const JobPost = ({
   seniority,
   startingDate,
   skills,
+  image,
 }: JobPostProps) => {
   const dispatch = useDispatch()
 
@@ -37,7 +38,7 @@ const JobPost = ({
     <>
       <Row className="job-post-card">
         <Col md={2}>
-          <CompanyIcon icon={icon} />
+          <UserImage image={image} />
         </Col>
         <Col md={8}>
           <CustomRow name="Title" item={title} />

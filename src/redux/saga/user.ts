@@ -40,6 +40,7 @@ function* getUserSaga() {
     yield put(getUserFail(error))
   }
 }
+
 const sagaWatcher = [
   takeLatest('LOGIN_USER_REQUEST', loginUserSaga),
   takeLatest('GET_USER_REQUEST', getUserSaga),
