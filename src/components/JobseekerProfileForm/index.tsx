@@ -11,6 +11,7 @@ import HalfCircle from '../../components/HalfCircle'
 import CustomButton from '../../components/CustomButton'
 import { AppState } from '../../redux/types'
 import UploadImage from '../../components/UploadImage'
+import './JobseekerProfileForm.scss'
 
 const KeyCodes = {
   comma: 188,
@@ -27,14 +28,14 @@ const JobseekerProfileForm = () => {
   const [state, setState] = useState({
     firstName: '',
     lastName: '',
-    contact: '',
+    contact: undefined,
     seniority: '',
     degree: '',
     institute: '',
     skills: [],
-    workExperience: '',
+    workExperience: 0,
     relocate: isOpenRelocate,
-    startingDate: '',
+    startingDate: startingAt,
   })
 
   // Skill tags
@@ -46,7 +47,11 @@ const JobseekerProfileForm = () => {
     }
   })
 
-  // Handler for form inputs. TODO: Phone, workExperience, relocate
+  const handleInputChange = () => {
+    setTags(tags)
+  }
+
+  // Handler for form inputs. TODO: workExperience, relocate
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target
 
@@ -71,12 +76,12 @@ const JobseekerProfileForm = () => {
         //@ts-ignore
         firstName: state.firstName,
         lastName: state.lastName,
-        contact: Number(state.contact),
+        contact: state.contact,
         seniority: state.seniority,
         degree: state.degree,
         institute: state.institute,
         skills: skills,
-        workExperience: Number(state.workExperience),
+        workExperience: state.workExperience,
         startingDate: startingAt,
         relocate: isOpenRelocate,
       })
@@ -130,38 +135,19 @@ const JobseekerProfileForm = () => {
               type="tel"
               name="contact"
               placeholder="Phone Number"
-              pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
               value={state.contact}
               onChange={handleChange}
             />
-            <small>Format: 123-456-7890</small>
           </Col>
 
           <Col sm={6}>
             <Form.Control
               type="text"
               name="seniority"
-              placeholder="Seniority"
+              placeholder="Junior/Middle/Senior"
               value={state.seniority}
               onChange={handleChange}
             />
-          </Col>
-        </Form.Group>
-
-        <Form.Group as={Row}>
-          <Col as={Row} sm={8} className="mt-2">
-            <Form.Label as="legend" column className="pl-4">
-              Open to Relocate?
-            </Form.Label>
-            <BootstrapSwitchButton
-              checked={isOpenRelocate}
-              onlabel="Yes"
-              offlabel="No"
-              onChange={(checked: boolean) => {
-                setOpenRelocate(checked === true)
-              }}
-            />
-            )
           </Col>
         </Form.Group>
 
@@ -169,7 +155,7 @@ const JobseekerProfileForm = () => {
           Education
         </Form.Label>
         <Form.Row>
-          <Col sm={6} className="p-2">
+          <Col sm={6} className="pr-3">
             <Form.Control
               type="text"
               placeholder="Name of Degree"
@@ -178,7 +164,7 @@ const JobseekerProfileForm = () => {
               onChange={handleChange}
             />
           </Col>
-          <Col sm={6} className="p-2">
+          <Col sm={6} className="pl-3">
             <Form.Control
               type="text"
               placeholder="University / School"
@@ -190,26 +176,30 @@ const JobseekerProfileForm = () => {
         </Form.Row>
 
         <Form.Row>
-          <Form.Label column sm="4">
+          <Form.Label as="legend" column sm="3" className="my-3">
             Skills
           </Form.Label>
-          <Col sm="8">
-            <ReactTags
-              tags={tags}
-              suggestions={suggestions}
-              handleDelete={handleDelete}
-              handleAddition={handleAddition}
-              delimiters={delimiters}
-            />
+          <Col sm="9" className="my-3">
+            {skills && (
+              <ReactTags
+                tags={tags}
+                suggestions={suggestions}
+                handleDelete={handleDelete}
+                handleAddition={handleAddition}
+                delimiters={delimiters}
+                handleInputChange={handleInputChange}
+              />
+            )}
           </Col>
         </Form.Row>
-        <br />
-        <Form.Label as="legend" column>
-          Work Experience
-        </Form.Label>
+
         <Form.Row>
-          <Col className="px-2" lg={6}>
+          <Form.Label as="legend" column className="my-1">
+            Work Experience
+          </Form.Label>
+          <Col className="my-1 pl-2" lg={9}>
             <Form.Control
+              type="number"
               name="workExperience"
               placeholder="Work Experience in Years"
               value={state.workExperience}
@@ -217,21 +207,37 @@ const JobseekerProfileForm = () => {
             />
           </Col>
         </Form.Row>
-        <br />
+
+        <Form.Row>
+          <Form.Label as="legend" column sm="3" className="mt-3 mb-1">
+            Open to Relocate?
+          </Form.Label>
+          <Col sm={7} className="pl-2 mt-3 mb-1">
+            <BootstrapSwitchButton
+              checked={isOpenRelocate}
+              onlabel="Yes"
+              offlabel="No"
+              onChange={(checked: boolean) => {
+                setOpenRelocate(checked)
+              }}
+            />
+          </Col>
+        </Form.Row>
         <Form.Group
           as={Row}
           className="form-group-set"
           controlId="formElementStartingAt"
         >
-          <Form.Label column sm="4">
+          <Form.Label column sm="3">
             Starting At
           </Form.Label>
-          <Col sm="8">
+          <Col sm="9" className="date-picker">
             <DatePicker
               value={startingAt}
               onChange={setStartingAt}
               inputPlaceholder="Select earliest starting day"
               colorPrimary="#000"
+              inputClassName="my-custom-input"
             />
           </Col>
         </Form.Group>

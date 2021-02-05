@@ -34,10 +34,11 @@ export const initState: AppState = {
     startingDate: '',
     institute: '',
     degree: '',
-    contact: '',
-    workExperience: '',
+    contact: undefined,
+    workExperience: 0,
     image: '',
     skills: [],
+    jobseekerMatch: [],
   },
   resources: {
     skills: [],

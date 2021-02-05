@@ -8,7 +8,7 @@ import { Alert } from 'react-bootstrap'
 import './UploadImage.scss'
 
 const UploadImage = () => {
-  const [state, setState]: any = React.useState({
+  const [state, setState]: any = useState({
     images: [],
   })
   const [message, setMessage] = useState('')
